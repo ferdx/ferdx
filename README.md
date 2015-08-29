@@ -1,5 +1,9 @@
 # FerdX
 
+[![Build Status](https://travis-ci.org/ferdx/ferdx.svg?branch=master)](https://travis-ci.org/ferdx/ferdx)
+
+## Summary
+
 FerdX is the one SlackBot to rule them all. View the [press release](PRESS-RELEASE.md)
 for more information.
 
