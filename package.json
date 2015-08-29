@@ -2,13 +2,15 @@
   "name": "FerdX",
   "version": "0.0.1",
   "description": "One Slackbot to rule them all.",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server/server.js",
     "test": "grunt --verbose"
   },
   "dependencies": {
-    "express": "~4.9.x"
+    "body-parser": "^1.13.3",
+    "express": "~4.9.x",
+    "morgan": "^1.6.1"
   },
   "engines": {
     "node": "0.12.2"
