@@ -4,7 +4,8 @@
   "description": "One Slackbot to rule them all.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "grunt --verbose"
   },
   "dependencies": {
     "express": "~4.9.x"
@@ -16,5 +17,9 @@
     "type": "git",
     "url": "https://github.com/ferdx/ferdx.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2"
+  }
 }
