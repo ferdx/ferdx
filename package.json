@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "test": "grunt test --verbose",
-    "postinstall": "bash ./post_install.sh"
+    "postinstall": "bash ./deploy.sh"
   },
   "dependencies": {
     "body-parser": "^1.13.3",
