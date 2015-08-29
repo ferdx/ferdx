@@ -5,10 +5,12 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "test": "grunt --verbose"
+    "test": "grunt test --verbose",
+    "postinstall": "bash ./deploy.sh"
   },
   "dependencies": {
     "body-parser": "^1.13.3",
+    "bower": "^1.5.2",
     "express": "~4.9.x",
     "morgan": "^1.6.1"
   },
