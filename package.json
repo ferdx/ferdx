@@ -1,0 +1,20 @@
+{
+  "name": "FerdX",
+  "version": "0.0.1",
+  "description": "One Slackbot to rule them all.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "~4.9.x"
+  },
+  "engines": {
+    "node": "0.12.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ferdx/ferdx.git"
+  },
+  "license": "MIT"
+}
