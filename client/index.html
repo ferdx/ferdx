@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>FerdX</title>
   <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 </head>
-<body>
+<body ng-app="app">
   <h1>The future home of Ferdx</h1>
 
-  <div ng-controller="HelloController as hello">
-    Hello, {{ hello.username }}!
-  </div>
+  <nav>
+    <ul>
+      <li ui-sref-active="active"><a ui-sref="home">home</a></li>
+      <li ui-sref-active="active"><a ui-sref="getferd">get ferd</a></li>
+      <li ui-sref-active="active"><a ui-sref="marketplace">marketplace</a></li>
+    </ul>
+  </nav>
+
+  <div ui-view></div>
 
   <script src="app.js"></script>
-  <script src="components/hello/hello.js"></script>
+  <script src="components/home/home.js"></script>
+  <script src="components/getferd/getferd.js"></script>
+  <script src="components/marketplace/marketplace.js"></script>
 </body>
 </html>
