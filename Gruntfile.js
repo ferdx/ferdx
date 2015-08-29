@@ -8,7 +8,12 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
-      all: ['Gruntfile.js', 'index.js']
+      all: [
+        'Gruntfile.js',
+        'app/**/*.js',
+        '!app/lib/**/*.js',
+        'server/**/*.js'
+        ]
     }
   });
   
