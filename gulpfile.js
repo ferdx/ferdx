@@ -26,14 +26,14 @@ gulp.task('lint', function() {
 });
 
 /**
- * Client side tests - do them using karma
+ * Client side tests using karma
  */
 gulp.task('clientTests', shell.task([
   'karma start'
 ]));
 
 /**
- * Mocha server tests
+ * Server side testing using mocha directly
  */
 gulp.task('serverTests', function () {
   return gulp.src(paths.serverTestScripts, {read: false})
