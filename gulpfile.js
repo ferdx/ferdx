@@ -4,6 +4,7 @@
 var gulp   = require('gulp');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
+var shell = require('gulp-shell');
 var stylish = require('jshint-stylish');
 
 /**
@@ -25,15 +26,14 @@ gulp.task('lint', function() {
 });
 
 /**
- * Mocha client tests
+ * Client side tests using karma
  */
-gulp.task('clientTests', function () {
-  return gulp.src(paths.clientTestScripts, {read: false})
-    .pipe(mocha({reporter: 'nyan'}));
-});
+gulp.task('clientTests', shell.task([
+  'karma start'
+]));
 
 /**
- * Mocha server tests
+ * Server side testing using mocha directly
  */
 gulp.task('serverTests', function () {
   return gulp.src(paths.serverTestScripts, {read: false})
