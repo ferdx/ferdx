@@ -34,7 +34,7 @@
      * A sample attachment of a controller param, made accessible inside the
      * HTML wherever a controller is declared.
      */
-    vm.username = 'Nick';
+    vm.hello = 'hello';
   }
 
 })();
