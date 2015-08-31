@@ -1,8 +1,16 @@
 describe('HelloController', function() {
 
-  describe('Bool', function() {
-    it('compares truthiness', function() {
-      expect(1).to.equal(1);
+  beforeEach(module('app'));
+
+  var $controller;
+
+  beforeEach(inject(function(_$controller_){
+    $controller = _$controller_;
+  }));
+
+  describe('$scope.hello', function() {
+    it('should = hello', function() {
+      var vm = $controller('HelloController');
     });
   });
   
