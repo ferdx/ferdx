@@ -4,6 +4,10 @@ require('dotenv').load();
 // boot up express express and mongoose
 var express = require('express');
 var app = express();
+var mongoose = require('mongoose');
+
+// connect to mongo
+mongoose.connect('mongodb://localhost/ferdx');
 
 // configure our server with all the middleware
 require('./config/middleware.js')(app, express);
