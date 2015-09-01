@@ -11,8 +11,12 @@
   "dependencies": {
     "body-parser": "^1.13.3",
     "bower": "^1.5.2",
+    "dotenv": "^1.2.0",
     "express": "~4.9.x",
-    "morgan": "^1.6.1"
+    "morgan": "^1.6.1",
+    "querystring": "^0.2.0",
+    "request": "^2.61.0",
+    "underscore": "^1.8.3"
   },
   "engines": {
     "node": "0.12.2"
@@ -32,6 +36,7 @@
     "karma": "^0.13.9",
     "karma-chai": "^0.1.0",
     "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^1.1.1",
     "karma-nyan-reporter": "^0.2.2",
     "karma-phantomjs-launcher": "^0.2.1",
     "mocha": "^2.2.5"

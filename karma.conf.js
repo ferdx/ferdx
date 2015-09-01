@@ -12,6 +12,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'client/lib/underscore/underscore-min.js',
       'client/lib/angular/angular.min.js',
       'client/lib/angular-ui-router/release/angular-ui-router.min.js',
       'client/lib/angular-mocks/angular-mocks.js',
@@ -28,7 +29,7 @@ module.exports = function(config) {
     },
 
     // test results reporter to use
-    reporters: ['nyan'],
+    reporters: ['mocha'],
 
     // web server port
     port: 9876,
