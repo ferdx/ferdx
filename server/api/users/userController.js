@@ -32,6 +32,7 @@ module.exports = {
             slackchannel: slackchannel,
             password: password
           };
+
           return create(newUser);
         }
       })
