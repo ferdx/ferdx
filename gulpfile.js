@@ -37,13 +37,7 @@ gulp.task('clientTests', shell.task([
  */
 gulp.task('serverTests', function () {
   return gulp.src(paths.serverTestScripts, {read: false})
-    .pipe(mocha({reporter: 'spec'}))
-    .once('error', function () {
-      process.exit(1);
-    })
-    .once('end', function () {
-      process.exit();
-    });
+    .pipe(mocha({reporter: 'spec'}));
 });
 
 /**
