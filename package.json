@@ -9,11 +9,15 @@
     "postinstall": "bash ./deploy.sh"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.3",
     "bower": "^1.5.2",
     "dotenv": "^1.2.0",
     "express": "~4.9.x",
+    "jwt-simple": "^0.3.1",
+    "mongoose": "^4.1.4",
     "morgan": "^1.6.1",
+    "q": "^1.4.1",
     "querystring": "^0.2.0",
     "request": "^2.61.0",
     "underscore": "^1.8.3"
