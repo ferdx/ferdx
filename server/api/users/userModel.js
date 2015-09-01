@@ -3,6 +3,11 @@ var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
 var SALT_WORK_FACTOR  = 10;
 
+/**
+ * UserSchema
+ * 
+ * @type {mongoose}
+ */
 var UserSchema = new mongoose.Schema({
   
   username: {
@@ -11,7 +16,7 @@ var UserSchema = new mongoose.Schema({
     unique: true
   },
 
-  slackchannel: {
+  slackOrganization: {
     type: String,
     required: true,
     unique: true
@@ -24,10 +29,26 @@ var UserSchema = new mongoose.Schema({
 
   salt: {
     type: String
+  },
+
+  botKey: {
+    type: String,
+    default: null
+  },
+
+  botModules: {
+    type: Array,
+    default: []
   }
 
 });
 
+/**
+ * comparePasswords()
+ * 
+ * @param {[type]} 
+ * @return {[type]}
+ */
 UserSchema.methods.comparePasswords = function (candidatePassword) {
   var defer = Q.defer();
   var savedPassword = this.password;
@@ -41,31 +62,23 @@ UserSchema.methods.comparePasswords = function (candidatePassword) {
   return defer.promise;
 };
 
-// Constains returns false, or the index of the business
-UserSchema.methods.contains = function (business){
-};
-
+/**
+ * pre('save')
+ * 
+ * @param {[type]} 
+ * @return {[type]}
+ */
 UserSchema.pre('save', function (next) {
   var user = this;
 
-  // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) {
-    return next();
-  }
+  if (!user.isModified('password')) { return next(); }
 
-  // generate a salt
   bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-    if (err) {
-      return next(err);
-    }
+    if (err) { return next(err); }
 
-    // hash the password along with our new salt
     bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if (err) {
-        return next(err);
-      }
+      if (err) { return next(err); }
 
-      // override the cleartext password with the hashed one
       user.password = hash;
       user.salt = salt;
       next();

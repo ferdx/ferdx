@@ -7,15 +7,15 @@ module.exports = {
   /**
    * signup()
    * 
-   * @param {[type]} 
-   * @param {[type]} 
-   * @param {Function} 
+   * @param {Object} the request object sent from the client
+   * @param {Object} the response object
+   * @param {Function} the next function
    * @return {[type]}
    */
-  signup: function (req, res, next) {
+  signup: function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
-    var slackchannel = req.body.slackchannel;
+    var slackOrganization = req.body.slackOrganization;
     var create;
     var newUser;
 
@@ -29,20 +29,27 @@ module.exports = {
           create = Q.nbind(User.create, User);
           newUser = {
             username: username,
-            slackchannel: slackchannel,
+            slackOrganization: slackOrganization,
             password: password
           };
 
           return create(newUser);
         }
       })
-      .then(function (user) {        
+      .then(function(user) {        
         user.save();
 
         var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+        var data = {
+          username: user.username,
+          slackOrganization: user.slackOrganization,
+          botKey: user.botKey,
+          botModules: user.botModules,
+          token: token
+        };
+        res.send(data);
       })
-      .fail(function (error) {
+      .fail(function(error) {
         next(error);
       });
   },
@@ -55,9 +62,9 @@ module.exports = {
    * @param {Function} 
    * @return {[type]}
    */
-  login: function (req, res, next) {
+  login: function(req, res, next) {
     var username = req.body.username;
-    var slackchannel = req.body.slackchannel;
+    var slackOrganization = req.body.slackOrganization;
     var password = req.body.password;
 
     var findUser = Q.nbind(User.findOne, User);
@@ -71,8 +78,14 @@ module.exports = {
             .then(function(foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
-                res.json({token: token});
-                user.save();
+                var data = {
+                  username: user.username,
+                  slackOrganization: user.slackOrganization,
+                  botKey: user.botKey,
+                  botModules: user.botModules,
+                  token: token
+                };
+                res.send(data);
               } else {
                 return next(new Error('No user'));
               }
@@ -103,50 +116,39 @@ module.exports = {
   },
 
   /**
-   * checkAuth()
+   * getAuthUser()
    * 
    * @param {[type]} 
    * @param {[type]} 
    * @param {Function} 
    * @return {[type]}
    */
-  checkAuth: function (req, res, next) {
-    var token = req.headers['x-access-token'];
+  getAuthUser: function (req, res, next) {
+    var token = req.body.token;
     if (!token) {
       next(new Error('No token'));
     } else {
       var user = jwt.decode(token, 'secret');
       var findUser = Q.nbind(User.findOne, User);
       findUser({username: user.username})
-        .then(function (foundUser) {
+        .then(function(foundUser) {
           if (foundUser) {
-            res.send(200);
+            var data = {
+              username: foundUser.username,
+              slackOrganization: foundUser.slackOrganization,
+              botKey: foundUser.botKey,
+              botModules: foundUser.botModules,
+              token: token
+            };
+            res.send(data);
           } else {
-            res.send(401);
+            res.status(401).end();
           }
         })
-        .fail(function (error) {
+        .fail(function(error) {
           next(error);
         });
     }
-  },
-
-  /**
-   * getAuthUser()
-   * 
-   * @return {[type]}
-   */
-  getAuthUser: function(req, res, next) {
-    var username = req.body.username;
-    var findOne = Q.nbind(User.findOne, User);
-
-    findOne({username: username})
-      .then(function(user) {
-        res.send(user);
-      })
-      .fail(function (error) {
-        next(error);
-      });
   }
 
 };
