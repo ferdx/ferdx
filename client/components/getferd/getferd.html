@@ -6,8 +6,8 @@
 
     <p>Log in below to access your Ferd panel!</p>
     <form action="#" ng-submit="auth.login($event)">
-      <p><input type="text" placeholder="username"></p>
-      <p><input type="password" placeholder="password"></p>
+      <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
+      <p><input type="password" placeholder="password" ng-model="auth.user.password"></p>
       <p><button type="submit">Log In</button></p>
     </form>
 
@@ -17,7 +17,7 @@
     <div ng-show="!!message">{{ message }}</div>
     <form action="#" ng-submit="auth.signup($event)">
       <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
-      <p><input type="text" placeholder="slack channel name" ng-model="auth.user.slackchannel"></p>
+      <p><input type="text" placeholder="slack channel name" ng-model="auth.user.slackOrganization"></p>
       <p><input type="password" placeholder="password" ng-model="auth.user.password"></p>
       <p><button type="submit">Sign Up</button></p>
     </form>

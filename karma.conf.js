@@ -29,7 +29,7 @@ module.exports = function(config) {
     },
 
     // test results reporter to use
-    reporters: ['mocha'],
+    reporters: ['spec'],
 
     // web server port
     port: 9876,

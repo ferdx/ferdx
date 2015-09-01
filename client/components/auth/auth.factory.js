@@ -80,7 +80,13 @@
      * @return {Boolean}
      */
     function isAuth() {
-      return !!$window.localStorage.getItem('ferdxAuthIdentifier');
+      var token = $window.localStorage.getItem('ferdxAuthIdentifier');
+      if (token) {
+        return getAuthUser(token);
+      } else {
+        return false;
+      }
+
     }
 
     /**
@@ -88,11 +94,13 @@
      * 
      * @return {[type]}
      */
-    function getAuthUser() {
-      var data = {username: window.localStorage.getItem('username')}
-      return $http.post('/api/users/getauthuser', data)
+    function getAuthUser(token) {
+      return $http.post('/api/users/getauthuser', {token: token})
         .then(function(response) {
           return response;
+        })
+        .catch(function(err) {
+          return err;
         });
     }
 

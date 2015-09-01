@@ -31,18 +31,17 @@
      * @return {[type]}
      */
     function activate() {
-      if (authFactory.isAuth()) {
-        console.log('we have an auth user');
+      var isAuth = authFactory.isAuth();
 
-        authFactory.getAuthUser()
-          .then(function(data) {
-            console.log(data);
-          })
-          .catch(function(err) {
-            console.log(err);
-          });
+      if (isAuth) {
+        isAuth.then(function(data) {
+          console.log(data);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
       } else {
-        console.log('user not auth');
+        console.log('not logged in');
       }
     }
 
@@ -96,9 +95,7 @@
 
       authFactory.logout(vm.user)
         .then(function (token){    
-          console.log('inside then: im signing out') 
-          $window.localStorage.removeItem('battlepro');
-          $location.path('/signin');
+          $window.localStorage.removeItem('ferdxAuthIdentifier');
         })
         .catch(function (error) {
             $scope.message = "Username Not Found";
