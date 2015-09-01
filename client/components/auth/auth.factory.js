@@ -38,9 +38,10 @@
      */
     function signup(user) {
       return $http.post('/api/users/signup', user)
-        .then(function (resp) {
-          $window.localStorage.setItem('username', resp.config.data.username);
-          return resp.data.token;
+        .then(function(response) {
+          $window.localStorage.setItem('ferdxAuthIdentifier', response.data.token);
+          $window.localStorage.setItem('username', response.data.username);
+          return response;
         });
     }
 
@@ -52,9 +53,10 @@
      */
     function login(user) {
       return $http.post('/api/users/login', user)
-        .then(function (resp) {
-          $window.localStorage.setItem('username', resp.config.data.username);
-          return resp.data.token;
+        .then(function(response) {
+          $window.localStorage.setItem('ferdxAuthIdentifier', response.data.token);
+          $window.localStorage.setItem('username', response.data.username);
+          return response;
         });
     }
 
@@ -69,8 +71,8 @@
       $window.localStorage.removeItem('ferdxAuthIdentifier');
       
       return $http.post('/api/users/logout', user)
-        .then(function (resp) {
-          return resp.data.token;
+        .then(function(response) {
+          return response;
         });
     }
 
@@ -81,12 +83,7 @@
      */
     function isAuth() {
       var token = $window.localStorage.getItem('ferdxAuthIdentifier');
-      if (token) {
-        return getAuthUser(token);
-      } else {
-        return false;
-      }
-
+      return !!token;
     }
 
     /**
@@ -95,8 +92,12 @@
      * @return {[type]}
      */
     function getAuthUser(token) {
-      return $http.post('/api/users/getauthuser', {token: token})
+      var token = $window.localStorage.getItem('ferdxAuthIdentifier');
+      var username = $window.localStorage.getItem('username');
+
+      return $http.post('/api/users/getauthuser', {username: username})
         .then(function(response) {
+          response.data.token = token;
           return response;
         })
         .catch(function(err) {

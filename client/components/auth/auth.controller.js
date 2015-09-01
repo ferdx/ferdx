@@ -31,15 +31,15 @@
      * @return {[type]}
      */
     function activate() {
-      var isAuth = authFactory.isAuth();
-
-      if (isAuth) {
-        isAuth.then(function(data) {
-          console.log(data);
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
+      
+      if (authFactory.isAuth()) {
+        authFactory.getAuthUser()
+          .then(function(data) {
+            console.log(data);
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
       } else {
         console.log('not logged in');
       }
@@ -54,13 +54,11 @@
       e.preventDefault();
 
       authFactory.signup(vm.user)
-        .then(function (token) {
-          console.log('signup promise then block');
-          $window.localStorage.setItem('ferdxAuthIdentifier', token);
+        .then(function(data) {
+          console.log(data);
         })
-        .catch(function (error) {
-          vm.message = "Username Already Taken";
-          console.error(error);
+        .catch(function (err) {
+          console.error(err);
         });
     }
 
@@ -73,12 +71,11 @@
       e.preventDefault();
 
       authFactory.login(vm.user)
-        .then(function (token) {
-          $window.localStorage.setItem('ferdxAuthIdentifier', token);
+        .then(function(data) {
+          console.log(data);
         })
-        .catch(function (error) {
-          vm.message = "Invalid Username or Password";
-          console.error(error);
+        .catch(function(err) {
+          console.error(err);
         });
     }
 
@@ -94,12 +91,11 @@
       vm.user.username = $window.localStorage.getItem('username');
 
       authFactory.logout(vm.user)
-        .then(function (token){    
-          $window.localStorage.removeItem('ferdxAuthIdentifier');
+        .then(function(data){    
+          console.log(data);
         })
-        .catch(function (error) {
-            $scope.message = "Username Not Found";
-            console.error(error);
+        .catch(function(err) {
+          console.error(err);
         });
     }
 

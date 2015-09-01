@@ -124,31 +124,22 @@ module.exports = {
    * @return {[type]}
    */
   getAuthUser: function (req, res, next) {
-    var token = req.body.token;
-    if (!token) {
-      next(new Error('No token'));
-    } else {
-      var user = jwt.decode(token, 'secret');
-      var findUser = Q.nbind(User.findOne, User);
-      findUser({username: user.username})
-        .then(function(foundUser) {
-          if (foundUser) {
-            var data = {
-              username: foundUser.username,
-              slackOrganization: foundUser.slackOrganization,
-              botKey: foundUser.botKey,
-              botModules: foundUser.botModules,
-              token: token
-            };
-            res.send(data);
-          } else {
-            res.status(401).end();
-          }
-        })
-        .fail(function(error) {
-          next(error);
-        });
-    }
+    var username = req.body.username;
+    var findOne = Q.nbind(User.findOne, User);
+
+    findOne({username: username})
+      .then(function(user) {
+        var data = {
+          username: user.username,
+          slackOrganization: user.slackOrganization,
+          botKey: user.botKey,
+          botModules: user.botModules
+        };
+        res.send(data);
+      })
+      .fail(function (error) {
+        next(error);
+      });
   }
 
 };
