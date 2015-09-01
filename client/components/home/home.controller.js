@@ -1,5 +1,5 @@
 /**
- * The home controller. 
+ * The HomeController 
  */
 (function() {
 

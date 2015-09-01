@@ -28,13 +28,38 @@ describe('GetFerdController', function() {
   }));
 
   /**
-   * An empty test. Returns nothing.
-   * 
+   * Tests the basic definition and existence of the controller
+   *
    * @param {String} the test name
    */
-  describe('empty test', function() {
-    it('should do something', function() {
+  describe('definition', function() {
+    it('should be defined', function() {
+      expect(vm).to.be.defined;
+    });
+  });
 
+  /**
+   * Testing the query string
+   *
+   * @param {String} the test name
+   */
+  describe('query string empty', function() {
+    it('should be empty on first page load', function() {
+      expect(vm.queryString).to.be.empty;
+    });
+
+    describe('query string full', function() {
+      beforeEach(function() {
+        vm.queryString = {code: 'abc', state: 'abc'};
+      });
+
+      it('should not be empty', function() {
+        expect(vm.queryString).to.not.be.empty;
+      });
+
+      it('should call oauthAccess', function() {
+        expect(vm.oauthAccess).to.have.been.called;
+      });
     });
   });
   

@@ -1,3 +1,6 @@
+// load up .env as soon as possible
+require('dotenv').load();
+
 // boot up express express and mongoose
 var express = require('express');
 var app = express();
