@@ -19,8 +19,9 @@
     var vm = this;
 
     vm.user = {};
-    vm.login = login;
     vm.signup = signup;
+    vm.login = login;
+    vm.logout = logout;
 
     activate();
 
@@ -40,7 +41,28 @@
           .catch(function(err) {
             console.log(err);
           });
+      } else {
+        console.log('user not auth');
       }
+    }
+
+    /**
+     * signup() signs a user up
+     * 
+     * @return {}
+     */
+    function signup(e) {
+      e.preventDefault();
+
+      authFactory.signup(vm.user)
+        .then(function (token) {
+          console.log('signup promise then block');
+          $window.localStorage.setItem('ferdxAuthIdentifier', token);
+        })
+        .catch(function (error) {
+          vm.message = "Username Already Taken";
+          console.error(error);
+        });
     }
 
     /**
@@ -62,23 +84,28 @@
     }
 
     /**
-     * signup() signs a user up
+     * logout()
      * 
-     * @return {}
+     * @param {[type]} 
+     * @return {[type]}
      */
-    function signup(e) {
+    function logout(e) {
       e.preventDefault();
 
-      authFactory.signup(vm.user)
-        .then(function (token) {
-          console.log('signup promise then block');
-          $window.localStorage.setItem('ferdxAuthIdentifier', token);
+      vm.user.username = $window.localStorage.getItem('username');
+
+      authFactory.logout(vm.user)
+        .then(function (token){    
+          console.log('inside then: im signing out') 
+          $window.localStorage.removeItem('battlepro');
+          $location.path('/signin');
         })
         .catch(function (error) {
-          vm.message = "Username Already Taken";
-          console.error(error);
+            $scope.message = "Username Not Found";
+            console.error(error);
         });
     }
+
   }
 
 })();

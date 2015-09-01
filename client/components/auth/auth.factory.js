@@ -37,7 +37,7 @@
      * @return {[type]}
      */
     function signup(user) {
-      return $http.post('/api/users/signup', { data: user })
+      return $http.post('/api/users/signup', user)
         .then(function (resp) {
           $window.localStorage.setItem('username', resp.config.data.username);
           return resp.data.token;
@@ -51,7 +51,7 @@
      * @return {[type]}
      */
     function login(user) {
-      return $http.post('/api/users/login', { data: user })
+      return $http.post('/api/users/login', user)
         .then(function (resp) {
           $window.localStorage.setItem('username', resp.config.data.username);
           return resp.data.token;
@@ -67,9 +67,8 @@
     function logout(user) {
       $window.localStorage.setItem('username', undefined);
       $window.localStorage.removeItem('ferdxAuthIdentifier');
-      $location.path('/');
       
-      return $http.post('/api/users/logout', { data: user })
+      return $http.post('/api/users/logout', user)
         .then(function (resp) {
           return resp.data.token;
         });
