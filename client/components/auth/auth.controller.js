@@ -22,7 +22,10 @@
     vm.signup = signup;
     vm.login = login;
     vm.logout = logout;
+    vm.authUser = {};
     vm.isAuth = false;
+    vm.hasBot = vm.authUser.botKey;
+    vm.slackOrg = '';
 
     activate();
 
@@ -32,11 +35,12 @@
      * @return {[type]}
      */
     function activate() {
-      
       if (authFactory.isAuth()) {
         vm.isAuth = true;
         authFactory.getAuthUser()
           .then(function(data) {
+            vm.slackOrg = data.data.slackOrganization;
+            if(data.data.botKey) vm.hasBot = true;
             console.log(data);
           })
           .catch(function(err) {
@@ -58,6 +62,8 @@
 
       authFactory.signup(vm.user)
         .then(function(data) {
+          vm.isAuth = true;
+          vm.slackOrg = data.data.slackOrganization;
           console.log(data);
         })
         .catch(function (err) {
@@ -73,10 +79,15 @@
     function login(e) {
       e.preventDefault();
 
-      authFactory.login(vm.user)
+      vm.authUser = authFactory.login(vm.user)
         .then(function(data) {
-          console.log(data);
-          vm.isAuth = true;
+          // vm.isAuth = true;
+
+          return data.data;
+
+          // vm.slackOrg = data.data.slackOrganization;
+          // if(data.data.botKey) vm.hasBot = true;
+          // console.log(data);
         })
         .catch(function(err) {
           console.error(err);

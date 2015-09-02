@@ -15,7 +15,7 @@
   /**
    * GetFerdController is where all the actual controller functionality resides.
    */
-  function GetFerdController($window, $location, getFerdFactory, helpersFactory) {
+  function GetFerdController($state, $window, $location, getFerdFactory, helpersFactory) {
     var vm = this;
 
     vm.queryString;
@@ -32,10 +32,7 @@
      * @return {[type]}
      */
     function activate() {
-      vm.queryString = $location.search();
-      if (!_.isEmpty(vm.queryString)) {
-        vm.oauthAccess();
-      }
+      $state.go('getferd.auth.login');
     }
 
     /**
