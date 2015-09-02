@@ -21,10 +21,10 @@ module.exports = {
 
     var findOne = Q.nbind(User.findOne, User);
 
-    findOne({username: username})
+    findOne( {username: username} )
       .then(function(user) {
         if (user) {
-          next(new Error('User already exists!'));
+          res.status(401).send({data: 'User already exists!'});
         } else {
           create = Q.nbind(User.create, User);
           newUser = {
@@ -36,18 +36,20 @@ module.exports = {
           return create(newUser);
         }
       })
-      .then(function(user) {        
-        user.save();
-
-        var token = jwt.encode(user, 'secret');
-        var data = {
-          username: user.username,
-          slackOrganization: user.slackOrganization,
-          botKey: user.botKey,
-          botModules: user.botModules,
-          token: token
-        };
-        res.send(data);
+      .then(function(user) {
+        if (user) {
+          user.save(function() {
+            var token = jwt.encode(user, 'secret');
+            var data = {
+              username: user.username,
+              slackOrganization: user.slackOrganization,
+              botKey: user.botKey,
+              botModules: user.botModules,
+              token: token
+            };
+            res.status(201).send(data);
+          });
+        }
       })
       .fail(function(error) {
         next(error);
@@ -64,7 +66,6 @@ module.exports = {
    */
   login: function(req, res, next) {
     var username = req.body.username;
-    var slackOrganization = req.body.slackOrganization;
     var password = req.body.password;
 
     var findUser = Q.nbind(User.findOne, User);
@@ -72,7 +73,7 @@ module.exports = {
     findUser({username: username})
       .then(function(user) {
         if (!user) {
-          next(new Error('User does not exist'));
+          res.status(401).send({data: 'User does not exist'});
         } else {
           return user.comparePasswords(password)
             .then(function(foundUser) {
@@ -85,9 +86,9 @@ module.exports = {
                   botModules: user.botModules,
                   token: token
                 };
-                res.send(data);
+                res.status(201).send(data);
               } else {
-                return next(new Error('No user'));
+                res.status(401).send({data: 'No user'});
               }
             });
         }
@@ -105,13 +106,13 @@ module.exports = {
    * @param {Function} the next function
    */
   logout: function(req, res, next){
-      var username = req.body.username;
-      var findUser = Q.nbind(User.findOne, User);
-      
-      findUser({username: username})
-        .then(function(user) {
-          user.save();
-        });
+    var username = req.body.username;
+    var findUser = Q.nbind(User.findOne, User);
+    
+    findUser({username: username})
+      .then(function(user) {
+        res.status(201).send(user);
+      });
   },
 
   /**
@@ -155,9 +156,7 @@ module.exports = {
 
     findOne({username: username})
       .then(function(user) {
-        console.log('succesfully found user, need to update bot modules');
         user.update({botModules: ['one', 'two']}, function(err, raw) {
-          console.log('successful updated user bot modules.');
           res.send(user);
         });
       })
