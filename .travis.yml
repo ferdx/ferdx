@@ -1,5 +1,7 @@
 language: node_js
 node_js:
-  - 'stable'
+  - stable
+services:
+  - mongodb
 before_install: npm install -g gulp
 install: npm install
