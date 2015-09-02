@@ -22,6 +22,7 @@
     vm.signup = signup;
     vm.login = login;
     vm.logout = logout;
+    vm.isAuth = false;
 
     activate();
 
@@ -33,6 +34,7 @@
     function activate() {
       
       if (authFactory.isAuth()) {
+        vm.isAuth = true;
         authFactory.getAuthUser()
           .then(function(data) {
             console.log(data);
@@ -42,6 +44,7 @@
           });
       } else {
         console.log('not logged in');
+        vm.isAuth = false;
       }
     }
 
@@ -73,6 +76,7 @@
       authFactory.login(vm.user)
         .then(function(data) {
           console.log(data);
+          vm.isAuth = true;
         })
         .catch(function(err) {
           console.error(err);
@@ -87,6 +91,8 @@
      */
     function logout(e) {
       e.preventDefault();
+
+      vm.isAuth = false;
 
       vm.user.username = $window.localStorage.getItem('username');
 
