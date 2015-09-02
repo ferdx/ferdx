@@ -5,12 +5,12 @@ var jwt = require('jwt-simple');
 module.exports = {
 
   /**
-   * signup()
+   * signup() Signs a user up.
    * 
    * @param {Object} the request object sent from the client
    * @param {Object} the response object
    * @param {Function} the next function
-   * @return {[type]}
+   * @return {Object} the created user
    */
   signup: function(req, res, next) {
     var username = req.body.username;
@@ -55,12 +55,12 @@ module.exports = {
   },
   
   /**
-   * login()
+   * login() Logs a user in.
    * 
-   * @param {[type]} 
-   * @param {[type]} 
-   * @param {Function} 
-   * @return {[type]}
+   * @param {Object} the request object sent from the client
+   * @param {Object} the response object
+   * @param {Function} the next function
+   * @return {Object} returns user data on success, error on fail
    */
   login: function(req, res, next) {
     var username = req.body.username;
@@ -70,7 +70,7 @@ module.exports = {
     var findUser = Q.nbind(User.findOne, User);
     
     findUser({username: username})
-      .then(function (user) {
+      .then(function(user) {
         if (!user) {
           next(new Error('User does not exist'));
         } else {
@@ -92,38 +92,37 @@ module.exports = {
             });
         }
       })
-      .fail(function (error) {
+      .fail(function(error) {
         next(error);
       });
   },
 
   /**
-   * logout()
+   * logout() Logs a user out. Returns nothing.
    * 
-   * @param {[type]} 
-   * @param {[type]} 
-   * @param {Function} 
-   * @return {[type]}
+   * @param {Object} the request object sent from the client
+   * @param {Object} the response object
+   * @param {Function} the next function
    */
-  logout: function (req, res, next){
+  logout: function(req, res, next){
       var username = req.body.username;
       var findUser = Q.nbind(User.findOne, User);
       
       findUser({username: username})
-        .then(function (user) {
+        .then(function(user) {
           user.save();
         });
   },
 
   /**
-   * getAuthUser()
+   * getAuthUser() Gets the currently authenticated user.
    * 
-   * @param {[type]} 
-   * @param {[type]} 
-   * @param {Function} 
-   * @return {[type]}
+   * @param {Object} the request object sent from the client
+   * @param {Object} the response object
+   * @param {Function} the next function
+   * @return {Object} the user data on success, and an error on fail
    */
-  getAuthUser: function (req, res, next) {
+  getAuthUser: function(req, res, next) {
     var username = req.body.username;
     var findOne = Q.nbind(User.findOne, User);
 
@@ -137,7 +136,32 @@ module.exports = {
         };
         res.send(data);
       })
-      .fail(function (error) {
+      .fail(function(error) {
+        next(error);
+      });
+  },
+
+  /**
+   * updateUserBotModules() Updates the user bot modules
+   * 
+   * @param {Object} the request object sent from the client
+   * @param {Object} the response object
+   * @param {Function} the next function
+   * @return {Object} the user data on success, and an error on fail
+   */
+  updateUserBotModules: function(req, res, next) {
+    var username = req.body.username;
+    var findOne = Q.nbind(User.findOne, User);
+
+    findOne({username: username})
+      .then(function(user) {
+        console.log('succesfully found user, need to update bot modules');
+        user.update({botModules: ['one', 'two']}, function(err, raw) {
+          console.log('successful updated user bot modules.');
+          res.send(user);
+        });
+      })
+      .fail(function(error) {
         next(error);
       });
   }
