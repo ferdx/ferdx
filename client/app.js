@@ -34,6 +34,22 @@
       .state('getferd', {
         url: '/getferd',
         templateUrl: 'components/getferd/getferd.html'
+      })
+      .state('getferd.auth', {
+        url: '/auth',
+        templateUrl: 'components/getferd/getferd.auth.html'
+      })
+      .state('getferd.config', {
+        url: '/config',
+        templateUrl: 'components/getferd/getferd.config.html'
+      })
+      .state('getferd.auth.login', {
+        url: '/login',
+        templateUrl: 'components/getferd/getferd.auth.login.html'
+      })
+      .state('getferd.auth.signup', {
+        url: '/signup',
+        templateUrl: 'components/getferd/getferd.auth.signup.html'
       });
 
     $stateProvider

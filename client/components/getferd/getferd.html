@@ -1,10 +1,20 @@
 <div ng-controller="GetFerdController as getferd">
-
+ 
   <hr>
   
-  <div class="login" ng-controller="AuthController as auth">
+  <h2>The parent get ferd view</h2>
+
+  <a ui-sref=".auth">Show no auth?</a>
+  <a ui-sref=".config">Show auth?</a>
+
+  <hr>
+
+  <div ui-view></div>
+  
+  <!-- <div class="login" ng-controller="AuthController as auth">
 
     <div ng-show="!auth.isAuth">
+
       <p>Log in below to access your Ferd panel!</p>
       <form action="#" ng-submit="auth.login($event)">
         <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
@@ -18,20 +28,40 @@
       <div ng-show="!!message">{{ message }}</div>
       <form action="#" ng-submit="auth.signup($event)">
         <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
-        <p><input type="text" placeholder="slack channel name" ng-model="auth.user.slackOrganization"></p>
+        <p><input type="text" placeholder="slack team name" ng-model="auth.user.slackOrganization"></p>
         <p><input type="password" placeholder="password" ng-model="auth.user.password"></p>
         <p><button type="submit">Sign Up</button></p>
       </form>
     
     </div>
+
+    <div ng-show="!auth.authUser.botKey">
+      I have a bot!
+      
+      <pre>
+      {{ auth.authUser }}
+      </pre>
+    </div>
     
     <div ng-show="auth.isAuth">
+
+      <div ng-show="!auth.hasBot">
+        <p>It looks like you don't yet have a Ferd bot. Visit <a href="https://{{auth.slackOrg}}/services/new/bot" target="_blank">https://{{auth.slackOrg}}/services/new/bot</a> to get started! Once you generate an API token, paste it here.</p>
+
+        <form action="#" ng-submit="auth.saveKey($event)">
+          <p><input type="text" placeholder="API Token" ng-model="auth.user.botKey"></p>
+          <p><button type="submit">Save</button></p>
+        </form>
+        
+        <hr>
+      </div>
+
       <form action="#" ng-submit="auth.logout($event)">
         <button type="submit">Log Out</button>
       </form>
     </div>
 
-  </div>
+  </div> -->
 
   <!-- <p>Hey hey, do you want to add ferd? <a href="#" ng-click="getferd.oauthAuthorize($event)">Click here!</a></p> -->
 </div>
