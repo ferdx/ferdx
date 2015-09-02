@@ -4,29 +4,33 @@
   
   <div class="login" ng-controller="AuthController as auth">
 
-    <p>Log in below to access your Ferd panel!</p>
-    <form action="#" ng-submit="auth.login($event)">
-      <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
-      <p><input type="password" placeholder="password" ng-model="auth.user.password"></p>
-      <p><button type="submit">Log In</button></p>
-    </form>
+    <div ng-show="!auth.isAuth">
+      <p>Log in below to access your Ferd panel!</p>
+      <form action="#" ng-submit="auth.login($event)">
+        <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
+        <p><input type="password" placeholder="password" ng-model="auth.user.password"></p>
+        <p><button type="submit">Log In</button></p>
+      </form>
 
-    <hr>
+      <hr>
 
-    <p>Not yet a member? Sign up!</p>
-    <div ng-show="!!message">{{ message }}</div>
-    <form action="#" ng-submit="auth.signup($event)">
-      <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
-      <p><input type="text" placeholder="slack channel name" ng-model="auth.user.slackOrganization"></p>
-      <p><input type="password" placeholder="password" ng-model="auth.user.password"></p>
-      <p><button type="submit">Sign Up</button></p>
-    </form>
-
-    <hr>
+      <p>Not yet a member? Sign up!</p>
+      <div ng-show="!!message">{{ message }}</div>
+      <form action="#" ng-submit="auth.signup($event)">
+        <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
+        <p><input type="text" placeholder="slack channel name" ng-model="auth.user.slackOrganization"></p>
+        <p><input type="password" placeholder="password" ng-model="auth.user.password"></p>
+        <p><button type="submit">Sign Up</button></p>
+      </form>
     
-    <form action="#" ng-submit="auth.logout($event)">
-      <button type="sumit">Log Out</button>
-    </form>
+    </div>
+    
+    <div ng-show="auth.isAuth">
+      <form action="#" ng-submit="auth.logout($event)">
+        <button type="submit">Log Out</button>
+      </form>
+    </div>
+
   </div>
 
   <!-- <p>Hey hey, do you want to add ferd? <a href="#" ng-click="getferd.oauthAuthorize($event)">Click here!</a></p> -->
