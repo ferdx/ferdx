@@ -2,9 +2,9 @@
   "name": "FerdX",
   "version": "0.0.1",
   "description": "One Slackbot to rule them all.",
-  "main": "server/server.js",
+  "main": "server/index.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node server/index.js",
     "test": "gulp test",
     "postinstall": "bash ./deploy.sh"
   },
