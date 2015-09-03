@@ -15,7 +15,8 @@
     .module('app', [
       'ui.router'
     ])
-    .config(config);
+    .config(config)
+    .run(run);
 
   /**
    * config() Bootstraps the initial configuration for our application, setting
@@ -31,25 +32,36 @@
       });
 
     $stateProvider
-      .state('getferd', {
-        url: '/getferd',
-        templateUrl: 'components/getferd/getferd.html'
+      .state('ferd', {
+        url: '/ferd',
+        templateUrl: 'components/ferd/ferd.html',
       })
-      .state('getferd.auth', {
+      .state('ferd.auth', {
         url: '/auth',
-        templateUrl: 'components/getferd/getferd.auth.html'
+        templateUrl: 'components/ferd/ferd.auth.html'
       })
-      .state('getferd.config', {
-        url: '/config',
-        templateUrl: 'components/getferd/getferd.config.html'
-      })
-      .state('getferd.auth.login', {
+      .state('ferd.auth.login', {
         url: '/login',
-        templateUrl: 'components/getferd/getferd.auth.login.html'
+        templateUrl: 'components/ferd/ferd.auth.login.html'
       })
-      .state('getferd.auth.signup', {
+      .state('ferd.auth.signup', {
         url: '/signup',
-        templateUrl: 'components/getferd/getferd.auth.signup.html'
+        templateUrl: 'components/ferd/ferd.auth.signup.html'
+      })
+      .state('ferd.config', {
+        url: '/config',
+        templateUrl: 'components/ferd/ferd.config.html',
+        authenticate: true
+      })
+      .state('ferd.config.addkey', {
+        url: '/addkey',
+        templateUrl: 'components/ferd/ferd.config.addkey.html',
+        authenticate: true
+      })
+      .state('ferd.config.settings', {
+        url: '/settings',
+        templateUrl: 'components/ferd/ferd.config.settings.html',
+        authenticate: true
       });
 
     $stateProvider
@@ -57,6 +69,37 @@
         url: '/marketplace',
         templateUrl: 'components/marketplace/marketplace.html'
       });
+  }
+
+  /**
+   * run() runs stuff at run time
+   * 
+   * @return {[type]}
+   */
+  function run($rootScope, $location, $state, authFactory) {
+    $rootScope.$on('$stateChangeSuccess', function(e, next) {
+
+      // if authentication req and user not auth
+      if (next && next.authenticate && !authFactory.isAuth()) {
+        $state.go('home');
+      }
+
+      // if we hit ferd and user not auth
+      if (next && next.name === 'ferd' && !authFactory.isAuth()) {
+        $state.go('ferd.auth');
+      }
+
+      // if we hit ferd and user is auth
+      if (next && next.name === 'ferd' && authFactory.isAuth()) {
+        $state.go('ferd.config');
+      }
+
+      // if we hit ferd auth and user is auth
+      if (next && next.name === 'ferd.auth' && authFactory.isAuth()) {
+        $state.go('home');
+      }
+
+    });
   }
 
 })();

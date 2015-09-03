@@ -1,0 +1,9 @@
+<div ng-controller="AuthController as auth">
+  <h3>Log In Below!</h3>
+  <form action="#" ng-submit="auth.login($event)">
+    <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
+    <p><input type="password" placeholder="password" ng-model="auth.user.password"></p>
+    <p><button type="submit">Log In</button></p>
+  </form>
+</div>
+<p>Not a member? <a ui-sref="ferd.auth.signup">Sign up!</a></p>

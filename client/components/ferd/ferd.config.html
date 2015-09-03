@@ -1,0 +1,12 @@
+<div ng-controller="FerdConfigController as ferdconfig">
+  <h3>Configure Ferd!</h3>
+  
+  <div ui-view></div>
+  
+  <hr>
+
+  <div ng-controller="AuthController as auth">
+    <button ng-click="auth.logout($event)">Log out</button>
+  </div>
+
+</div>
