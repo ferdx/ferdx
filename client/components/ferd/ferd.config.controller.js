@@ -21,6 +21,9 @@
     
     vm.user = {};
     vm.submitKey = submitKey;
+    vm.updateModules = updateModules;
+    vm.botModules = ['yo', 'hi', 'bart', 'bacon'];
+    vm.selectedModules = [],
 
     activate();
 
@@ -33,6 +36,7 @@
       authFactory.getAuthUser()
         .then(function(response) {
           vm.user = response.data;
+          vm.selectedModules = response.data.botModules;
           if (vm.user.botKey) {
             console.log('hi?');
             $state.go('ferd.config.settings');
@@ -54,6 +58,24 @@
     function submitKey(e) {
       e.preventDefault();
       authFactory.update(vm.user.username, {botKey: vm.apikey})
+        .then(function(data) {
+          console.log(data);
+          $state.go('ferd.config.settings');
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+
+    /**
+     * updateModules() updates activated Ferd modules
+     * 
+     * @param {array} 
+     */
+    function updateModules(e, moduleArray) {
+      e.preventDefault();
+
+      authFactory.update(vm.user.username, {botModules: moduleArray})
         .then(function(data) {
           console.log(data);
           $state.go('ferd.config.settings');

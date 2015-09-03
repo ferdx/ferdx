@@ -166,29 +166,6 @@ module.exports = {
       .fail(function(error) {
         next(error);
       });
-  },
-
-  /**
-   * updateUserBotModules() Updates the user bot modules
-   * 
-   * @param {Object} the request object sent from the client
-   * @param {Object} the response object
-   * @param {Function} the next function
-   * @return {Object} the user data on success, and an error on fail
-   */
-  updateUserBotModules: function(req, res, next) {
-    var username = req.body.username;
-    var findOne = Q.nbind(User.findOne, User);
-
-    findOne({username: username})
-      .then(function(user) {
-        user.update({botModules: ['one', 'two']}, function(err, raw) {
-          res.send(user);
-        });
-      })
-      .fail(function(error) {
-        next(error);
-      });
   }
 
 };
