@@ -1,3 +1,11 @@
 
 
 <p>You have a key, configure your ferd.</p>
+
+<form ng-submit="ferdconfig.updateModules($event, ferdconfig.selectedModules)">
+  <label ng-repeat="module in ferdconfig.botModules">
+    <input type="checkbox" checklist-model="ferdconfig.selectedModules" checklist-value="module"> {{module}}<br>
+  </label>
+  <br>
+  <input type="submit" value="Save">
+</form>

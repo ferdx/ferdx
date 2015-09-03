@@ -13,7 +13,8 @@
    */
   angular
     .module('app', [
-      'ui.router'
+      'ui.router',
+      'checklist-model'
     ])
     .config(config)
     .run(run);

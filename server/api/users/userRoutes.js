@@ -6,5 +6,4 @@ module.exports = function (app) {
   app.post('/logout', userController.logout);
   app.post('/update', userController.update);
   app.post('/getauthuser', userController.getAuthUser);
-  app.post('/updateuserbotmodules', userController.updateUserBotModules);
 };
