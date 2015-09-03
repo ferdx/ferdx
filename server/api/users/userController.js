@@ -6,7 +6,7 @@ module.exports = {
 
   /**
    * signup() Signs a user up.
-   * 
+   *
    * @param {Object} the request object sent from the client
    * @param {Object} the response object
    * @param {Function} the next function
@@ -55,10 +55,10 @@ module.exports = {
         next(error);
       });
   },
-  
+
   /**
    * login() Logs a user in.
-   * 
+   *
    * @param {Object} the request object sent from the client
    * @param {Object} the response object
    * @param {Function} the next function
@@ -69,7 +69,7 @@ module.exports = {
     var password = req.body.password;
 
     var findUser = Q.nbind(User.findOne, User);
-    
+
     findUser({username: username})
       .then(function(user) {
         if (!user) {
@@ -100,7 +100,7 @@ module.exports = {
 
   /**
    * logout() Logs a user out. Returns nothing.
-   * 
+   *
    * @param {Object} the request object sent from the client
    * @param {Object} the response object
    * @param {Function} the next function
@@ -108,7 +108,7 @@ module.exports = {
   logout: function(req, res, next){
     var username = req.body.username;
     var findUser = Q.nbind(User.findOne, User);
-    
+
     findUser({username: username})
       .then(function(user) {
         res.status(201).send(user);
@@ -117,7 +117,7 @@ module.exports = {
 
   /**
    * update()
-   * 
+   *
    * @param {Object} the request object sent from the client
    * @param {Object} the response object
    * @param {Function} the next function
@@ -127,13 +127,14 @@ module.exports = {
     var username = req.body.username;
     var data = req.body.data;
     var findUser = Q.nbind(User.findOne, User);
-    
+
     findUser({username: username})
       .then(function(user) {
         console.log(user);
         user.update(data, function(err, raw) {
           user.save(function(error) {
             console.log(user);
+            user.emitUpdate(username)
             res.send('updating');
           });
         });
@@ -143,7 +144,7 @@ module.exports = {
 
   /**
    * getAuthUser() Gets the currently authenticated user.
-   * 
+   *
    * @param {Object} the request object sent from the client
    * @param {Object} the response object
    * @param {Function} the next function
