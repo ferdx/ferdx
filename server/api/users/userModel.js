@@ -1,15 +1,16 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+var request = require('request');
 var Q = require('q');
 var SALT_WORK_FACTOR  = 10;
 
 /**
  * UserSchema
- * 
+ *
  * @type {mongoose}
  */
 var UserSchema = new mongoose.Schema({
-  
+
   username: {
     type: String,
     required: true,
@@ -45,8 +46,8 @@ var UserSchema = new mongoose.Schema({
 
 /**
  * comparePasswords()
- * 
- * @param {[type]} 
+ *
+ * @param {[type]}
  * @return {[type]}
  */
 UserSchema.methods.comparePasswords = function (candidatePassword) {
@@ -63,9 +64,21 @@ UserSchema.methods.comparePasswords = function (candidatePassword) {
 };
 
 /**
+ * Notifies MegaFerd server that an update has occured
+ * @param  {String} username [description]
+ */
+UserSchema.methods.emitUpdate = function(username) {
+  var endpoint = 'http://localhost:3000/api/ferd/update';
+  request.post(endpoint, {json: {username: username}},
+    function(err, httpResponse, body) {
+      //
+  });
+}
+
+/**
  * pre('save')
- * 
- * @param {[type]} 
+ *
+ * @param {[type]}
  * @return {[type]}
  */
 UserSchema.pre('save', function (next) {
