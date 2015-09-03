@@ -15,7 +15,7 @@
   /**
    * GetFerdController is where all the actual controller functionality resides.
    */
-  function AuthController($state, $window, authFactory) {
+  function AuthController($rootScope, $state, $window, authFactory) {
     var vm = this;
 
     vm.user = {};
@@ -43,6 +43,9 @@
 
       authFactory.signup(vm.user)
         .then(function(data) {
+          // need to update the authFactory authenticatedUser
+          console.log(data);
+          
           $state.go('ferd.config');
         })
         .catch(function (err) {
@@ -61,6 +64,9 @@
 
       authFactory.login(vm.user)
         .then(function(data) {
+          // need to update the authFactory authenticatedUser
+          console.log(data);
+
           $state.go('ferd.config');
         })
         .catch(function(err) {
@@ -78,12 +84,13 @@
     function logout(e) {
       e.preventDefault();
 
-      vm.isAuth = false;
-
       vm.user.username = $window.localStorage.getItem('username');
 
       authFactory.logout(vm.user)
         .then(function(data) {
+          // need to update the authFactory authenticatedUser
+          console.log(data);
+          
           $state.go('home');
         })
         .catch(function(err) {

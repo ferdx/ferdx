@@ -34,6 +34,7 @@
         .then(function(response) {
           vm.user = response.data;
           if (vm.user.botKey) {
+            console.log('hi?');
             $state.go('ferd.config.settings');
           } else {
             $state.go('ferd.config.addkey');
@@ -52,8 +53,14 @@
      */
     function submitKey(e) {
       e.preventDefault();
-
-      console.log(vm.apikey);
+      authFactory.update(vm.user.username, {botKey: vm.apikey})
+        .then(function(data) {
+          console.log(data);
+          $state.go('ferd.config.settings');
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
 
   }

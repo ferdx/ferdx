@@ -77,6 +77,7 @@
    * @return {[type]}
    */
   function run($rootScope, $location, $state, authFactory) {
+
     $rootScope.$on('$stateChangeSuccess', function(e, next) {
 
       // if authentication req and user not auth
@@ -97,6 +98,12 @@
       // if we hit ferd auth and user is auth
       if (next && next.name === 'ferd.auth' && authFactory.isAuth()) {
         $state.go('home');
+      }
+
+      // if we hit config
+      if (next && next.name === 'ferd.config' && authFactory.isAuth()) {
+        console.log('hi');
+        // $state.go('home');
       }
 
     });

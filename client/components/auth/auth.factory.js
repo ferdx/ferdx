@@ -17,12 +17,16 @@
    */
   function authFactory($http, $window) {
     
+    var authenticatedUser = {};
+
     var factory = {
       signup: signup,
       login: login,
       logout: logout,
+      update: update,
       isAuth: isAuth,
-      getAuthUser: getAuthUser
+      getAuthUser: getAuthUser,
+      authenticatedUser: authenticatedUser
     };
 
     return factory;
@@ -73,6 +77,26 @@
       return $http.post('/api/users/logout', user)
         .then(function(response) {
           return response;
+        });
+    }
+
+    /**
+     * update() Updates a user
+     * 
+     * @param {[type]} 
+     * @return {[type]}
+     */
+    function update(username, data) {
+      var json = {
+        username: username,
+        data: data
+      };
+      return $http.post('/api/users/update', json)
+        .then(function(response) {
+          return response;
+        })
+        .catch(function(error) {
+
         });
     }
 
