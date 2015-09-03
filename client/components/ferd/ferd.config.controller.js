@@ -23,7 +23,7 @@
     vm.submitKey = submitKey;
     vm.updateModules = updateModules;
     vm.botModules = ['yo', 'hi', 'bart', 'bacon'];
-    vm.selectedModules = [];
+    vm.selectedModules = [],
 
     activate();
 
@@ -36,6 +36,7 @@
       authFactory.getAuthUser()
         .then(function(response) {
           vm.user = response.data;
+          vm.selectedModules = response.data.botModules;
           if (vm.user.botKey) {
             console.log('hi?');
             $state.go('ferd.config.settings');
