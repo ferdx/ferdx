@@ -1,9 +1,9 @@
 /**
- * Unit tests for the GetFerdController
+ * Unit tests for the FerdController
  * 
  * @param {String} The controller name
  */
-describe('GetFerdController', function() {
+describe('FerdController', function() {
 
   /**
    * Get app module before each
@@ -24,7 +24,7 @@ describe('GetFerdController', function() {
    */
   beforeEach(inject(function(_$controller_){
     $controller = _$controller_;
-    vm = $controller('GetFerdController');
+    vm = $controller('FerdController');
   }));
 
   /**
@@ -35,31 +35,6 @@ describe('GetFerdController', function() {
   describe('definition', function() {
     it('should be defined', function() {
       expect(vm).to.be.defined;
-    });
-  });
-
-  /**
-   * Testing the query string
-   *
-   * @param {String} the test name
-   */
-  describe('query string empty', function() {
-    it('should be empty on first page load', function() {
-      expect(vm.queryString).to.be.empty;
-    });
-
-    describe('query string full', function() {
-      beforeEach(function() {
-        vm.queryString = {code: 'abc', state: 'abc'};
-      });
-
-      it('should not be empty', function() {
-        expect(vm.queryString).to.not.be.empty;
-      });
-
-      it('should call oauthAccess', function() {
-        expect(vm.oauthAccess).to.have.been.called;
-      });
     });
   });
   

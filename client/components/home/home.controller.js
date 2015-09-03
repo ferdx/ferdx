@@ -21,10 +21,6 @@
 
     vm.username = 'Nick';
 
-    vm.test = false;
-
-    vm.clickMe = function() { vm.test = true; };
-
   }
 
 })();

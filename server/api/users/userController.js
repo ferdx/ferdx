@@ -116,6 +116,32 @@ module.exports = {
   },
 
   /**
+   * update()
+   * 
+   * @param {Object} the request object sent from the client
+   * @param {Object} the response object
+   * @param {Function} the next function
+   */
+  update: function(req, res, next) {
+    console.log(req.body);
+    var username = req.body.username;
+    var data = req.body.data;
+    var findUser = Q.nbind(User.findOne, User);
+    
+    findUser({username: username})
+      .then(function(user) {
+        console.log(user);
+        user.update(data, function(err, raw) {
+          user.save(function(error) {
+            console.log(user);
+            res.send('updating');
+          });
+        });
+      });
+
+  },
+
+  /**
    * getAuthUser() Gets the currently authenticated user.
    * 
    * @param {Object} the request object sent from the client
