@@ -1,5 +1,5 @@
 /**
- * The FerdController 
+ * The FerdController
  */
 (function() {
 
@@ -15,14 +15,15 @@
   /**
    * FerdController is where all the actual controller functionality resides.
    */
-  function FerdController(authFactory) {
-    
+  function FerdController(authFactory, ferdFactory) {
+
     var vm = this;
 
     vm.user = {};
     vm.submitKey = submitKey;
     vm.updateModules = updateModules;
-    vm.botModules = ['yo', 'hi', 'bart', 'bacon'];
+    vm.getBotModules = getBotModules;
+    vm.botModules = [];
     vm.selectedModules = authFactory.authUser.botModules;
     vm.showSettings = false;
     vm.showSetup = false;
@@ -35,6 +36,7 @@
     function activate() {
       if (authFactory.isAuth() && authFactory.authUser.botKey) {
         vm.showSettings = true;
+        vm.getBotModules();
       } else if (authFactory.isAuth() && !authFactory.authUser.botKey) {
         console.log(authFactory.authUser);
         vm.showSetup = true;
@@ -43,7 +45,7 @@
 
     /**
      * submitKey() Submits the api key
-     * 
+     *
      * @param {Object} e The event object supplied on form submission
      */
     function submitKey(e) {
@@ -62,8 +64,8 @@
 
     /**
      * updateModules() updates activated Ferd modules
-     * 
-     * @param {array} 
+     *
+     * @param {array}
      */
     function updateModules(e, moduleArray) {
       e.preventDefault();
@@ -75,6 +77,13 @@
         .catch(function(error) {
           console.log('there was an error');
         });
+    }
+
+    function getBotModules() {
+      ferdFactory.getAvailableModules()
+      .then(function(response) {
+        vm.botModules = JSON.parse(response.data.body);
+      });
     }
 
   }

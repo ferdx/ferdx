@@ -1,6 +1,7 @@
 var User = require('./userModel.js');
 var Q = require('q');
 var jwt = require('jwt-simple');
+var request = require('request');
 
 module.exports = {
 
@@ -52,7 +53,7 @@ module.exports = {
         };
 
         res.status(201).send(data);
-        
+
         return;
       });
 
@@ -159,6 +160,13 @@ module.exports = {
       .fail(function(error) {
         next(error);
       });
+  },
+
+  getAvailableModules: function(req, res, next) {
+    var apiRoute = 'http://localhost:3000/api/ferd/modules'; // get from env variable
+    request.get(apiRoute, function(err, data) {
+      res.send(data);
+    });
   }
 
 };
