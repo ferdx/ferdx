@@ -16,44 +16,47 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
     var slackOrganization = req.body.slackOrganization;
-    var create;
     var newUser;
 
-    var findOne = Q.nbind(User.findOne, User);
+    User.findOne({username: username}, function(error, user) {
+      if (error) {
+        res.status(500).send({data: 'There was an error...'});
+        return;
+      }
 
-    findOne( {username: username} )
-      .then(function(user) {
-        if (user) {
-          res.status(401).send({data: 'User already exists!'});
-        } else {
-          create = Q.nbind(User.create, User);
-          newUser = {
-            username: username,
-            slackOrganization: slackOrganization,
-            password: password
-          };
+      if (user) {
+        res.status(400).send({data: 'A user already exists...'});
+        return;
+      }
 
-          return create(newUser);
-        }
-      })
-      .then(function(user) {
-        if (user) {
-          user.save(function() {
-            var token = jwt.encode(user, 'secret');
-            var data = {
-              username: user.username,
-              slackOrganization: user.slackOrganization,
-              botKey: user.botKey,
-              botModules: user.botModules,
-              token: token
-            };
-            res.status(201).send(data);
-          });
-        }
-      })
-      .fail(function(error) {
-        next(error);
+      var newUser = new User({
+        username: username,
+        password: password,
+        slackOrganization: slackOrganization
       });
+
+      newUser.save(function(error) {
+        if (error) {
+          res.status(500).send({data: 'There was an error...'});
+          return;
+        }
+
+        var token = jwt.encode(newUser, 'secret');
+
+        var data = {
+          username: newUser.username,
+          slackOrganization: newUser.slackOrganization,
+          botKey: newUser.botKey,
+          botModules: newUser.botModules,
+          token: token
+        };
+
+        res.status(201).send(data);
+        
+        return;
+      });
+
+    });
   },
 
   /**
@@ -68,51 +71,36 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
 
-    var findUser = Q.nbind(User.findOne, User);
+    User.findOne({username: username}, function(error, user) {
+      if (error) {
+        res.status(500).send({ message: 'There was an error...' });
+        return;
+      }
 
-    findUser({username: username})
-      .then(function(user) {
-        if (!user) {
-          res.status(401).send({data: 'User does not exist'});
-        } else {
-          return user.comparePasswords(password)
-            .then(function(foundUser) {
-              if (foundUser) {
-                var token = jwt.encode(user, 'secret');
-                var data = {
-                  username: user.username,
-                  slackOrganization: user.slackOrganization,
-                  botKey: user.botKey,
-                  botModules: user.botModules,
-                  token: token
-                };
-                res.status(201).send(data);
-              } else {
-                res.status(401).send({data: 'No user'});
-              }
-            });
-        }
-      })
-      .fail(function(error) {
-        next(error);
-      });
-  },
-
-  /**
-   * logout() Logs a user out. Returns nothing.
-   *
-   * @param {Object} the request object sent from the client
-   * @param {Object} the response object
-   * @param {Function} the next function
-   */
-  logout: function(req, res, next){
-    var username = req.body.username;
-    var findUser = Q.nbind(User.findOne, User);
-
-    findUser({username: username})
-      .then(function(user) {
-        res.status(201).send(user);
-      });
+      if (!user) {
+        res.status(400).send({data: 'Invalid creds...'});
+        return;
+      } else {
+        user.comparePasswords(password)
+          .then(function(foundUser) {
+            if (foundUser) {
+              var token = jwt.encode(user, 'secret');
+              var data = {
+                username: user.username,
+                slackOrganization: user.slackOrganization,
+                botKey: user.botKey,
+                botModules: user.botModules,
+                token: token
+              };
+              res.status(200).send(data);
+              return;
+            } else {
+              res.status(400).send({data: 'No user'});
+              return;
+            }
+          });
+      }
+    });
   },
 
   /**
@@ -123,19 +111,23 @@ module.exports = {
    * @param {Function} the next function
    */
   update: function(req, res, next) {
-    console.log(req.body);
     var username = req.body.username;
     var data = req.body.data;
     var findUser = Q.nbind(User.findOne, User);
 
     findUser({username: username})
       .then(function(user) {
-        console.log(user);
         user.update(data, function(err, raw) {
           user.save(function(error) {
-            console.log(user);
-            user.emitUpdate(username)
-            res.send('updating');
+            var data = {
+              username: user.username,
+              slackOrganization: user.slackOrganization,
+              botKey: user.botKey,
+              botModules: user.botModules
+            };
+            user.emitUpdate(username);
+            res.status(200).send(data);
+            return;
           });
         });
       });
