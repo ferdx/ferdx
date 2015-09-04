@@ -100,6 +100,7 @@ module.exports = {
             }
           });
       }
+    });
   },
 
   /**
@@ -116,12 +117,17 @@ module.exports = {
 
     findUser({username: username})
       .then(function(user) {
-        console.log(user);
         user.update(data, function(err, raw) {
           user.save(function(error) {
-            console.log(user);
-            user.emitUpdate(username)
-            res.send('updating');
+            var data = {
+              username: user.username,
+              slackOrganization: user.slackOrganization,
+              botKey: user.botKey,
+              botModules: user.botModules
+            };
+            user.emitUpdate(username);
+            res.status(200).send(data);
+            return;
           });
         });
       });

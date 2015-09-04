@@ -24,7 +24,7 @@
    * up the states based on UI Router. Returns nothing.
    */
   function config($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise('/');
 
     $stateProvider
       .state('home', {
@@ -59,26 +59,37 @@
   }
 
   /**
-   * run() runs stuff at run time
-   * 
-   * @return {[type]}
+   * run() Do some stuff at run time and before the app loads. Returns
+   * nothing.
    */
   function run($rootScope, $location, $state, authFactory) {
 
-    // Set up the auth user before anything
+    // Set up the auth user before anything.
     if (authFactory.isAuth()) {
-      console.log('here');
+      authFactory.getAuthUser()
+        .then(function(response) {
+          authFactory.authUser = response.data;
+        })
+        .catch(function(error) {
+
+        });
     }
 
+    // Handle the route protection
     $rootScope.$on('$stateChangeSuccess', function(e, next) {
-
-      // if authentication required and a user is not authenticated, redirect
-      // to home
       if (next && next.authenticate && !authFactory.isAuth()) {
         $state.go('login');
       }
 
+      if (next && next.name === 'login' && authFactory.isAuth()) {
+        $state.go('home');
+      }
+
+      if (next && next.name === 'signup' && authFactory.isAuth()) {
+        $state.go('home');
+      }
     });
+
   }
 
 })();

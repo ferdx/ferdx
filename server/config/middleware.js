@@ -11,13 +11,10 @@ module.exports = function (app, express) {
 
   // define routers
   var usersRouter = express.Router();
-  var getferdRouter = express.Router();
 
   // api paths for various routes
   app.use('/api/users', usersRouter);
-  app.use('/api/getferd', getferdRouter);
 
   // require necessary route files
   require('../api/users/userRoutes.js')(usersRouter);
-  require('../api/getferd/getferdRoutes.js')(getferdRouter);
 };

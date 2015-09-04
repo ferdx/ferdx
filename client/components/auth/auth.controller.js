@@ -38,11 +38,9 @@
      */
     function signup(e) {
       e.preventDefault();
-
       authFactory.signup(vm.user)
         .then(function(data) {
-          authFactory.authUser = data.data;
-          $state.go('ferd.config');
+          $state.go('ferd');
         })
         .catch(function(error) {
           console.log('there was an error');
@@ -54,11 +52,9 @@
      */
     function login(e) {
       e.preventDefault();
-
       authFactory.login(vm.user)
         .then(function(data) {
-          authFactory.authUser = data.data;
-          $state.go('ferd.config');
+          $state.go('ferd');
         })
         .catch(function(error) {
           console.log('there was an error');
@@ -72,9 +68,7 @@
      */
     function logout(e) {
       e.preventDefault();
-
-      authFactory.logout(vm.user)
-      authFactory.authUser = {};
+      authFactory.logout();
       $state.go('home');
     }
 
