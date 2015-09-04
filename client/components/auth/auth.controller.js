@@ -13,9 +13,9 @@
     .controller('AuthController', AuthController);
 
   /**
-   * GetFerdController is where all the actual controller functionality resides.
+   * AuthController is where all the actual controller functionality resides.
    */
-  function AuthController($rootScope, $state, $window, authFactory) {
+  function AuthController($state, $window, authFactory) {
     var vm = this;
 
     vm.user = {};
@@ -26,9 +26,7 @@
     activate();
 
     /**
-     * activate() Do some checks on load
-     * 
-     * @return {[type]}
+     * activate() Do some checks on load.
      */
     function activate() {
     }
@@ -43,59 +41,41 @@
 
       authFactory.signup(vm.user)
         .then(function(data) {
-          // need to update the authFactory authenticatedUser
-          console.log(data);
-          
+          authFactory.authUser = data.data;
           $state.go('ferd.config');
         })
-        .catch(function (err) {
-          // catch the error
+        .catch(function(error) {
           console.log('there was an error');
         });
     }
 
     /**
-     * login() logs a user in
-     * 
-     * @return {}
+     * login() Logs a user in. Returns nothing.
      */
     function login(e) {
       e.preventDefault();
 
       authFactory.login(vm.user)
         .then(function(data) {
-          // need to update the authFactory authenticatedUser
-          console.log(data);
-
+          authFactory.authUser = data.data;
           $state.go('ferd.config');
         })
-        .catch(function(err) {
-          // catch the error
+        .catch(function(error) {
           console.log('there was an error');
         });
     }
 
     /**
-     * logout()
+     * logout() Logs a user out. Returns nothing.
      * 
-     * @param {[type]} 
-     * @return {[type]}
+     * @param {Object} e The event object from the form submission.
      */
     function logout(e) {
       e.preventDefault();
 
-      vm.user.username = $window.localStorage.getItem('username');
-
       authFactory.logout(vm.user)
-        .then(function(data) {
-          // need to update the authFactory authenticatedUser
-          console.log(data);
-          
-          $state.go('home');
-        })
-        .catch(function(err) {
-          console.error(err);
-        });
+      authFactory.authUser = {};
+      $state.go('home');
     }
 
   }

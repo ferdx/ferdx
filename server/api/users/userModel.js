@@ -50,7 +50,7 @@ var UserSchema = new mongoose.Schema({
  * @param {[type]}
  * @return {[type]}
  */
-UserSchema.methods.comparePasswords = function (candidatePassword) {
+UserSchema.methods.comparePasswords = function(candidatePassword) {
   var defer = Q.defer();
   var savedPassword = this.password;
   bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {

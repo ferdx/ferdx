@@ -43,16 +43,10 @@ describe('User tests', function() {
    * @return {[type]}
    */
   after(function(done) {
-    request(app)
-      .post('/api/users/logout')
-      .send(testUser)
-      .expect(201)
-      .end(function(error, response) {
-        User.remove({}, function(err, raw) {
-          mongoose.disconnect();
-          done();
-        });
-      });
+    User.remove({}, function(err, raw) {
+      mongoose.disconnect();
+      done();
+    });
   });
 
   /**
@@ -213,16 +207,16 @@ describe('User tests', function() {
     });
 
     /**
-     * User tests -> user login -> failed login returns 401
+     * User tests -> user login -> failed login returns 400
      * 
      * @param {[type]} 
      * @return {[type]}
      */
-    it('should return 401 when user fails login', function(done) {
+    it('should return 400 when user fails login', function(done) {
       request(app)
         .post('/api/users/login')
         .send({username: 'garble', password: '1234'})
-        .expect(401)
+        .expect(400)
         .end(function(error, response) {
           if (error) { expect(fn).to.throw(ReferenceError); }
           done();
@@ -301,16 +295,16 @@ describe('User tests', function() {
     });
 
     /**
-     * User tests -> user signup -> failed signup returns 401
+     * User tests -> user signup -> failed signup returns 400
      * 
      * @param {[type]} 
      * @return {[type]}
      */
-    it('should return a 401 if user already exists', function(done) {
+    it('should return a 400 if user already exists', function(done) {
       request(app)
         .post('/api/users/signup')
         .send(testUser3)
-        .expect(401)
+        .expect(400)
         .end(function(error, response) {
           if (error) { throw new Error(error.message); }
           done();

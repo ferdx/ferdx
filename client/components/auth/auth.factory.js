@@ -16,8 +16,6 @@
    * authFactory is where all the actual factory functionality resides.
    */
   function authFactory($http, $window) {
-    
-    var authenticatedUser = {};
 
     var factory = {
       signup: signup,
@@ -26,7 +24,7 @@
       update: update,
       isAuth: isAuth,
       getAuthUser: getAuthUser,
-      authenticatedUser: authenticatedUser
+      authUser: {}
     };
 
     return factory;
@@ -35,10 +33,10 @@
     ////////////////////////////////////////////////////////////
 
     /**
-     * signup()
+     * signup() Signs a new user up
      * 
-     * @param {[type]} 
-     * @return {[type]}
+     * @param {Object} user The user object
+     * @return {Object} response The response object
      */
     function signup(user) {
       return $http.post('/api/users/signup', user)
@@ -46,14 +44,17 @@
           $window.localStorage.setItem('ferdxAuthIdentifier', response.data.token);
           $window.localStorage.setItem('username', response.data.username);
           return response;
+        })
+        .catch(function(error) {
+          return error;
         });
     }
 
     /**
-     * login()
+     * login() Logs in a user
      * 
-     * @param {[type]} 
-     * @return {[type]}
+     * @param {Object} user The user object
+     * @return {Object} response The response object
      */
     function login(user) {
       return $http.post('/api/users/login', user)
@@ -61,23 +62,18 @@
           $window.localStorage.setItem('ferdxAuthIdentifier', response.data.token);
           $window.localStorage.setItem('username', response.data.username);
           return response;
+        })
+        .catch(function(error) {
+          return error;
         });
     }
 
     /**
-     * logout()
-     * 
-     * @param {[type]} 
-     * @return {[type]}
+     * logout() Logs a user out. Returns nothing.
      */
-    function logout(user) {
+    function logout() {
       $window.localStorage.setItem('username', undefined);
       $window.localStorage.removeItem('ferdxAuthIdentifier');
-      
-      return $http.post('/api/users/logout', user)
-        .then(function(response) {
-          return response;
-        });
     }
 
     /**
@@ -96,7 +92,7 @@
           return response;
         })
         .catch(function(error) {
-
+          return error;
         });
     }
 

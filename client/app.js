@@ -33,35 +33,21 @@
       });
 
     $stateProvider
+      .state('login', {
+        url: '/login',
+        templateUrl: 'components/auth/login.html'
+      });
+
+    $stateProvider
+      .state('signup', {
+        url: '/signup',
+        templateUrl: 'components/auth/signup.html'
+      });
+
+    $stateProvider
       .state('ferd', {
         url: '/ferd',
         templateUrl: 'components/ferd/ferd.html',
-      })
-      .state('ferd.auth', {
-        url: '/auth',
-        templateUrl: 'components/ferd/ferd.auth.html'
-      })
-      .state('ferd.auth.login', {
-        url: '/login',
-        templateUrl: 'components/ferd/ferd.auth.login.html'
-      })
-      .state('ferd.auth.signup', {
-        url: '/signup',
-        templateUrl: 'components/ferd/ferd.auth.signup.html'
-      })
-      .state('ferd.config', {
-        url: '/config',
-        templateUrl: 'components/ferd/ferd.config.html',
-        authenticate: true
-      })
-      .state('ferd.config.addkey', {
-        url: '/addkey',
-        templateUrl: 'components/ferd/ferd.config.addkey.html',
-        authenticate: true
-      })
-      .state('ferd.config.settings', {
-        url: '/settings',
-        templateUrl: 'components/ferd/ferd.config.settings.html',
         authenticate: true
       });
 
@@ -79,32 +65,17 @@
    */
   function run($rootScope, $location, $state, authFactory) {
 
+    // Set up the auth user before anything
+    if (authFactory.isAuth()) {
+      console.log('here');
+    }
+
     $rootScope.$on('$stateChangeSuccess', function(e, next) {
 
-      // if authentication req and user not auth
+      // if authentication required and a user is not authenticated, redirect
+      // to home
       if (next && next.authenticate && !authFactory.isAuth()) {
-        $state.go('home');
-      }
-
-      // if we hit ferd and user not auth
-      if (next && next.name === 'ferd' && !authFactory.isAuth()) {
-        $state.go('ferd.auth');
-      }
-
-      // if we hit ferd and user is auth
-      if (next && next.name === 'ferd' && authFactory.isAuth()) {
-        $state.go('ferd.config');
-      }
-
-      // if we hit ferd auth and user is auth
-      if (next && next.name === 'ferd.auth' && authFactory.isAuth()) {
-        $state.go('home');
-      }
-
-      // if we hit config
-      if (next && next.name === 'ferd.config' && authFactory.isAuth()) {
-        console.log('hi');
-        // $state.go('home');
+        $state.go('login');
       }
 
     });

@@ -27,7 +27,7 @@
      * @return {[type]}
      */
     function activate() {
-      $state.go('ferd.auth.login');
+      // $state.go('ferd.auth.login');
     }
 
   }
