@@ -93,7 +93,7 @@ module.exports = {
                 botModules: user.botModules,
                 token: token
               };
-              res.status(200).send(data);
+              res.status(201).send(data);
               return;
             } else {
               res.status(400).send({data: 'No user'});
@@ -127,7 +127,7 @@ module.exports = {
               botModules: user.botModules
             };
             user.emitUpdate(username);
-            res.status(200).send(data);
+            res.status(201).send(data);
             return;
           });
         });
