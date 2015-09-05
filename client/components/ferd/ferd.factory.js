@@ -30,7 +30,7 @@
           .then(function(response) {
             return response;
           });
-      };
+      }
 
       /**
        * Verifies if slack api key is valid and if it is, that it belongs to
@@ -50,8 +50,8 @@
                 reject(false);
               }
             });
-          })
-      };
+          });
+      }
 
     }
 
