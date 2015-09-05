@@ -22,6 +22,11 @@
     vm.signup = signup;
     vm.login = login;
     vm.logout = logout;
+    vm.showAlert = false;
+    vm.alert = {
+      type: '',
+      message: ''
+    };
 
     activate();
 
@@ -52,6 +57,7 @@
      */
     function login(e) {
       e.preventDefault();
+      console.log(vm.user);
       authFactory.login(vm.user)
         .then(function(data) {
           $state.go('ferd');
