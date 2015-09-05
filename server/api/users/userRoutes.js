@@ -5,4 +5,5 @@ module.exports = function (app) {
   app.post('/login', userController.login);
   app.post('/update', userController.update);
   app.post('/getauthuser', userController.getAuthUser);
+  app.get('/modules', userController.getAvailableModules);
 };
