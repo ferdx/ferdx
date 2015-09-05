@@ -49,8 +49,10 @@
      */
     function submitKey(e) {
       e.preventDefault();
-
-      authFactory.update(authFactory.authUser.username, {botKey: vm.apikey})
+      ferdFactory.verifyKey(vm.apikey)
+        .then(function() {
+          return authFactory.update(authFactory.authUser.username, {botKey: vm.apikey});
+        })
         .then(function(data) {
           console.log('successful update');
         })
