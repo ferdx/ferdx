@@ -1,0 +1,54 @@
+// -----------------------------------------------------------------------------
+//
+// CONFIG - VARIABLES
+//
+// -----------------------------------------------------------------------------
+
+$font-family--primary: "Montserrat", Helvetica, sans-serif;
+
+$font-size--small: 14px;
+$font-size--medium: 18px;
+$font-size--large: 22px;
+$font-size--xlarge: 28px;
+$font-size--xxlarge: 36px;
+$font-size--xxxlarge: 42px;
+
+$line-height--small: 1.2;
+$line-height--medium: 1.8;
+$line-height--large: 2.2;
+
+
+
+
+
+
+// -----------------------------------------------------------------------------
+//
+// COLORS
+//
+// -----------------------------------------------------------------------------
+
+$color--neutral-xxdark: rgb(21,21,21);
+$color--neutral-xdark: rgb(39,39,39);
+$color--neutral-dark: rgb(59,59,59);
+$color--neutral: rgb(109,109,109);
+$color--neutral-light: rgb(129,129,129);
+$color--neutral-xlight: rgb(179,179,179);
+$color--neutral-xxlight: rgb(231,231,231);
+$color--neutral-xxxlight: rgb(241,241,241);
+
+
+
+
+
+
+// -----------------------------------------------------------------------------
+//
+// BREAKPOINTS
+//
+// -----------------------------------------------------------------------------
+
+$breakpoint--small: 480px;
+$breakpoint--medium: 720px;
+$breakpoint--large: 1020px;
+$breakpoint--xlarge: 1200px;

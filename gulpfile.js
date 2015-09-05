@@ -1,20 +1,62 @@
+'use strict';
+
 /**
  * Requirements
  */
 var gulp   = require('gulp');
+var autoprefixer = require('gulp-autoprefixer');
+var cssmin = require('gulp-cssmin');
+var header = require('gulp-header');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
+var notify = require("gulp-notify");
+var pkg = require('./package.json');
+var rename = require('gulp-rename');
+var sass = require('gulp-sass');
 var shell = require('gulp-shell');
 var stylish = require('jshint-stylish');
+
+/**
+ * Banner
+ */
+var banner = ['/**',
+  ' * <%= pkg.name %> - <%= pkg.description %>',
+  ' * @version v<%= pkg.version %>',
+  ' * @link <%= pkg.homepage %>',
+  ' * @license <%= pkg.license %>',
+  ' */',
+  ''].join('\n');
 
 /**
  * Paths
  */
 var paths = {
-  scripts: ['gulpfile.js', 'client/**/*.js', '!client/lib/**/*.js', 'server/**/*.js'],
-  clientTestScripts: ['client/components/**/*.spec.js'],
-  serverTestScripts: ['server/api/**/*.spec.js']
+  sass: ['./client/sass/**/*.scss'],
+  scripts: ['./gulpfile.js', './client/**/*.js', '!./client/lib/**/*.js', './server/**/*.js'],
+  clientTestScripts: ['./client/components/**/*.spec.js'],
+  serverTestScripts: ['./server/api/**/*.spec.js']
 };
+
+/**
+ * CSS compilation
+ */
+gulp.task('styles', function() {
+  return gulp.src(paths.sass)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer())
+    .pipe(gulp.dest('./client'))
+    .pipe(cssmin())
+    .pipe(header(banner, {pkg: pkg}))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('./client'));
+});
+
+/**
+ * Styles watcher
+ */
+gulp.task('watchStyles', function() {
+  gulp.watch(paths.sass, ['styles']);
+});
 
 /**
  * JavaScript linting
@@ -23,6 +65,13 @@ gulp.task('lint', function() {
   return gulp.src(paths.scripts)
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
+});
+
+/**
+ * JavsScript watcher
+ */
+gulp.task('watchScripts', function() {
+  gulp.watch(paths.scripts, ['lint']);
 });
 
 /**
@@ -44,4 +93,5 @@ gulp.task('serverTests', function () {
  * Final tasks - these are the tasks that should be run from the command line,
  * as they encompass the above.
  */
+gulp.task('default', ['styles', 'lint', 'watchStyles', 'watchScripts']);
 gulp.task('test', ['lint', 'clientTests', 'serverTests']);
