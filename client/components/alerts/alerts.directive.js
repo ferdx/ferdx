@@ -28,7 +28,6 @@
     return directive;
 
     function link(scope, elem, attrs) {
-      console.log('link is running');
     }
   }
 

@@ -48,7 +48,11 @@
           $state.go('ferd');
         })
         .catch(function(error) {
-          console.log('there was an error');
+          vm.showAlert = true;
+          vm.alert = {
+            type: 'error',
+            message: error.data
+          };
         });
     }
 
@@ -57,13 +61,16 @@
      */
     function login(e) {
       e.preventDefault();
-      console.log(vm.user);
       authFactory.login(vm.user)
         .then(function(data) {
           $state.go('ferd');
         })
         .catch(function(error) {
-          console.log('there was an error');
+          vm.showAlert = true;
+          vm.alert = {
+            type: 'error',
+            message: error.data
+          };
         });
     }
 
