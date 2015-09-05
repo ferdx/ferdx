@@ -47,7 +47,7 @@
           return response;
         }.bind(this))
         .catch(function(error) {
-          return error;
+          throw error.data;
         });
     }
 
@@ -66,7 +66,7 @@
           return response;
         }.bind(this))
         .catch(function(error) {
-          return error;
+          throw error.data;
         });
     }
 
