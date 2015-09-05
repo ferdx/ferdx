@@ -38,7 +38,6 @@
         vm.showSettings = true;
         vm.getBotModules();
       } else if (authFactory.isAuth() && !authFactory.authUser.botKey) {
-        console.log(authFactory.authUser);
         vm.showSetup = true;
       }
     }
@@ -50,8 +49,6 @@
      */
     function submitKey(e) {
       e.preventDefault();
-
-      console.log('here?');
 
       authFactory.update(authFactory.authUser.username, {botKey: vm.apikey})
         .then(function(data) {
@@ -69,7 +66,6 @@
      */
     function updateModules(e, moduleArray) {
       e.preventDefault();
-
       authFactory.update(authFactory.authUser.username, {botModules: moduleArray})
         .then(function(data) {
           console.log('successful update');
