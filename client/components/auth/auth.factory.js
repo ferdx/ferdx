@@ -28,13 +28,13 @@
     };
 
     return factory;
-    
+
     ////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////
 
     /**
      * signup() Signs a new user up
-     * 
+     *
      * @param {Object} user The user object
      * @return {Object} response The response object
      */
@@ -53,7 +53,7 @@
 
     /**
      * login() Logs in a user
-     * 
+     *
      * @param {Object} user The user object
      * @return {Object} response The response object
      */
@@ -81,8 +81,8 @@
 
     /**
      * update() Updates a user
-     * 
-     * @param {[type]} 
+     *
+     * @param {[type]}
      * @return {[type]}
      */
     function update(username, data) {
@@ -102,7 +102,7 @@
 
     /**
      * isAuth()
-     * 
+     *
      * @return {Boolean}
      */
     function isAuth() {
@@ -112,7 +112,7 @@
 
     /**
      * getAuthUser()
-     * 
+     *
      * @return {[type]}
      */
     function getAuthUser() {
