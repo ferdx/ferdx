@@ -112,27 +112,12 @@ module.exports = {
    * @param {Function} the next function
    */
   update: function(req, res, next) {
-    var username = req.body.username;
     var data = req.body.data;
-    var findUser = Q.nbind(User.findOne, User);
-
-    findUser({username: username})
-      .then(function(user) {
-        user.update(data, function(err, raw) {
-          user.save(function(error) {
-            var data = {
-              username: user.username,
-              slackOrganization: user.slackOrganization,
-              botKey: user.botKey,
-              botModules: user.botModules
-            };
-            user.emitUpdate(username);
-            res.status(201).send(data);
-            return;
-          });
-        });
-      });
-
+    User.findOneAndUpdate(query, data, {new: true}, function(err, doc) {
+      console.log(doc);
+      doc.emitUpdate(doc.username);
+      res.status(201).send(doc);
+    })
   },
 
   /**

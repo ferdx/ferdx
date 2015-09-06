@@ -15,7 +15,7 @@
   /**
    * FerdController is where all the actual controller functionality resides.
    */
-  function FerdController(authFactory, ferdFactory) {
+  function FerdController($state, authFactory, ferdFactory) {
 
     var vm = this;
 
@@ -36,9 +36,11 @@
     function activate() {
       if (authFactory.isAuth() && authFactory.authUser.botKey) {
         vm.showSettings = true;
+        vm.showSetup = false;
         vm.getBotModules();
       } else if (authFactory.isAuth() && !authFactory.authUser.botKey) {
         vm.showSetup = true;
+        vm.showSettings = false;
       }
     }
 
@@ -51,10 +53,10 @@
       e.preventDefault();
       ferdFactory.verifyKey(vm.apikey)
         .then(function() {
-          return authFactory.update(authFactory.authUser.username, {botKey: vm.apikey});
-        })
-        .then(function(data) {
-          console.log('successful update');
+          authFactory.update(authFactory.authUser.username, {botKey: vm.apikey})
+            .then(function(data) {
+              activate();
+            });
         })
         .catch(function(error) {
           console.log('there was an error');
