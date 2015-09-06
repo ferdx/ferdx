@@ -11,6 +11,7 @@ var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 var notify = require("gulp-notify");
 var pkg = require('./package.json');
+var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var shell = require('gulp-shell');
@@ -42,7 +43,14 @@ var paths = {
  */
 gulp.task('styles', function() {
   return gulp.src(paths.sass)
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      outputStyle: 'expanded'
+    }))
+    .on('error', notify.onError({
+      title: 'Error compiling Sass',
+      message: 'Check the console for info'
+    }))
+    .on('error', sass.logError)
     .pipe(autoprefixer())
     .pipe(gulp.dest('./client'))
     .pipe(cssmin())
@@ -64,7 +72,12 @@ gulp.task('watchStyles', function() {
 gulp.task('lint', function() {
   return gulp.src(paths.scripts)
     .pipe(jshint())
-    .pipe(jshint.reporter(stylish));
+    .pipe(jshint.reporter(stylish))
+    .pipe(jshint.reporter('fail'))
+    .on('error', notify.onError({
+      title: 'JS hint failed',
+      message: 'Check the console for errors'
+    }));
 });
 
 /**
@@ -94,4 +107,8 @@ gulp.task('serverTests', function () {
  * as they encompass the above.
  */
 gulp.task('default', ['styles', 'lint', 'watchStyles', 'watchScripts']);
+gulp.task('styles:dev', ['styles', 'watchStyles']);
+gulp.task('scripts:dev', ['lint', 'watchScripts']);
+gulp.task('test:client', ['lint', 'clientTests']);
+gulp.task('test:server', ['lint', 'serverTests']);
 gulp.task('test', ['lint', 'clientTests', 'serverTests']);
