@@ -73,7 +73,7 @@ UserSchema.methods.emitUpdate = function(username) {
     function(err, httpResponse, body) {
       //
   });
-}
+};
 
 /**
  * pre('save')

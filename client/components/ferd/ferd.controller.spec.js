@@ -1,3 +1,5 @@
+/* jshint expr: true */
+
 /**
  * Unit tests for the FerdController
  * 

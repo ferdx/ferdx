@@ -118,7 +118,7 @@ module.exports = {
       console.log(doc);
       doc.emitUpdate(doc.username);
       res.status(201).send(doc);
-    })
+    });
   },
 
   /**

@@ -23,7 +23,7 @@
       },
       templateUrl: 'components/alerts/alerts.directive.html',
       link: link
-    }
+    };
 
     return directive;
 
