@@ -7,7 +7,7 @@
    * headerDirective
    * 
    * @description The header directive is used for displaying the header with
-   *   dynamic nav links, depending on user auth state.
+   *   dynamic navigation links, depending on user auth state.
    * @example <header-directive></header-directive>
    * @author bot
    */
@@ -15,7 +15,7 @@
     .module('app')
     .directive('headerDirective', headerDirective);
 
-  function headerDirective() {
+  function headerDirective(authFactory) {
     var directive = {
       restrict: 'EA',
       scope: {
@@ -28,7 +28,8 @@
     return directive;
 
     function link(scope, elem, attrs) {
-
+      scope.isAuth = authFactory.isAuth();
+      scope.logout = authFactory.logout;
     }
   }
 

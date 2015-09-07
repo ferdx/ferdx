@@ -1,18 +1,9 @@
-<div ng-controller="AuthController as auth">
-
-  <nav>
-    <ul>
-      <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
-      <li ui-sref-active="active"><a ui-sref="login">Log in</a></li>
-      <li ui-sref-active="active"><a ui-sref="ferd">My Ferd</a></li>
-      <li ui-sref-active="active"><a ui-sref="marketplace">Marketplace</a></li>
-      <li ui-sref-active="active"><a href='#/' ng-click="auth.logout($event)">Log out</a></li>
-    </ul>
-  </nav>
-
-</div>
-
-<!-- 
-  Home, Log in, Marketplace (if user logged out)
-  Home, My Ferd, Marketplace, Log out (if user logged in) 
--->
+<nav>
+  <ul>
+    <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+    <li ui-sref-active="active" ng-class="{ 'hidden' : isAuth == false }"><a ui-sref="ferd">Ferd</a></li>
+    <li ui-sref-active="active" ng-class="{ 'hidden' : isAuth == true }"><a ui-sref="login">Log in</a></li>
+    <li ui-sref-active="active" ng-class="{ 'hidden' : isAuth == false }"><a href='#/' ng-click="logout()">Log out</a></li>
+    <li ui-sref-active="active"><a ui-sref="marketplace">Marketplace</a></li>
+  </ul>
+</nav>

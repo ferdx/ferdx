@@ -1,4 +1,9 @@
 <div ng-controller="AuthController as auth">
+
+  <header-directive></header-directive>
+
+  <hr>
+
   <h3>Log In Below!</h3>
   <form action="#" ng-submit="auth.login($event)">
     <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
