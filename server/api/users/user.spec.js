@@ -1,3 +1,8 @@
+/* jshint expr: true */
+
+/**
+ * Test requirements
+ */
 var expect = require('chai').expect;
 var app = require('../../config/server.js');
 var request = require('supertest');
@@ -243,7 +248,7 @@ describe('User tests', function() {
     beforeEach(function(done) {
       User.remove({username: 'ferd2'}, function() {
         done();
-      })
+      });
     });
 
     /**

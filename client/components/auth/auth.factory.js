@@ -43,9 +43,9 @@
         .then(function(response) {
           $window.localStorage.setItem('ferdxAuthIdentifier', response.data.token);
           $window.localStorage.setItem('username', response.data.username);
-          this.authUser = response.data;
+          factory.authUser = response.data;
           return response;
-        }.bind(this))
+        })
         .catch(function(error) {
           throw error.data;
         });
@@ -62,9 +62,9 @@
         .then(function(response) {
           $window.localStorage.setItem('ferdxAuthIdentifier', response.data.token);
           $window.localStorage.setItem('username', response.data.username);
-          this.authUser = response.data;
+          factory.authUser = response.data;
           return response;
-        }.bind(this))
+        })
         .catch(function(error) {
           throw error.data;
         });
@@ -76,7 +76,7 @@
     function logout() {
       $window.localStorage.setItem('username', undefined);
       $window.localStorage.removeItem('ferdxAuthIdentifier');
-      this.authUser = {};
+      factory.authUser = {};
     }
 
     /**
@@ -92,9 +92,9 @@
       };
       return $http.post('/api/users/update', json)
         .then(function(response) {
-          _.extend(this.authUser, response.data);
+          _.extend(factory.authUser, response.data);
           return response;
-        }.bind(this))
+        })
         .catch(function(error) {
           return error;
         });
