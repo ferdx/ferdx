@@ -113,6 +113,7 @@ module.exports = {
    */
   update: function(req, res, next) {
     var data = req.body.data;
+    var query = req.body.username;
     User.findOneAndUpdate(query, data, {new: true}, function(err, doc) {
       console.log(doc);
       doc.emitUpdate(doc.username);
