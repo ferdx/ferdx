@@ -1,0 +1,29 @@
+/* -----------------------------------------------------------------------------
+
+  FORMS
+  
+----------------------------------------------------------------------------- */
+
+/**
+ * The base level form class, to be attached to all form elements. Example HTML:
+ * 
+ * <form class="form">
+ * </form>
+ */
+.form {
+
+}
+
+/**
+ * A form field class, which contains every form field and their related
+ * components, like inputs and corresponding labels. Example HTML:
+ *
+ * <div class="form__field">
+ *   <label name="name">
+ *   <input type="text" id="name">
+ * </div>
+ */
+.form-field {
+
+}
+
