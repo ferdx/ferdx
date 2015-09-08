@@ -551,11 +551,38 @@ a {
   OBJECTS - LAYOUT
   
 ----------------------------------------------------------------------------- */
+/**
+ * .container
+ *
+ * A generic container object that contains app content in various parts. It
+ * can be used with any of its modifiers, and is always centered in the page.
+ * Example HTML:
+ *
+ * <div class="container">
+ * </div>
+ */
+.container {
+  margin: 0 auto;
+}
+
 /* -----------------------------------------------------------------------------
 
   OBJECTS -> HEADER
   
 ----------------------------------------------------------------------------- */
+/**
+ * .header
+ *
+ * The header object runs across the top of every page in the app, and acts as
+ * a container to the logo and the main navigation. Example HTML:
+ *
+ * <header class="header">
+ *   <h1 class="header__logo"></h1>
+ *   <nav class="nav"></nav>
+ * </header>
+ *
+ * Navigation styles: _objects.nav.scss
+ */
 .header {
   display: -webkit-box;
   display: -webkit-flex;
@@ -569,6 +596,11 @@ a {
   background-color: #375d81;
 }
 
+/**
+ * .header__logo
+ * 
+ * The header logo 
+ */
 .header__logo {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -675,6 +707,7 @@ a {
 .nav__item {
   display: block;
   font-size: 2rem;
+  font-weight: 400;
   text-align: center;
 }
 
@@ -683,7 +716,6 @@ a {
     display: inline-block;
     margin-left: 2rem;
     font-size: 1.4rem;
-    font-weight: 400;
   }
 }
 
@@ -722,7 +754,7 @@ a {
  * the menu on small screens. It lives inside the headr object, but outside the
  * navigation object.
  *
- * Inherits styles from: _components.hamburger.scss
+ * Hamburger icon styles: _components.hamburger.scss
  */
 .nav__toggle {
   position: relative;
@@ -755,6 +787,96 @@ a {
  *   <input type="text" id="name">
  * </div>
  */
+/* -----------------------------------------------------------------------------
+
+  COMPONENT - BANNER
+  
+----------------------------------------------------------------------------- */
+/**
+ * .banner
+ *
+ * Example HTML:
+ *
+ * 
+ */
+.banner {
+  overflow: hidden;
+  position: relative;
+  padding: 6rem 3rem;
+  background-color: #183152;
+  text-align: center;
+}
+
+.banner::before {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  background-image: url("img/circuit-sprite.svg");
+  background-repeat: no-repeat;
+  content: "";
+}
+
+.banner::before {
+  bottom: 0;
+  left: 1.5rem;
+  width: 460px;
+  height: 210px;
+  background-position: -581px 0;
+}
+
+@media all and (min-width: 720px) {
+  .banner::before {
+    left: 3rem;
+    width: 581px;
+    height: 265px;
+    background-position: 0 0;
+  }
+}
+
+@media all and (min-width: 480px) {
+  .banner--large {
+    padding: 9rem 3rem;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .banner--large {
+    padding: 12rem 3rem;
+  }
+}
+
+.banner__heading {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-size: 3.6rem;
+  font-weight: 100;
+  -webkit-transition: font 0.3s;
+          transition: font 0.3s;
+}
+
+@media all and (min-width: 480px) {
+  .banner__heading {
+    font-size: 4.2rem;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .banner__heading {
+    font-size: 4.8rem;
+  }
+}
+
+@media all and (min-width: 1020px) {
+  .banner__heading {
+    font-size: 5.4rem;
+  }
+}
+
+.banner__heading > span {
+  font-weight: 700;
+}
+
 /* -----------------------------------------------------------------------------
 
   COMPONENT - HAMBURGER ICON

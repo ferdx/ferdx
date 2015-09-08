@@ -1,35 +1,44 @@
 <div ng-controller="FerdController as ferd">
+  
+  <header-directive class="header">
+  </header-directive><!-- /header -->
 
-  <header-directive></header-directive>
+  <div class="banner">
+    <h2 class="banner__heading">Configure your <span>Ferd</span></h2>
+  </div><!-- /banner -->
 
-  <hr>
+  <main class="main">
+    <div class="container">
 
-  <h3>Configure Ferd!</h3>
+      <h3>Configure Ferd!</h3>
 
-  <hr>
+      <hr>
 
-  <div ng-show="ferd.showSetup">
-    <p>You have no key...you need to add it! Visit <a href="https://{{ ferd.user.slackOrganization }}/services/new/bot" target="_blank">your organization page</a> to add a bot, and when you're done, paste the api key in below.</p>
-    <form action="#" ng-submit="ferd.submitKey($event)">
-      <input type="text" ng-model="ferd.apikey">
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+      <div ng-show="ferd.showSetup">
+        <p>You have no key...you need to add it! Visit <a href="https://{{ ferd.user.slackOrganization }}/services/new/bot" target="_blank">your organization page</a> to add a bot, and when you're done, paste the api key in below.</p>
+        <form action="#" ng-submit="ferd.submitKey($event)">
+          <input type="text" ng-model="ferd.apikey">
+          <button type="submit">Submit</button>
+        </form>
+      </div>
 
-  <div ng-show="ferd.showSettings">
-    <p>You have a key, configure your ferd.</p>
-    <form ng-submit="ferd.updateModules($event, ferd.selectedModules)">
-      <label ng-repeat="module in ferd.botModules">
-        <input type="checkbox" checklist-model="ferd.selectedModules" checklist-value="module"> {{module}}<br>
-      </label>
-      <br>
-      <input type="submit" value="Save">
-    </form>
-    <p>Change Key</p>
-    <form action="#" ng-submit="ferd.submitKey($event)">
-      <input type="text" ng-model="ferd.apikey">
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+      <div ng-show="ferd.showSettings">
+        <p>You have a key, configure your ferd.</p>
+        <form ng-submit="ferd.updateModules($event, ferd.selectedModules)">
+          <label ng-repeat="module in ferd.botModules">
+            <input type="checkbox" checklist-model="ferd.selectedModules" checklist-value="module"> {{module}}<br>
+          </label>
+          <br>
+          <input type="submit" value="Save">
+        </form>
+        <p>Change Key</p>
+        <form action="#" ng-submit="ferd.submitKey($event)">
+          <input type="text" ng-model="ferd.apikey">
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+    </div><!-- /container -->
+  </main><!-- /main -->
 
 </div>

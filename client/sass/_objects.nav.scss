@@ -73,13 +73,13 @@
 .nav__item {
   display: block;
   font-size: 2rem;
+  font-weight: 400;
   text-align: center;
 
   @include mq-small {
     display: inline-block;
     margin-left: 2rem;
     font-size: 1.4rem;
-    font-weight: 400;
   }
 
   @include mq-medium {
@@ -117,7 +117,7 @@
  * the menu on small screens. It lives inside the headr object, but outside the
  * navigation object.
  *
- * Inherits styles from: _components.hamburger.scss
+ * Hamburger icon styles: _components.hamburger.scss
  */
 
 .nav__toggle {

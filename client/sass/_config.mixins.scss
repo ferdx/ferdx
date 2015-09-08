@@ -7,7 +7,7 @@
 $bp--small: 480px;
 $bp--medium: 720px;
 $bp--large: 1020px;
-$bp--xlarge: 1200px;
+$bp--xlarge: 1240px;
 
 @mixin mq-small {
   @media all and ( min-width: #{$bp--small} ) {

@@ -4,12 +4,32 @@
   
 ----------------------------------------------------------------------------- */
 
+/**
+ * .header
+ *
+ * The header object runs across the top of every page in the app, and acts as
+ * a container to the logo and the main navigation. Example HTML:
+ *
+ * <header class="header">
+ *   <h1 class="header__logo"></h1>
+ *   <nav class="nav"></nav>
+ * </header>
+ *
+ * Navigation styles: _objects.nav.scss
+ */
+
 .header {
   display: flex;
   align-items: center;
   padding: 1.5rem;
   background-color: $color--blue;
 }
+
+/**
+ * .header__logo
+ * 
+ * The header logo 
+ */
 
 .header__logo {
   flex: 1;
