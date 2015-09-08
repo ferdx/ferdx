@@ -13,8 +13,8 @@ $font-size--xlarge: 28px;
 $font-size--xxlarge: 36px;
 $font-size--xxxlarge: 42px;
 
-$line-height--small: 1.2;
-$line-height--medium: 1.8;
+$line-height--small: 1.1;
+$line-height--medium: 1.6;
 $line-height--large: 2.2;
 
 
@@ -38,19 +38,3 @@ $color--neutral-xxlight: #ccc;
 
 $color--blue-dark: rgb(24, 49, 82);
 $color--blue: rgb(55, 93, 129);
-
-
-
-
-
-
-// -----------------------------------------------------------------------------
-//
-// BREAKPOINTS
-//
-// -----------------------------------------------------------------------------
-
-$breakpoint--small: 480px;
-$breakpoint--medium: 720px;
-$breakpoint--large: 1020px;
-$breakpoint--xlarge: 1200px;

@@ -2,20 +2,20 @@
   <h1 class="header__logo">Ferd<span>X</span></h1>
   <nav class="nav">
     <ul class="nav__items">
-      <li class="nav__item" ui-sref-active="active">
+      <li class="nav__item" ui-sref-active="is-active">
         <a class="nav__link" ui-sref="home">Home</a>
       </li>
-      <li class="nav__item" ui-sref-active="active" ng-class="{ 'hidden' : isAuth == false }">
+      <li class="nav__item" ui-sref-active="is-active" ng-class="{ 'is-hidden' : isAuth == false }">
         <a class="nav__link" ui-sref="ferd">Ferd</a>
       </li>
-      <li class="nav__item" ui-sref-active="active" ng-class="{ 'hidden' : isAuth == true }">
+      <li class="nav__item" ui-sref-active="is-active">
+        <a class="nav__link" ui-sref="marketplace">Marketplace</a>
+      </li>
+      <li class="nav__item" ui-sref-active="is-active" ng-class="{ 'is-hidden' : isAuth == true }">
         <a class="nav__link" ui-sref="login">Log in</a>
       </li>
-      <li class="nav__item" ui-sref-active="active" ng-class="{ 'hidden' : isAuth == false }">
+      <li class="nav__item" ui-sref-active="is-active" ng-class="{ 'is-hidden' : isAuth == false }">
         <a class="nav__link" href='#/' ng-click="logout()">Log out</a>
-      </li>
-      <li class="nav__item" ui-sref-active="active">
-        <a class="nav__link" ui-sref="marketplace">Marketplace</a>
       </li>
     </ul>
   </nav>

@@ -4,20 +4,59 @@
   
 ----------------------------------------------------------------------------- */
 
+/**
+ * .nav
+ * 
+ * This is the main navigation object, and it's displayed at the top of the
+ * screen, inside the header, on all pages. It's hidden on small screens, and is
+ * toggled by a button. On bigger screens, it's displayed inline. For it to
+ * work, it must contain the unordered list, the list items, and the list links.
+ * Example HTML:
+ *
+ * <nav class="nav">
+ *   <ul class="nav__items">
+ *     <li class="nav__item"><a href="#" class="nav__link"></a></li>
+ *     <li class="nav__item"><a href="#" class="nav__link"></a></li>
+ *     ...
+ *   </ul>
+ * </nav>
+ */
+
 .nav {
+  display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -1;
+  z-index: 900;
   background-color: $color--blue;
-  visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s;
+  transform: scale(0, 0);
+  transform-origin: top right;
+  transition: opacity 0.3s, transform 0.3s;
+
+  @include mq-small {
+    position: static;
+    opacity: 1;
+    transform: none;
+  }
 }
+
+.nav.is-active {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+
+/**
+ * .nav__items
+ * 
+ * The nav items is the actual unorderd list that lives inside the navigation
+ * object.
+ */
 
 .nav__items {
   list-style: none;
@@ -25,11 +64,40 @@
   padding: 0;
 }
 
+/**
+ * .nav__item
+ * 
+ * Nav items are the list items inside the unordered list.
+ */
+
 .nav__item {
   display: block;
-  font-size: 1.2rem;
+  font-size: 2rem;
   text-align: center;
+
+  @include mq-small {
+    display: inline-block;
+    margin-left: 2rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  @include mq-medium {
+    margin-left: 2.4rem;
+    font-size: 1.6rem;
+  }
 }
+
+.nav__item.is-hidden {
+  display: none;
+}
+
+/**
+ * .nav__link
+ * 
+ * Nav links are the anchor tags inside the link items. These are responsible
+ * for actually navigating users to different pages in the app.
+ */
 
 .nav__link {
   display: block;
@@ -37,22 +105,26 @@
   padding: 0.5rem;
 }
 
-.nav__link:hover {
+.nav__link:hover,
+.nav__item.is-active > .nav__link {
   color: $color--blue-dark;
 }
+
+/**
+ * .nav__toggle
+ * 
+ * The navigation toggle is the toggle button that is responsible for toggling
+ * the menu on small screens. It lives inside the headr object, but outside the
+ * navigation object.
+ *
+ * Inherits styles from: _components.hamburger.scss
+ */
 
 .nav__toggle {
   position: relative;
   z-index: 1000;
-}
 
-.nav.is-active {
-  display: flex;
-  z-index: 900;
-  visibility: visible;
-  opacity: 1;
-}
-
-@media all and (min-width: 480px) {
-
+  @include mq-small {
+    display: none !important;
+  }
 }

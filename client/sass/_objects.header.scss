@@ -7,14 +7,16 @@
 .header {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: $color--blue;
 }
 
 .header__logo {
   flex: 1;
+  position: relative;
+  z-index: 1000;
   color: #fff;
-  font-size: 2rem;
+  font-size: 3.2rem;
 }
 
 .header__logo > span {
