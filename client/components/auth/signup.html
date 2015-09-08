@@ -5,13 +5,42 @@
   <hr>
 
   <h3>Sign Up Below!</h3>
-  <form action="#" ng-submit="auth.signup($event)">
-    <p><input type="text" placeholder="username" ng-model="auth.user.username"></p>
-    <p><input type="text" placeholder="slack team name" ng-model="auth.user.slackOrganization"></p>
-    <p><input type="password" placeholder="password" ng-model="auth.user.password"></p>
+  <form action="#" name="signupForm" class="form" ng-submit="auth.signup($event)" novalidate>
+    <p ng-class="{ 'has-error' : signupForm.username.$invalid && !signupForm.username.$pristine }">
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        ng-model="auth.user.username"
+        ng-minlength="3" minlength="3"
+        ng-maxlength="8" maxlength="8"
+        ng-required required>
+    </p>
+    <p>
+      <input type="text" placeholder="Slack team name" ng-model="auth.user.slackOrganization" ng-required>
+      {{ auth.user.slackOrganization }}.slack.com
+    </p>
+    <p>
+      <input type="password" placeholder="Password" ng-model="auth.user.password" ng-required>
+    </p>
     <p><button type="submit">Sign Up</button></p>
   </form>
   <p>Already a member? <a ui-sref="login">Log in!</a></p>
   <hr>
   <alerts-directive alert="auth.alert" ng-show="auth.showAlert"></alerts-directive>
+</div>
+
+<div>
+  <form class="form">
+    <div class="form__field">
+      <div class="form__label">
+        <label for="username">Username:</label>
+      </div>
+      <input type="text" id="username">
+    </div>
+    <div class="form__field">
+      <label for="slack">Slack:</label>
+      <input type="text" id="slack">
+    </div>
+  </form>
 </div>
