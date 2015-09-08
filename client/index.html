@@ -12,21 +12,11 @@
 <body ng-app="app">
   <h1>The future home of Ferdx</h1>
 
-  <nav>
-    <ul>
-      <li ui-sref-active="active"><a ui-sref="home">home</a></li>
-      <li ui-sref-active="active"><a ui-sref="login">login</a></li>
-      <li ui-sref-active="active"><a ui-sref="signup">signup</a></li>
-      <li ui-sref-active="active"><a ui-sref="ferd">ferd</a></li>
-    </ul>
-  </nav>
-
-  <hr>
-
   <div ui-view></div>
 
   <script src="app.js"></script>
   <script src="components/alerts/alerts.directive.js"></script>
+  <script src="components/header/header.directive.js"></script>
   <script src="components/auth/auth.controller.js"></script>
   <script src="components/auth/auth.factory.js"></script>
   <script src="components/home/home.controller.js"></script>

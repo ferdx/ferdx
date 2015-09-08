@@ -1,5 +1,9 @@
 <div ng-controller="FerdController as ferd">
 
+  <header-directive></header-directive>
+
+  <hr>
+
   <h3>Configure Ferd!</h3>
 
   <hr>
@@ -26,12 +30,6 @@
       <input type="text" ng-model="ferd.apikey">
       <button type="submit">Submit</button>
     </form>
-  </div>
-
-  <hr>
-
-  <div ng-controller="AuthController as auth">
-    <button ng-click="auth.logout($event)">Log out</button>
   </div>
 
 </div>
