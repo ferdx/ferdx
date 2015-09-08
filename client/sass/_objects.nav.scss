@@ -1,0 +1,58 @@
+/* -----------------------------------------------------------------------------
+
+  OBJECTS - NAVIGATION
+  
+----------------------------------------------------------------------------- */
+
+.nav {
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-color: $color--blue;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.nav__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item {
+  display: block;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.nav__link {
+  display: block;
+  color: #fff;
+  padding: 0.5rem;
+}
+
+.nav__link:hover {
+  color: $color--blue-dark;
+}
+
+.nav__toggle {
+  position: relative;
+  z-index: 1000;
+}
+
+.nav.is-active {
+  display: flex;
+  z-index: 900;
+  visibility: visible;
+  opacity: 1;
+}
+
+@media all and (min-width: 480px) {
+
+}

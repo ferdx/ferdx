@@ -28,14 +28,16 @@ $line-height--large: 2.2;
 //
 // -----------------------------------------------------------------------------
 
-$color--neutral-xxdark: rgb(21,21,21);
-$color--neutral-xdark: rgb(39,39,39);
-$color--neutral-dark: rgb(59,59,59);
-$color--neutral: rgb(109,109,109);
-$color--neutral-light: rgb(129,129,129);
-$color--neutral-xlight: rgb(179,179,179);
-$color--neutral-xxlight: rgb(231,231,231);
-$color--neutral-xxxlight: rgb(241,241,241);
+$color--neutral-xxdark: #111;
+$color--neutral-xdark: #333;
+$color--neutral-dark: #555;
+$color--neutral: #777;
+$color--neutral-light: #999;
+$color--neutral-xlight: #aaa;
+$color--neutral-xxlight: #ccc;
+
+$color--blue-dark: rgb(24, 49, 82);
+$color--blue: rgb(55, 93, 129);
 
 
 

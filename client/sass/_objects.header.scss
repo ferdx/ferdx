@@ -1,0 +1,22 @@
+/* -----------------------------------------------------------------------------
+
+  OBJECTS -> HEADER
+  
+----------------------------------------------------------------------------- */
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: $color--blue;
+}
+
+.header__logo {
+  flex: 1;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.header__logo > span {
+  color: $color--neutral-xxdark;
+}

@@ -30,6 +30,41 @@
     function link(scope, elem, attrs) {
       scope.isAuth = authFactory.isAuth();
       scope.logout = authFactory.logout;
+
+      /**
+       * nav
+       * 
+       * @type {HTMLElement}
+       * @description The header directive's child navigation element.
+       */
+      var nav = elem[0].querySelector('.nav');
+
+      /**
+       * toggle
+       * 
+       * @type {HTMLElement}
+       * @description The header directive's child navigation toggle button.
+       */
+      var toggle = elem[0].querySelector('.nav__toggle');
+
+      /**
+       * eventListener
+       * 
+       * @param {String} click The event type
+       * @description Listens for a click on the navigation toggler, and shows
+       *   and hides the navigation as necessary. Returns nothing.
+       */
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        var c = toggle.classList.contains('is-active') && nav.classList.contains('is-active');
+        if (c) {
+          toggle.classList.remove('is-active');
+          nav.classList.remove('is-active');
+        } else {
+          toggle.classList.add('is-active');
+          nav.classList.add('is-active');
+        }
+      });
     }
   }
 

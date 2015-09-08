@@ -482,10 +482,12 @@ html {
   
 ----------------------------------------------------------------------------- */
 body {
-  padding: 20px;
-  color: #555;
+  color: #777;
   font-family: "Montserrat", Helvetica, sans-serif;
+  font-size: 16px;
   font-weight: 300;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
 }
 
 /* -----------------------------------------------------------------------------
@@ -493,11 +495,52 @@ body {
   ELEMENTS - HEADINGS
   
 ----------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
 /* -----------------------------------------------------------------------------
 
   ELEMENTS - TEXT
   
 ----------------------------------------------------------------------------- */
+a {
+  text-decoration: none;
+  -webkit-transition: color 0.2s, background 0.2s;
+          transition: color 0.2s, background 0.2s;
+}
+
 /* -----------------------------------------------------------------------------
 
   OBJECTS - LAYOUT
@@ -505,7 +548,102 @@ body {
 ----------------------------------------------------------------------------- */
 /* -----------------------------------------------------------------------------
 
-  FORMS
+  OBJECTS -> HEADER
+  
+----------------------------------------------------------------------------- */
+.header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  background-color: #375d81;
+}
+
+.header__logo {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.header__logo > span {
+  color: #111;
+}
+
+/* -----------------------------------------------------------------------------
+
+  OBJECTS - NAVIGATION
+  
+----------------------------------------------------------------------------- */
+.nav {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-color: #375d81;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+          transition: opacity 0.3s;
+}
+
+.nav__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item {
+  display: block;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.nav__link {
+  display: block;
+  color: #fff;
+  padding: 0.5rem;
+}
+
+.nav__link:hover {
+  color: #183152;
+}
+
+.nav__toggle {
+  position: relative;
+  z-index: 1000;
+}
+
+.nav.is-active {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 900;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* -----------------------------------------------------------------------------
+
+  COMPONENTS - FORMS
   
 ----------------------------------------------------------------------------- */
 /**
@@ -523,3 +661,126 @@ body {
  *   <input type="text" id="name">
  * </div>
  */
+/* -----------------------------------------------------------------------------
+
+  COMPONENT - HAMBURGER ICON
+  
+----------------------------------------------------------------------------- */
+/**
+ * Toggle Switch Globals
+ *
+ * All switches should take on the class `c-hamburger` as well as their
+ * variant that will give them unique properties. This class is an overview
+ * class that acts as a reset for all versions of the icon.
+ */
+.hamburger {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 0;
+  text-indent: -9999px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: background 0.2s;
+          transition: background 0.2s;
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  top: 13px;
+  left: 2px;
+  right: 2px;
+  height: 4px;
+  background: #fff;
+}
+
+.hamburger span::before,
+.hamburger span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+  content: "";
+}
+
+.hamburger span::before {
+  top: -9px;
+}
+
+.hamburger span::after {
+  bottom: -9px;
+}
+
+/**
+ * Style 2
+ * 
+ * Hamburger to "x" (htx). Takes on a hamburger shape, bars slide
+ * down to center and transform into an "x".
+ */
+.hamburger--htx {
+  background: none;
+}
+
+.hamburger--htx span {
+  -webkit-transition: background 0s 0.2s;
+          transition: background 0s 0.2s;
+}
+
+.hamburger--htx span::before,
+.hamburger--htx span::after {
+  -webkit-transition-duration: 0.2s, 0.2s;
+          transition-duration: 0.2s, 0.2s;
+  -webkit-transition-delay: 0.2s, 0s;
+          transition-delay: 0.2s, 0s;
+}
+
+.hamburger--htx span::before {
+  -webkit-transition-property: top, -webkit-transform;
+          transition-property: top, transform;
+}
+
+.hamburger--htx span::after {
+  -webkit-transition-property: bottom, -webkit-transform;
+          transition-property: bottom, transform;
+}
+
+/* active state, i.e. menu open */
+.hamburger--htx.is-active span {
+  background: none;
+}
+
+.hamburger--htx.is-active span::before {
+  top: 0;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.hamburger--htx.is-active span::after {
+  bottom: 0;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.hamburger--htx.is-active span::before,
+.hamburger--htx.is-active span::after {
+  -webkit-transition-delay: 0s, 0.2s;
+          transition-delay: 0s, 0.2s;
+}
