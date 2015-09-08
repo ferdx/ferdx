@@ -481,10 +481,14 @@ html {
   ELEMENTS - ROOT
   
 ----------------------------------------------------------------------------- */
+html {
+  font-size: 10px;
+}
+
 body {
   color: #777;
   font-family: "Montserrat", Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
@@ -504,30 +508,31 @@ h6 {
   margin: 0;
   padding: 0;
   font-weight: 700;
+  line-height: 1.1;
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 3.2rem;
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 2.8rem;
 }
 
 h3 {
-  font-size: 1.6rem;
+  font-size: 2.1rem;
 }
 
 h4 {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
 h5 {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 h6 {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 /* -----------------------------------------------------------------------------
@@ -560,7 +565,7 @@ a {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #375d81;
 }
 
@@ -569,8 +574,10 @@ a {
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  position: relative;
+  z-index: 1000;
   color: #fff;
-  font-size: 2rem;
+  font-size: 3.2rem;
 }
 
 .header__logo > span {
@@ -582,7 +589,28 @@ a {
   OBJECTS - NAVIGATION
   
 ----------------------------------------------------------------------------- */
+/**
+ * .nav
+ * 
+ * This is the main navigation object, and it's displayed at the top of the
+ * screen, inside the header, on all pages. It's hidden on small screens, and is
+ * toggled by a button. On bigger screens, it's displayed inline. For it to
+ * work, it must contain the unordered list, the list items, and the list links.
+ * Example HTML:
+ *
+ * <nav class="nav">
+ *   <ul class="nav__items">
+ *     <li class="nav__item"><a href="#" class="nav__link"></a></li>
+ *     <li class="nav__item"><a href="#" class="nav__link"></a></li>
+ *     ...
+ *   </ul>
+ * </nav>
+ */
 .nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
@@ -591,54 +619,120 @@ a {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+  overflow: hidden;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -1;
+  z-index: 900;
   background-color: #375d81;
-  visibility: hidden;
   opacity: 0;
-  -webkit-transition: opacity 0.3s;
-          transition: opacity 0.3s;
+  -webkit-transform: scale(0, 0);
+      -ms-transform: scale(0, 0);
+          transform: scale(0, 0);
+  -webkit-transform-origin: top right;
+      -ms-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+          transition: opacity 0.3s, transform 0.3s;
 }
 
+@media all and (min-width: 480px) {
+  .nav {
+    position: static;
+    opacity: 1;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+  }
+}
+
+.nav.is-active {
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+      -ms-transform: scale(1, 1);
+          transform: scale(1, 1);
+}
+
+/**
+ * .nav__items
+ * 
+ * The nav items is the actual unorderd list that lives inside the navigation
+ * object.
+ */
 .nav__items {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+/**
+ * .nav__item
+ * 
+ * Nav items are the list items inside the unordered list.
+ */
 .nav__item {
   display: block;
-  font-size: 1.2rem;
+  font-size: 2rem;
   text-align: center;
 }
 
+@media all and (min-width: 480px) {
+  .nav__item {
+    display: inline-block;
+    margin-left: 2rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .nav__item {
+    margin-left: 2.4rem;
+    font-size: 1.6rem;
+  }
+}
+
+.nav__item.is-hidden {
+  display: none;
+}
+
+/**
+ * .nav__link
+ * 
+ * Nav links are the anchor tags inside the link items. These are responsible
+ * for actually navigating users to different pages in the app.
+ */
 .nav__link {
   display: block;
   color: #fff;
   padding: 0.5rem;
 }
 
-.nav__link:hover {
+.nav__link:hover,
+.nav__item.is-active > .nav__link {
   color: #183152;
 }
 
+/**
+ * .nav__toggle
+ * 
+ * The navigation toggle is the toggle button that is responsible for toggling
+ * the menu on small screens. It lives inside the headr object, but outside the
+ * navigation object.
+ *
+ * Inherits styles from: _components.hamburger.scss
+ */
 .nav__toggle {
   position: relative;
   z-index: 1000;
 }
 
-.nav.is-active {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  z-index: 900;
-  visibility: visible;
-  opacity: 1;
+@media all and (min-width: 480px) {
+  .nav__toggle {
+    display: none !important;
+  }
 }
 
 /* -----------------------------------------------------------------------------
