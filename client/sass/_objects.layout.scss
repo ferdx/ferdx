@@ -4,6 +4,17 @@
   
 ----------------------------------------------------------------------------- */
 
+/**
+ * .container
+ *
+ * A generic container object that contains app content in various parts. It
+ * can be used with any of its modifiers, and is always centered in the page.
+ * Example HTML:
+ *
+ * <div class="container">
+ * </div>
+ */
+
 .container {
-  
+  margin: 0 auto;
 }

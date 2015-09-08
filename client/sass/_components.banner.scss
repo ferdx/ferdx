@@ -1,0 +1,81 @@
+/* -----------------------------------------------------------------------------
+
+  COMPONENT - BANNER
+  
+----------------------------------------------------------------------------- */
+
+/**
+ * .banner
+ *
+ * Example HTML:
+ *
+ * 
+ */
+
+.banner {
+  overflow: hidden;
+  position: relative;
+  padding: 6rem 3rem;
+  background-color: $color--blue-dark;
+  text-align: center;
+}
+
+.banner::before {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  background-image: url('img/circuit-sprite.svg');
+  background-repeat: no-repeat;
+  content: "";
+}
+
+.banner::before {
+  bottom: 0;
+  left: 1.5rem;
+  width: 460px;
+  height: 210px;
+  background-position: -581px 0;
+
+  @include mq-medium {
+    left: 3rem;
+    width: 581px;
+    height: 265px;
+    background-position: 0 0;    
+  }
+}
+
+.banner--large {
+  @include mq-small {
+    padding: 9rem 3rem;
+  }
+
+  @include mq-medium {
+    padding: 12rem 3rem;
+  }
+}
+
+
+.banner__heading {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-size: 3.6rem;
+  font-weight: 100;
+  transition: font 0.3s;
+
+  @include mq-small {
+    font-size: 4.2rem;
+  }
+
+  @include mq-medium {
+    font-size: 4.8rem;
+  }
+
+  @include mq-large {
+    font-size: 5.4rem;
+  }
+}
+
+.banner__heading > span {
+  font-weight: 700;
+}
