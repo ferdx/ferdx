@@ -29,7 +29,8 @@
 }
 
 .grid__row--pad {
-  margin: 0 -1.5rem;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
 }
 
 .grid__row--pad > .grid__item {
@@ -57,30 +58,30 @@
  * Size modifiers
  */
 
-.grid__item--sm {
+.grid__item--33-sm {
   @include mq-small {
-    flex: 1;
+    flex: 0 0 33%;
     margin-bottom: 0;
   }
 }
 
-.grid__item--md {
+.grid__item--33-md {
   @include mq-medium {
-    flex: 1;
+    flex: 0 0 33%;
     margin-bottom: 0;
   }
 }
 
-.grid__item--lg {
+.grid__item--33-lg {
   @include mq-large {
-    flex: 1;
+    flex: 0 0 33%;
     margin-bottom: 0;
   }
 }
 
-.grid__item--xl {
+.grid__item--33-xl {
   @include mq-xlarge {
-    flex: 1;
+    flex: 0 0 33%;
     margin-bottom: 0;
   }
 }
