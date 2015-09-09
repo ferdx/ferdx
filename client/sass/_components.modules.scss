@@ -1,0 +1,72 @@
+/* -----------------------------------------------------------------------------
+
+  COMPONENTS - MODULES
+  
+----------------------------------------------------------------------------- */
+
+/**
+ * .module
+ * 
+ */
+
+.module {
+  margin: 0 auto;
+  max-width: 540px;
+  border-top: solid 5px $color--blue;
+  border-left: solid 5px $color--blue;
+  border-right: solid 5px $color--blue;
+}
+
+/**
+ * .module__header
+ * 
+ */
+
+.module__header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: solid 5px $color--blue;
+}
+
+/**
+ * .module__title
+ */
+
+.module__title {
+  flex: 1;
+  color: $color--blue;
+}
+
+/**
+ * .module__content
+ * 
+ */
+
+.module__content {
+  padding: 1rem;
+  height: 150px;
+}
+
+.module__content > p {
+  font-size: 1.4rem;
+}
+
+/**
+ * .module__footer
+ * 
+ */
+
+.module__footer {
+  padding: 1rem;
+  background-color: $color--blue;
+  text-align: center;
+}
+
+.module__footer > small {
+  color: #fff;
+}
+
+.module__footer > small > span {
+  color: $color--blue-dark;
+}
