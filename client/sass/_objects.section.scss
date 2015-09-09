@@ -1,0 +1,52 @@
+/* -----------------------------------------------------------------------------
+
+  OBJECTS - SECTION
+  
+----------------------------------------------------------------------------- */
+
+/**
+ * .section
+ *
+ * Sections can be used on pages where multiple groups of content are required,
+ * but are a bit unrelated or need to be in their own section. Example HTML:
+ *
+ * <section class="section">
+ * </section>
+ */
+
+.section {
+  margin-bottom: 6rem;
+
+  @include mq-medium {
+    margin-bottom: 12rem;
+  }
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+/**
+ * .section-heading
+ *
+ * This heading should be used at the top of sections
+ */
+
+.section__heading {
+  position: relative;
+  margin: 0 0 3rem 0;
+  color: $color--neutral-xdark;
+  font-weight: 900;
+}
+
+.section__heading::after {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 0.5rem;
+  background-color: $color--neutral-xxlight;
+  border-radius: 0.5rem;
+  content: "";
+}

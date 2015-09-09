@@ -1,0 +1,40 @@
+/* -----------------------------------------------------------------------------
+
+  COMPONENTS - FERD CONFIG
+  
+----------------------------------------------------------------------------- */
+
+/**
+ * .fconfig
+ *
+ * Specifically used to style the user configuration on the MyFerd page.
+ */
+
+.fconfig {
+  margin-bottom: 3rem;
+}
+
+.fconfig__entry {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: solid 0.2rem $color--neutral-xxlight;
+}
+
+.fconfig__entry:last-child {
+  border-bottom: none;
+}
+
+.fconfig__title {
+  color: $color--blue;
+  flex: 1;
+}
+
+.fconfig__title > small {
+  font-size: 60%;
+  font-weight: 300;
+}
+
+.fconfig__title > small > a {
+  color: $color--neutral-xlight;
+}
