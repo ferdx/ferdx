@@ -11,10 +11,59 @@
  * can be used with any of its modifiers, and is always centered in the page.
  * Example HTML:
  *
- * <div class="container">
+ * <div class="container container--[modifier]">
  * </div>
  */
 
 .container {
   margin: 0 auto;
+}
+
+/**
+ * .container--pad
+ *
+ * This modifier adds padding to the left and right of the container to enable
+ * readability when desired.
+ */
+
+.container--pad {
+  padding: 0 3rem;
+
+  @include mq-small {
+    padding: 0 6rem;
+  }
+}
+
+/**
+ * .container--full
+ *
+ * This modifier specifies that the container should occupy the full width of
+ * the screen. Although it isn't necessary, because default behaviour is 100%,
+ * it helps with semantics and reading the HTML.
+ */
+
+.container--full {
+  width: 100%;
+}
+
+/**
+ * .container--wide
+ *
+ * This modifier specifies that the container should occupy 1080px of the
+ * screen.
+ */
+
+.container--wide {
+  max-width: 1080px;
+}
+
+/**
+ * .container--narrow
+ *
+ * This modifier specifies that the container should occupy 720px of the
+ * screen.
+ */
+
+.container--narrow {
+  max-width: 720px;
 }
