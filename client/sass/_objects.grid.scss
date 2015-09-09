@@ -1,0 +1,86 @@
+/* -----------------------------------------------------------------------------
+
+  OBJECTS - GRID
+  
+----------------------------------------------------------------------------- */
+
+/**
+ * .grid
+ *
+ * The grid object 
+ */
+
+.grid {
+  overflow: hidden;
+}
+
+/**
+ * .grid__row
+ */
+
+.grid__row {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 3rem;
+}
+
+.grid__row:last-child {
+  margin-bottom: 0;
+}
+
+.grid__row--pad {
+  margin: 0 -1.5rem;
+}
+
+.grid__row--pad > .grid__item {
+  padding: 0 1.5rem;
+}
+
+/**
+ * .grid__item
+ *
+ * Grid items
+ */
+
+.grid__item {
+  flex: 0 0 100%;
+  margin-bottom: 3rem;
+}
+
+.grid__item:last-child {
+  margin-bottom: 0;
+}
+
+/**
+ * .grid__item--[size modifier]
+ * 
+ * Size modifiers
+ */
+
+.grid__item--sm {
+  @include mq-small {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+.grid__item--md {
+  @include mq-medium {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+.grid__item--lg {
+  @include mq-large {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+.grid__item--xl {
+  @include mq-xlarge {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
