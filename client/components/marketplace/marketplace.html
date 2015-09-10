@@ -10,97 +10,38 @@
   <main class="main">
     <div class="container container--pad container--wide">
 
-      <div class="grid">
-        <div class="grid__row grid__row--pad">
-          <div class="grid__item grid__item--33-lg">
-            <div class="module">
-              <div class="module__header">
-                <h3 class="module__title">Yo!</h3>
-                <div class="module__toggle">
-                  <input id="toggle1" class="toggle toggle--flat" type="checkbox">
-                  <label for="toggle1">Toggle module</label>
+      <section class="section section--m-sm">
+        <form action="#" class="form">
+          <div class="form__field">
+            <label for="filter">Filter Modules:</label>
+            <input type="text" name="filter" id="filter" class="form__text" ng-model="searchModules">
+          </div>
+        </form>
+      </section>
+      
+      <section class="section section--small">
+        <div class="grid">
+          <div class="grid__inner">
+            <div class="grid__item grid__item--33-lg" ng-repeat="module in marketplace.modules | filter: searchModules">
+              <div class="module">
+                <div class="module__header">
+                  <h3 class="module__title">{{ module.title }}</h3>
+                  <div class="module__toggle">
+                    <input id="{{ module.name }}" class="toggle toggle--flat" type="checkbox">
+                    <label for="{{ module.name }}">Toggle module</label>
+                  </div>
                 </div>
-              </div>
-              <div class="module__content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem temporibus natus tenetur veniam saepe necessitatibus accusamus.</p>
-              </div>
-              <div class="module__footer">
-                <small><span>added:</span> September 7th, 2015</small>
-              </div>
-            </div><!-- /module -->
-          </div><!-- /grid item -->
-          <div class="grid__item grid__item--33-lg">
-            <div class="module">
-              <div class="module__header">
-                <h3 class="module__title">Bart</h3>
-                <div class="module__toggle">
-                  <input id="toggle2" class="toggle toggle--flat" type="checkbox">
-                  <label for="toggle2">Toggle module</label>
+                <div class="module__content">
+                  <p>{{ module.description }}</p>
                 </div>
-              </div>
-              <div class="module__content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem temporibus natus tenetur veniam saepe necessitatibus accusamus.</p>
-              </div>
-              <div class="module__footer">
-                <small><span>added:</span> September 7th, 2015</small>
-              </div>
-            </div><!-- /module -->
-          </div><!-- /grid item -->
-          <div class="grid__item grid__item--33-lg">
-            <div class="module">
-              <div class="module__header">
-                <h3 class="module__title">Eliza</h3>
-                <div class="module__toggle">
-                  <input id="toggle3" class="toggle toggle--flat" type="checkbox">
-                  <label for="toggle3">Toggle module</label>
+                <div class="module__footer">
+                  <small><span>added:</span> {{ module.created_at }}</small>
                 </div>
-              </div>
-              <div class="module__content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem temporibus natus tenetur veniam saepe necessitatibus accusamus.</p>
-              </div>
-              <div class="module__footer">
-                <small><span>added:</span> September 7th, 2015</small>
-              </div>
-            </div><!-- /module -->
-          </div><!-- /grid item -->
-        </div><!-- /grid row -->
-        <div class="grid__row grid__row--pad">
-          <div class="grid__item grid__item--33-lg">
-            <div class="module">
-              <div class="module__header">
-                <h3 class="module__title">Yo!</h3>
-                <div class="module__toggle">
-                  <input id="toggle4" class="toggle toggle--flat" type="checkbox">
-                  <label for="toggle4">Toggle module</label>
-                </div>
-              </div>
-              <div class="module__content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem temporibus natus tenetur veniam saepe necessitatibus accusamus.</p>
-              </div>
-              <div class="module__footer">
-                <small><span>added:</span> September 7th, 2015</small>
-              </div>
-            </div><!-- /module -->
-          </div><!-- /grid item -->
-          <div class="grid__item grid__item--33-lg">
-            <div class="module">
-              <div class="module__header">
-                <h3 class="module__title">Bart</h3>
-                <div class="module__toggle">
-                  <input id="toggle5" class="toggle toggle--flat" type="checkbox">
-                  <label for="toggle5">Toggle module</label>
-                </div>
-              </div>
-              <div class="module__content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem temporibus natus tenetur veniam saepe necessitatibus accusamus.</p>
-              </div>
-              <div class="module__footer">
-                <small><span>added:</span> September 7th, 2015</small>
-              </div>
-            </div><!-- /module -->
-          </div><!-- /grid item -->
-        </div><!-- /grid row -->
-      </div><!-- /grid -->
+              </div><!-- /module -->
+            </div><!-- grid__item -->
+          </div><!-- grid__inner -->
+        </div><!-- /grid -->
+      </section>
 
     </div><!-- /container -->
   </main><!-- /main -->

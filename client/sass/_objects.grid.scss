@@ -18,22 +18,14 @@
  * .grid__row
  */
 
-.grid__row {
+.grid__inner {
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: 3rem;
-}
-
-.grid__row:last-child {
-  margin-bottom: 0;
-}
-
-.grid__row--pad {
   margin-left: -1.5rem;
   margin-right: -1.5rem;
 }
 
-.grid__row--pad > .grid__item {
+.grid__inner > .grid__item {
   padding: 0 1.5rem;
 }
 
@@ -45,11 +37,11 @@
 
 .grid__item {
   flex: 0 0 100%;
-  margin-bottom: 3rem;
+  margin-top: 3rem;
 }
 
-.grid__item:last-child {
-  margin-bottom: 0;
+.grid__item:nth-child(1) {
+  margin-top: 0;
 }
 
 /**
@@ -60,28 +52,52 @@
 
 .grid__item--33-sm {
   @include mq-small {
-    flex: 0 0 33%;
-    margin-bottom: 0;
+    flex: 0 0 33.3333%;
+  }
+}
+
+.grid__item--33-sm:nth-child(2),
+.grid__item--33-sm:nth-child(3) {
+  @include mq-small {
+    margin-top: 0;
   }
 }
 
 .grid__item--33-md {
   @include mq-medium {
-    flex: 0 0 33%;
-    margin-bottom: 0;
+    flex: 0 0 33.3333%;
+  }
+}
+
+.grid__item--33-md:nth-child(2),
+.grid__item--33-md:nth-child(3) {
+  @include mq-medium {
+    margin-top: 0;
   }
 }
 
 .grid__item--33-lg {
   @include mq-large {
-    flex: 0 0 33%;
-    margin-bottom: 0;
+    flex: 0 0 33.3333%;
+  }
+}
+
+.grid__item--33-lg:nth-child(2),
+.grid__item--33-lg:nth-child(3) {
+  @include mq-large {
+    margin-top: 0;
   }
 }
 
 .grid__item--33-xl {
   @include mq-xlarge {
-    flex: 0 0 33%;
-    margin-bottom: 0;
+    flex: 0 0 33.3333%;
+  }
+}
+
+.grid__item--33-xl:nth-child(2),
+.grid__item--33-xl:nth-child(3) {
+  @include mq-xlarge {
+    margin-top: 0;
   }
 }
