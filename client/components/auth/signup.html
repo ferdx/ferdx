@@ -1,7 +1,6 @@
 <div ng-controller="AuthController as auth">
   
-  <header-directive class="header">
-  </header-directive><!-- /header -->
+  <header-directive></header-directive><!-- /header -->
 
   <div class="banner">
     <h2 class="banner__heading"><span>Sign up</span> to get Ferded</h2>
@@ -34,5 +33,9 @@
       </form>
     </div><!-- /container -->
   </main><!-- /main -->
+  
   <spinner-directive display="auth.showSpinner"></spinner-directive>
+
+  <footer-directive></footer-directive><!-- /footer -->
+  
 </div>

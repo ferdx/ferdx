@@ -487,6 +487,7 @@ html {
 
 body {
   color: #777;
+  background-color: #375d81;
   font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.6rem;
   font-weight: 300;
@@ -1025,8 +1026,10 @@ p {
   
 ----------------------------------------------------------------------------- */
 .main {
+  overflow-y: hidden;
   position: relative;
   padding: 3rem 0;
+  background-color: #fff;
 }
 
 @media all and (min-width: 480px) {
@@ -1056,6 +1059,30 @@ p {
     height: 265px;
     background-position: 0 -265px;
   }
+}
+
+/* -----------------------------------------------------------------------------
+
+  OBJECTS - FOOTER
+  
+----------------------------------------------------------------------------- */
+.footer {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+@media all and (min-width: 720px) {
+  .footer {
+    padding: 6rem 0;
+  }
+}
+
+.footer p {
+  color: #fff;
+}
+
+.footer small {
+  color: #183152;
 }
 
 /* -----------------------------------------------------------------------------
