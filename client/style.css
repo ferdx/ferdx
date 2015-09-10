@@ -695,7 +695,7 @@ p {
 /**
  * .section content
  */
-.section p {
+.section__paragraph {
   margin: 3rem 0;
 }
 
