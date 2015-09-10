@@ -15,11 +15,9 @@
   /**
    * marketplaceFactory is where all the actual factory functionality resides.
    */
-  function marketplaceFactory(ferdFactory, authFactory) {
+  function marketplaceFactory() {
 
     var factory = {
-      getAvailableModules: ferdFactory.getAvailableModules,
-      update: authFactory.update
     };
 
     return factory;
