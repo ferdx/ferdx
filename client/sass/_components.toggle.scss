@@ -30,7 +30,7 @@
   height: 30px;
   border-radius: 30px;
   box-shadow: inset 0 0 0 2px $color--neutral-xlight;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.2s;
 }
 
 .toggle + label::before {
@@ -56,7 +56,7 @@
   height: 22px;
   background-color: $color--neutral-xlight;
   border-radius: 50%;
-  transition: transform 0.3s;
+  transition: transform 0.2s;
   content: "";
 }
 

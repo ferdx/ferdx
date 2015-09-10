@@ -5,10 +5,23 @@
 ----------------------------------------------------------------------------- */
 
 /**
- * The base level form class, to be attached to all form elements. Example HTML:
+ * .form
+ * 
+ * The base level form class, to be attached to all form elements. It can
+ * contain form fields and form footers, depending on the overall form style
+ * and location in the app. Example HTML:
  * 
  * <form class="form">
+ *   <div class="form__field">
+ *     <label name="name">
+ *     <input type="text" id="name">
+ *   </div>
+ *   <div class="form__footer">
+ *     <button class="btn btn--primary">Do Something</button>
+ *   </div>
  * </form>
+ *
+ * Button styles: _components.buttons.scss
  */
 
 .form {
@@ -16,16 +29,92 @@
 }
 
 /**
+ * .form__field
+ * 
  * A form field class, which contains every form field and their related
- * components, like inputs and corresponding labels. Example HTML:
- *
- * <div class="form__field">
- *   <label name="name">
- *   <input type="text" id="name">
- * </div>
+ * components, like inputs and corresponding labels. Form fields should be used
+ * when a horizontal style form layout is required.
  */
 
-.form-field {
-
+.form__field {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin-bottom: 3rem;
 }
 
+.form__field > label,
+.form__field > input,
+.form__field > textarea {
+  flex: 0 0 100%;
+}
+
+.form__field > label {
+  margin: 0 0 1rem 0;
+  color: $color--neutral-xdark;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  @include mq-medium {
+    flex: 0 0 180px;
+    margin: 0;
+    font-size: 1.6rem;
+  }
+}
+
+.form__field > input,
+.form__field > textarea {
+  @include mq-medium {
+    flex: 1;
+  }
+}
+
+/**
+ * .form__footer
+ * 
+ */
+
+.form__footer {
+  text-align: right;
+}
+
+/**
+ * .form__text
+ * .form__textarea
+ *
+ * Targets text inputs and textareas. Inputs can have types of text, email, 
+ * password, or any other text type. Text inputs also always fill up their
+ * containing space. To exhibit different behaviour, they should be wrapped
+ * in a resizable component like a grid.
+ */
+
+.form__text,
+.form__textarea {
+  display: block;
+  margin: 0;
+  width: 100%;
+  background: none;
+  border: solid 2px $color--neutral-xxlight;
+  transition: border 0.2s;
+}
+
+.form__text {
+  padding: 1rem 2rem;
+  border-radius: 3rem;
+}
+
+.form__text:focus {
+  border: solid 2px $color--blue;
+  outline: none;
+}
+
+/**
+ * .form__footnotes
+ * 
+ */
+
+.form__footnotes {
+  margin-top: 3rem;
+  text-align: center;
+}

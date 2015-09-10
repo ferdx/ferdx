@@ -546,9 +546,14 @@ h6 {
   
 ----------------------------------------------------------------------------- */
 a {
+  color: #375d81;
   text-decoration: none;
   -webkit-transition: color 0.2s, background 0.2s;
           transition: color 0.2s, background 0.2s;
+}
+
+a:hover {
+  color: #183152;
 }
 
 p {
@@ -572,6 +577,8 @@ p {
  * </div>
  */
 .container {
+  position: relative;
+  z-index: 2;
   margin: 0 auto;
 }
 
@@ -878,8 +885,8 @@ p {
   -webkit-transform-origin: top right;
       -ms-transform-origin: top right;
           transform-origin: top right;
-  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
-          transition: opacity 0.3s, transform 0.3s;
+  -webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
+          transition: opacity 0.2s, transform 0.2s;
 }
 
 @media all and (min-width: 480px) {
@@ -985,6 +992,7 @@ p {
   
 ----------------------------------------------------------------------------- */
 .main {
+  position: relative;
   padding: 3rem 0;
 }
 
@@ -994,26 +1002,218 @@ p {
   }
 }
 
+.main::before {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 1.5rem;
+  width: 460px;
+  height: 210px;
+  background-image: url("img/circuit-sprite.svg");
+  background-repeat: no-repeat;
+  background-position: -581px -210px;
+  content: "";
+}
+
+@media all and (min-width: 720px) {
+  .main::before {
+    left: 3rem;
+    width: 581px;
+    height: 265px;
+    background-position: 0 -265px;
+  }
+}
+
 /* -----------------------------------------------------------------------------
 
   COMPONENTS - FORMS
   
 ----------------------------------------------------------------------------- */
 /**
- * The base level form class, to be attached to all form elements. Example HTML:
+ * .form
+ * 
+ * The base level form class, to be attached to all form elements. It can
+ * contain form fields and form footers, depending on the overall form style
+ * and location in the app. Example HTML:
  * 
  * <form class="form">
+ *   <div class="form__field">
+ *     <label name="name">
+ *     <input type="text" id="name">
+ *   </div>
+ *   <div class="form__footer">
+ *     <button class="btn btn--primary">Do Something</button>
+ *   </div>
  * </form>
+ *
+ * Button styles: _components.buttons.scss
  */
 /**
+ * .form__field
+ * 
  * A form field class, which contains every form field and their related
- * components, like inputs and corresponding labels. Example HTML:
- *
- * <div class="form__field">
- *   <label name="name">
- *   <input type="text" id="name">
- * </div>
+ * components, like inputs and corresponding labels. Form fields should be used
+ * when a horizontal style form layout is required.
  */
+.form__field {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 3rem;
+}
+
+.form__field > label,
+.form__field > input,
+.form__field > textarea {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 100%;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+}
+
+.form__field > label {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media all and (min-width: 720px) {
+  .form__field > label {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 180px;
+        -ms-flex: 0 0 180px;
+            flex: 0 0 180px;
+    margin: 0;
+    font-size: 1.6rem;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .form__field > input,
+  .form__field > textarea {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+}
+
+/**
+ * .form__footer
+ * 
+ */
+.form__footer {
+  text-align: right;
+}
+
+/**
+ * .form__text
+ * .form__textarea
+ *
+ * Targets text inputs and textareas. Inputs can have types of text, email, 
+ * password, or any other text type. Text inputs also always fill up their
+ * containing space. To exhibit different behaviour, they should be wrapped
+ * in a resizable component like a grid.
+ */
+.form__text,
+.form__textarea {
+  display: block;
+  margin: 0;
+  width: 100%;
+  background: none;
+  border: solid 2px #ccc;
+  -webkit-transition: border 0.2s;
+          transition: border 0.2s;
+}
+
+.form__text {
+  padding: 1rem 2rem;
+  border-radius: 3rem;
+}
+
+.form__text:focus {
+  border: solid 2px #375d81;
+  outline: none;
+}
+
+/**
+ * .form__footnotes
+ * 
+ */
+.form__footnotes {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+/* -----------------------------------------------------------------------------
+
+  COMPONENTS - BUTTONS
+  
+----------------------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  margin: 0;
+  padding: 1rem 6rem;
+  background: none;
+  font-size: 1.8rem;
+  border: none;
+  border-radius: 3rem;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  -webkit-transition: background 0.2s;
+          transition: background 0.2s;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn--primary {
+  color: #fff;
+  background-color: #375d81;
+}
+
+.btn--primary:hover {
+  background-color: #183152;
+}
+
+/* -----------------------------------------------------------------------------
+
+  COMPONENTS - ALERTS
+  
+----------------------------------------------------------------------------- */
+.alert {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+}
+
+.alert--error {
+  border: solid 2px #ff5050;
+}
+
+.alert__heading {
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.alert--error > .alert__heading {
+  color: #ff5050;
+}
+
 /* -----------------------------------------------------------------------------
 
   COMPONENT - BANNER
@@ -1038,17 +1238,14 @@ p {
   display: block;
   position: absolute;
   z-index: 1;
-  background-image: url("img/circuit-sprite.svg");
-  background-repeat: no-repeat;
-  content: "";
-}
-
-.banner::before {
   bottom: 0;
   left: 1.5rem;
   width: 460px;
   height: 210px;
+  background-image: url("img/circuit-sprite.svg");
+  background-repeat: no-repeat;
   background-position: -581px 0;
+  content: "";
 }
 
 @media all and (min-width: 720px) {
@@ -1078,8 +1275,8 @@ p {
   color: #fff;
   font-size: 3.6rem;
   font-weight: 100;
-  -webkit-transition: font 0.3s;
-          transition: font 0.3s;
+  -webkit-transition: font 0.2s;
+          transition: font 0.2s;
 }
 
 @media all and (min-width: 480px) {
@@ -1261,8 +1458,8 @@ p {
   height: 30px;
   border-radius: 30px;
   box-shadow: inset 0 0 0 2px #aaa;
-  -webkit-transition: box-shadow 0.3s;
-          transition: box-shadow 0.3s;
+  -webkit-transition: box-shadow 0.2s;
+          transition: box-shadow 0.2s;
 }
 
 .toggle + label::before {
@@ -1288,8 +1485,8 @@ p {
   height: 22px;
   background-color: #aaa;
   border-radius: 50%;
-  -webkit-transition: -webkit-transform 0.3s;
-          transition: transform 0.3s;
+  -webkit-transition: -webkit-transform 0.2s;
+          transition: transform 0.2s;
   content: "";
 }
 

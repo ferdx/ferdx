@@ -9,31 +9,30 @@
 
   <main class="main">
     <div class="container container--pad container--narrow">
-
-      <h3>Sign Up Below!</h3>
-      <form action="#" name="signupForm" class="form" ng-submit="auth.signup($event)" novalidate>
-        <p ng-class="{ 'has-error' : signupForm.username.$invalid && !signupForm.username.$pristine }">
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            ng-model="auth.user.username"
-            ng-minlength="3" minlength="3"
-            ng-maxlength="8" maxlength="8"
-            ng-required required>
-        </p>
-        <p>
-          <input type="text" placeholder="Slack team name" ng-model="auth.user.slackOrganization" ng-required>
-          {{ auth.user.slackOrganization }}.slack.com
-        </p>
-        <p>
-          <input type="password" placeholder="Password" ng-model="auth.user.password" ng-required>
-        </p>
-        <p><button type="submit">Sign Up</button></p>
-      </form>
-      <p>Already a member? <a ui-sref="login">Log in!</a></p>
       <alerts-directive alert="auth.alert" ng-show="auth.showAlert"></alerts-directive>
-
+      <!-- <p ng-class="{ 'has-error' : signupForm.username.$invalid && !signupForm.username.$pristine }"> -->
+      <form action="#" name="signupForm" class="form" ng-submit="auth.signup($event)" novalidate>
+        <div class="form__field">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" class="form__text" ng-model="auth.user.username" ng-minlength="3" minlength="3" ng-maxlength="8" maxlength="8" ng-required required>
+        </div><!-- /username -->
+        <div class="form__field">
+          <label for="slack">Slack Organization:</label>
+          <input type="text" name="slack" id="slack" class="form__text" ng-model="auth.user.slackOrganization" ng-required>
+          <!-- {{ auth.user.slackOrganization }}.slack.com -->
+        </div><!-- /slack -->
+        <div class="form__field">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" class="form__text" ng-model="auth.user.password" ng-required>
+        </div><!-- /password -->
+        <div class="form__footer">
+          loading
+          <button type="submit" class="btn btn--primary">Sign Up</button>
+        </div><!-- /submit -->
+        <div class="form__footnotes">
+          Already a member? <a ui-sref="login">Log in!</a>
+        </div><!-- /footnotes -->
+      </form>
     </div><!-- /container -->
   </main><!-- /main -->
 

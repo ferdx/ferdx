@@ -1,0 +1,23 @@
+/* -----------------------------------------------------------------------------
+
+  COMPONENTS - ALERTS
+  
+----------------------------------------------------------------------------- */
+
+.alert {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+}
+
+.alert--error {
+  border: solid 2px rgb(255, 80, 80);
+}
+
+.alert__heading {
+  margin-bottom: 1.5rem;
+  color: $color--neutral-dark;
+}
+
+.alert--error > .alert__heading {
+  color: rgb(255, 80, 80);
+}

@@ -1,0 +1,34 @@
+/* -----------------------------------------------------------------------------
+
+  COMPONENTS - BUTTONS
+  
+----------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  margin: 0;
+  padding: 1rem 6rem;
+  background: none;
+  font-size: 1.8rem;
+  border: none;
+  border-radius: 3rem;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn--primary {
+  color: #fff;
+  background-color: $color--blue;
+}
+
+.btn--primary:hover {
+  background-color: $color--blue-dark;
+}
