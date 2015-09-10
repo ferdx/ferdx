@@ -82,8 +82,7 @@
     function getBotModules() {
       ferdFactory.getAvailableModules()
       .then(function(response) {
-        console.log(response.data.body);
-        vm.botModules = JSON.parse(response.data.body).modules.map(function(m){ return m.name });
+        vm.botModules = JSON.parse(response.data.body).modules.map(function(m){ return m.title });
       });
     }
 
