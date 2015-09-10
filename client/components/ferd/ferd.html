@@ -27,21 +27,20 @@
       
       <section class="section section--m-lg" ng-show="ferd.showSettings">
         <h2 class="section__heading">Your current configuration</h2>
-        
-          <form ng-submit="ferd.updateModules($event, ferd.selectedModules)" class="form">
-            <div class="fconfig">
-              <div class="fconfig__entry" ng-repeat="module in ferd.botModules">
-                <h3 class="fconfig__title">{{ module }} <small><a ui-sref="marketplace">(view)</a></small></h3>
-                <div class="fconfig__toggle">
-                  <input id="{{ module }}" class="toggle toggle--flat" type="checkbox" checklist-value="module" checklist-model="ferd.selectedModules">
-                  <label for="{{ module }}">{{ module }}</label>
-                </div><!-- fconfig__toggle -->
-              </div><!-- fconfig entry -->
-            </div>
-            <div class="form__footer">
-              <button type="submit" class="btn btn--primary">Save Settings</button>
-            </div>
-          </form>
+        <form ng-submit="ferd.setUserBotModules($event)" class="form">
+          <div class="fconfig">
+            <div class="fconfig__entry" ng-repeat="module in ferd.allBotModules">
+              <h3 class="fconfig__title">{{ module.title }} <small><a ui-sref="marketplace">(view)</a></small></h3>
+              <div class="fconfig__toggle">
+                <input id="{{ module.name }}" class="toggle toggle--flat" type="checkbox" checklist-value="module.name" checklist-model="ferd.userBotModules">
+                <label for="{{ module.name }}">{{ module.name }}</label>
+              </div><!-- fconfig__toggle -->
+            </div><!-- fconfig entry -->
+          </div>
+          <div class="form__footer">
+            <button type="submit" class="btn btn--primary">Save Settings</button>
+          </div>
+        </form>
       </section><!-- /section showSettings currentConfig  -->
       
       <section class="section section--m-lg" ng-show="ferd.showSettings">

@@ -15,16 +15,23 @@
   /**
    * FerdController is where all the actual controller functionality resides.
    */
-  function FerdController($state, authFactory, ferdFactory) {
+  function FerdController($state, authFactory, ferdFactory, botFactory) {
 
     var vm = this;
 
-    vm.user = {};
+    // submits the api key
     vm.submitKey = submitKey;
-    vm.updateModules = updateModules;
-    vm.getBotModules = getBotModules;
-    vm.botModules = [];
-    vm.selectedModules = authFactory.authUser.botModules;
+
+    // gets and sets all bot modules from the server
+    vm.getAllBotModules = getAllBotModules;
+    vm.allBotModules = [];
+
+    // sets and gets user bot modules
+    vm.setUserBotModules = setUserBotModules;
+    vm.userBotModules = authFactory.authUser.botModules;
+
+    // determines which pane to show, depending on whether a user has entered
+    // their api key or not
     vm.showSettings = false;
     vm.showSetup = false;
 
@@ -37,7 +44,7 @@
       if (authFactory.isAuth() && authFactory.authUser.botKey) {
         vm.showSettings = true;
         vm.showSetup = false;
-        vm.getBotModules();
+        vm.getAllBotModules();
       } else if (authFactory.isAuth() && !authFactory.authUser.botKey) {
         vm.showSetup = true;
         vm.showSettings = false;
@@ -64,26 +71,33 @@
     }
 
     /**
-     * updateModules() updates activated Ferd modules
-     *
-     * @param {array}
+     * getAllBotModules
+     * 
+     * @return {[type]}
      */
-    function updateModules(e, moduleArray) {
-      e.preventDefault();
-      authFactory.update(authFactory.authUser.username, {botModules: moduleArray})
-        .then(function(data) {
-          console.log('successful update');
-        })
-        .catch(function(error) {
-          console.log('there was an error');
+    function getAllBotModules() {
+      botFactory.getAllBotModules()
+        .then(function(response) {
+          vm.allBotModules = JSON.parse(response.data.body).modules;
         });
     }
 
-    function getBotModules() {
-      ferdFactory.getAvailableModules()
-      .then(function(response) {
-        vm.botModules = JSON.parse(response.data.body).modules.map(function(m){ return m.title });
-      });
+    /**
+     * setUserBotModules() updates activated Ferd modules
+     *
+     * @param {array}
+     */
+    function setUserBotModules(e) {
+      e.preventDefault();
+      authFactory.update(authFactory.authUser.username, {botModules: vm.userBotModules})
+        .then(function(data) {
+          // TODO: Display a success alert here
+          console.log('successful update');
+        })
+        .catch(function(error) {
+          // TODO: Display an error alert here
+          console.log('there was an error');
+        });
     }
 
   }

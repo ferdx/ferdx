@@ -1,4 +1,3 @@
-
 (function() {
 
   'use strict';
@@ -7,13 +6,19 @@
     .module('app')
     .controller('MarketplaceController', MarketplaceController);
 
-  function MarketplaceController(marketplaceFactory) {
+  function MarketplaceController(botFactory) {
     var vm = this;
 
-    getBotModules();
+    vm.getBotModules = getBotModules;
+
+    activate();
+
+    function activate() {
+      vm.getBotModules();
+    }
 
     function getBotModules() {
-      marketplaceFactory.getAvailableModules()
+      botFactory.getAllBotModules()
       .then(function(response) {
         vm.modules = JSON.parse(response.data.body).modules;
       });
