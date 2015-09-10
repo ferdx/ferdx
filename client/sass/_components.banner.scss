@@ -24,17 +24,14 @@
   display: block;
   position: absolute;
   z-index: 1;
-  background-image: url('img/circuit-sprite.svg');
-  background-repeat: no-repeat;
-  content: "";
-}
-
-.banner::before {
   bottom: 0;
   left: 1.5rem;
   width: 460px;
   height: 210px;
+  background-image: url('img/circuit-sprite.svg');
+  background-repeat: no-repeat;
   background-position: -581px 0;
+  content: "";
 
   @include mq-medium {
     left: 3rem;
@@ -61,7 +58,7 @@
   color: #fff;
   font-size: 3.6rem;
   font-weight: 100;
-  transition: font 0.3s;
+  transition: font 0.2s;
 
   @include mq-small {
     font-size: 4.2rem;
