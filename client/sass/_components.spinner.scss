@@ -1,0 +1,75 @@
+/* -----------------------------------------------------------------------------
+
+  COMPONENT - SPINNER
+  
+----------------------------------------------------------------------------- */
+
+.spinner {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.spinner.is-active {
+  display: block;
+}
+
+.spinner span {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  color: rgba(0, 0, 0, 0);
+  font-size: 0;
+  text-indent: -99999px;
+  border-top: solid 5px $color--blue;
+  border-right: solid 5px transparent;
+  border-bottom: solid 5px transparent;
+  border-left: solid 5px transparent;
+  border-radius: 100%;
+  animation: spinnerAnimation 1.5s infinite linear;
+}
+
+.spinner span::before,
+.spinner span::after {
+  display: block;
+  position: absolute;
+  border-right: solid 5px transparent;
+  border-bottom: solid 5px transparent;
+  border-left: solid 5px transparent;
+  border-radius: 100%;
+  content: "";
+}
+
+.spinner span::before {
+  top: 15px;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  border-top: solid 5px $color--neutral-light;
+  animation: spinnerAnimation 1.75s infinite linear;
+}
+
+.spinner span::after {
+  top: 30px;
+  right: 30px;
+  bottom: 30px;
+  left: 30px;
+  border-top: solid 5px $color--neutral-dark;
+  animation: spinnerAnimation 2s infinite linear;
+}
+
+@keyframes spinnerAnimation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

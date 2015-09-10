@@ -27,6 +27,7 @@
       type: '',
       message: ''
     };
+    vm.showSpinner = false;
 
     activate();
 
@@ -43,9 +44,11 @@
      */
     function signup(e) {
       e.preventDefault();
+      vm.showSpinner = true;
       authFactory.signup(vm.user)
         .then(function(data) {
           $state.go('ferd');
+          vm.showSpinner = false;
         })
         .catch(function(error) {
           vm.showAlert = true;
@@ -53,6 +56,7 @@
             type: 'error',
             message: error.data
           };
+          vm.showSpinner = false;
         });
     }
 
@@ -61,9 +65,11 @@
      */
     function login(e) {
       e.preventDefault();
+      vm.showSpinner = true;
       authFactory.login(vm.user)
         .then(function(data) {
           $state.go('ferd');
+          vm.showSpinner = false;
         })
         .catch(function(error) {
           vm.showAlert = true;
@@ -71,6 +77,7 @@
             type: 'error',
             message: error.data
           };
+          vm.showSpinner = false;
         });
     }
 

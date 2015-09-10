@@ -14,7 +14,11 @@
  * </section>
  */
 
-.section {
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section--m-lg {
   margin-bottom: 6rem;
 
   @include mq-medium {
@@ -22,8 +26,12 @@
   }
 }
 
-.section:last-child {
-  margin-bottom: 0;
+.section--m-sm {
+  margin-bottom: 3rem;
+
+  @include mq-medium {
+    margin-bottom: 3rem;
+  }
 }
 
 /**
@@ -49,4 +57,14 @@
   background-color: $color--neutral-xxlight;
   border-radius: 0.5rem;
   content: "";
+}
+
+/**
+ * .section content
+ */
+
+.section {
+  p {
+    margin: 3rem 0;
+  }
 }

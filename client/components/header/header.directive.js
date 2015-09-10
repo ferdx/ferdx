@@ -1,4 +1,4 @@
-/* alerts.directive.js */
+/* header.directive.js */
 (function() {
 
   'use strict';

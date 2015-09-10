@@ -487,6 +487,7 @@ html {
 
 body {
   color: #777;
+  background-color: #375d81;
   font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.6rem;
   font-weight: 300;
@@ -643,18 +644,28 @@ p {
  * <section class="section">
  * </section>
  */
-.section {
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section--m-lg {
   margin-bottom: 6rem;
 }
 
 @media all and (min-width: 720px) {
-  .section {
+  .section--m-lg {
     margin-bottom: 12rem;
   }
 }
 
-.section:last-child {
-  margin-bottom: 0;
+.section--m-sm {
+  margin-bottom: 3rem;
+}
+
+@media all and (min-width: 720px) {
+  .section--m-sm {
+    margin-bottom: 3rem;
+  }
 }
 
 /**
@@ -681,6 +692,13 @@ p {
   content: "";
 }
 
+/**
+ * .section content
+ */
+.section p {
+  margin: 3rem 0;
+}
+
 /* -----------------------------------------------------------------------------
 
   OBJECTS - GRID
@@ -698,7 +716,7 @@ p {
 /**
  * .grid__row
  */
-.grid__row {
+.grid__inner {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -706,19 +724,11 @@ p {
   -webkit-flex-flow: row wrap;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  margin-bottom: 3rem;
-}
-
-.grid__row:last-child {
-  margin-bottom: 0;
-}
-
-.grid__row--pad {
   margin-left: -1.5rem;
   margin-right: -1.5rem;
 }
 
-.grid__row--pad > .grid__item {
+.grid__inner > .grid__item {
   padding: 0 1.5rem;
 }
 
@@ -732,11 +742,11 @@ p {
   -webkit-flex: 0 0 100%;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
-  margin-bottom: 3rem;
+  margin-top: 3rem;
 }
 
-.grid__item:last-child {
-  margin-bottom: 0;
+.grid__item:nth-child(1) {
+  margin-top: 0;
 }
 
 /**
@@ -747,40 +757,64 @@ p {
 @media all and (min-width: 480px) {
   .grid__item--33-sm {
     -webkit-box-flex: 0;
-    -webkit-flex: 0 0 33%;
-        -ms-flex: 0 0 33%;
-            flex: 0 0 33%;
-    margin-bottom: 0;
+    -webkit-flex: 0 0 33.3333%;
+        -ms-flex: 0 0 33.3333%;
+            flex: 0 0 33.3333%;
+  }
+}
+
+@media all and (min-width: 480px) {
+  .grid__item--33-sm:nth-child(2),
+  .grid__item--33-sm:nth-child(3) {
+    margin-top: 0;
   }
 }
 
 @media all and (min-width: 720px) {
   .grid__item--33-md {
     -webkit-box-flex: 0;
-    -webkit-flex: 0 0 33%;
-        -ms-flex: 0 0 33%;
-            flex: 0 0 33%;
-    margin-bottom: 0;
+    -webkit-flex: 0 0 33.3333%;
+        -ms-flex: 0 0 33.3333%;
+            flex: 0 0 33.3333%;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .grid__item--33-md:nth-child(2),
+  .grid__item--33-md:nth-child(3) {
+    margin-top: 0;
   }
 }
 
 @media all and (min-width: 1020px) {
   .grid__item--33-lg {
     -webkit-box-flex: 0;
-    -webkit-flex: 0 0 33%;
-        -ms-flex: 0 0 33%;
-            flex: 0 0 33%;
-    margin-bottom: 0;
+    -webkit-flex: 0 0 33.3333%;
+        -ms-flex: 0 0 33.3333%;
+            flex: 0 0 33.3333%;
+  }
+}
+
+@media all and (min-width: 1020px) {
+  .grid__item--33-lg:nth-child(2),
+  .grid__item--33-lg:nth-child(3) {
+    margin-top: 0;
   }
 }
 
 @media all and (min-width: 1240px) {
   .grid__item--33-xl {
     -webkit-box-flex: 0;
-    -webkit-flex: 0 0 33%;
-        -ms-flex: 0 0 33%;
-            flex: 0 0 33%;
-    margin-bottom: 0;
+    -webkit-flex: 0 0 33.3333%;
+        -ms-flex: 0 0 33.3333%;
+            flex: 0 0 33.3333%;
+  }
+}
+
+@media all and (min-width: 1240px) {
+  .grid__item--33-xl:nth-child(2),
+  .grid__item--33-xl:nth-child(3) {
+    margin-top: 0;
   }
 }
 
@@ -992,8 +1026,10 @@ p {
   
 ----------------------------------------------------------------------------- */
 .main {
+  overflow-y: hidden;
   position: relative;
   padding: 3rem 0;
+  background-color: #fff;
 }
 
 @media all and (min-width: 480px) {
@@ -1023,6 +1059,30 @@ p {
     height: 265px;
     background-position: 0 -265px;
   }
+}
+
+/* -----------------------------------------------------------------------------
+
+  OBJECTS - FOOTER
+  
+----------------------------------------------------------------------------- */
+.footer {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+@media all and (min-width: 720px) {
+  .footer {
+    padding: 6rem 0;
+  }
+}
+
+.footer p {
+  color: #fff;
+}
+
+.footer small {
+  color: #183152;
 }
 
 /* -----------------------------------------------------------------------------
@@ -1632,4 +1692,99 @@ p {
 .hamburger--htx.is-active span::after {
   -webkit-transition-delay: 0s, 0.2s;
           transition-delay: 0s, 0.2s;
+}
+
+/* -----------------------------------------------------------------------------
+
+  COMPONENT - SPINNER
+  
+----------------------------------------------------------------------------- */
+.spinner {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.spinner.is-active {
+  display: block;
+}
+
+.spinner span {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  color: transparent;
+  font-size: 0;
+  text-indent: -99999px;
+  border-top: solid 5px #375d81;
+  border-right: solid 5px transparent;
+  border-bottom: solid 5px transparent;
+  border-left: solid 5px transparent;
+  border-radius: 100%;
+  -webkit-animation: spinnerAnimation 1.5s infinite linear;
+          animation: spinnerAnimation 1.5s infinite linear;
+}
+
+.spinner span::before,
+.spinner span::after {
+  display: block;
+  position: absolute;
+  border-right: solid 5px transparent;
+  border-bottom: solid 5px transparent;
+  border-left: solid 5px transparent;
+  border-radius: 100%;
+  content: "";
+}
+
+.spinner span::before {
+  top: 15px;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  border-top: solid 5px #999;
+  -webkit-animation: spinnerAnimation 1.75s infinite linear;
+          animation: spinnerAnimation 1.75s infinite linear;
+}
+
+.spinner span::after {
+  top: 30px;
+  right: 30px;
+  bottom: 30px;
+  left: 30px;
+  border-top: solid 5px #555;
+  -webkit-animation: spinnerAnimation 2s infinite linear;
+          animation: spinnerAnimation 2s infinite linear;
+}
+
+@-webkit-keyframes spinnerAnimation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spinnerAnimation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }

@@ -5,8 +5,10 @@
 ----------------------------------------------------------------------------- */
 
 .main {
+  overflow-y: hidden;
   position: relative;
   padding: 3rem 0;
+  background-color: #fff;
 
   @include mq-small {
     padding: 6rem 0;

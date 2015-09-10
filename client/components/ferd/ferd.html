@@ -1,7 +1,6 @@
 <div ng-controller="FerdController as ferd">
   
-  <header-directive class="header">
-  </header-directive><!-- /header -->
+  <header-directive></header-directive><!-- /header -->
 
   <div class="banner">
     <h2 class="banner__heading">Configure your <span>Ferd</span></h2>
@@ -10,18 +9,23 @@
   <main class="main">
     <div class="container container--pad container--narrow">
       
-      <section class="section" ng-show="ferd.showSetup">
+      <section class="section section--m-lg" ng-show="ferd.showSetup">
         <h2 class="section__heading">Set up Ferd</h2>
 
         <p>You have no key...you need to add it! Visit <a href="https://{{ ferd.user.slackOrganization }}/services/new/bot" target="_blank">your organization page</a> to add a bot, and when you're done, paste the api key in below.</p>
 
-        <form action="#" ng-submit="ferd.submitKey($event)">
-          <input type="text" ng-model="ferd.apikey">
-          <button type="submit">Submit</button>
+        <form action="#" class="form" ng-submit="ferd.submitKey($event)">
+          <div class="form__field">
+            <label for="apikey">API Key:</label>
+            <input type="text" id="apikey" name="apikey" class="form__text" ng-model="ferd.apikey">
+          </div>
+          <div class="form__footer">
+            <button type="submit" class="btn btn--primary">Submit</button>
+          </div>
         </form>
       </section><!-- /section setup -->
       
-      <section class="section" ng-show="ferd.showSettings">
+      <section class="section section--m-lg" ng-show="ferd.showSettings">
         <h2 class="section__heading">Your current configuration</h2>
         
           <form ng-submit="ferd.updateModules($event, ferd.selectedModules)" class="form">
@@ -40,12 +44,12 @@
           </form>
       </section><!-- /section showSettings currentConfig  -->
       
-      <section class="section" ng-show="ferd.showSettings">
+      <section class="section section--m-lg" ng-show="ferd.showSettings">
         <h2 class="section__heading">Change your API key</h2>
         <form action="#" ng-submit="ferd.submitKey($event)" class="form">
           <div class="form__field">
-            <label for="">New key:</label>
-            <input type="text" ng-model="ferd.apikey" class="form__text">
+            <label for="newkey">New key:</label>
+            <input type="text" id="newkey" name="newkey" ng-model="ferd.apikey" class="form__text">
           </div>
           <div class="form__footer">
             <button type="submit" class="btn btn--primary">Change Key</button>
@@ -55,5 +59,7 @@
 
     </div><!-- /container -->
   </main><!-- /main -->
+
+  <footer-directive></footer-directive><!-- /footer -->
 
 </div>

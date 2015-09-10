@@ -1,0 +1,22 @@
+/* -----------------------------------------------------------------------------
+
+  OBJECTS - FOOTER
+  
+----------------------------------------------------------------------------- */
+
+.footer {
+  padding: 3rem 0;
+  text-align: center;
+
+  @include mq-medium {
+    padding: 6rem 0;
+  }
+
+  p {
+    color: #fff;
+  }
+
+  small {
+    color: $color--blue-dark;
+  }
+}
