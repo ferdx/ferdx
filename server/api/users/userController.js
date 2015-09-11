@@ -149,7 +149,13 @@ module.exports = {
   },
 
   getAvailableModules: function(req, res, next) {
-    var apiRoute = 'http://localhost:3000/api/ferd/modules'; // get from env variable
+    var apiRoute;
+    if(process.env.ENVIRONMENT === 'PROD') {
+      apiRoute = 'http://ferd-server.herokuapp.com/api/ferd/modules';
+    }
+    if(process.env.ENVIRONMENT === 'DEV') {
+      apiRoute = 'http://localhost:3000/api/ferd/modules';
+    }
     request.get(apiRoute, function(err, data) {
       res.send(data);
     });
