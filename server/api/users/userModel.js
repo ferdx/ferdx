@@ -68,7 +68,13 @@ UserSchema.methods.comparePasswords = function(candidatePassword) {
  * @param  {String} username [description]
  */
 UserSchema.methods.emitUpdate = function(username) {
-  var endpoint = 'http://localhost:3000/api/ferd/update';
+  var endpoint;
+  if(process.env.ENVIRONMENT === 'PROD') {
+    endpoint = 'http://ferd-server.herokuapp.com/api/ferd/update';
+  }
+  if(process.env.ENVIRONMENT === 'DEV') {
+    endpoint = 'http://localhost:3000/api/ferd/update';
+  }
   request.post(endpoint, {json: {username: username}},
     function(err, httpResponse, body) {
       //
