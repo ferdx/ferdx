@@ -69,3 +69,16 @@
 .container--narrow {
   max-width: 720px;
 }
+
+/**
+ * .container--extra-pad-top
+ *
+ * This modifier is used on pages where extra padding is needed on top due to
+ * animating overlflowing images.
+ */
+
+.container--extra-pad-top {
+  @include mq-medium {
+    padding-top: 6rem;
+  }
+}

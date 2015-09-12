@@ -4,6 +4,11 @@
   
 ----------------------------------------------------------------------------- */
 
+/**
+ * .footer
+ * 
+ */
+
 .footer {
   padding: 3rem 0;
   text-align: center;
@@ -17,6 +22,27 @@
   }
 
   small {
-    color: $color--blue-dark;
+    color: $color--theme-dark;
   }
+}
+
+.footer__nav {
+  list-style: none;
+  margin: 0 0 3rem 0;
+  padding: 0;
+  text-align: center;
+}
+
+.footer__nav li {
+  display: inline-block;
+}
+
+.footer__nav a {
+  display: block;
+  margin: 0 1.5rem;
+  color: $color--theme-dark;
+}
+
+.footer__nav a:hover {
+  color: #fff;
 }

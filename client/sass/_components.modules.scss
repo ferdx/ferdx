@@ -12,9 +12,9 @@
 .module {
   margin: 0 auto;
   max-width: 540px;
-  border-top: solid 5px $color--blue;
-  border-left: solid 5px $color--blue;
-  border-right: solid 5px $color--blue;
+  border-top: solid 5px $color--theme;
+  border-left: solid 5px $color--theme;
+  border-right: solid 5px $color--theme;
 }
 
 /**
@@ -26,7 +26,7 @@
   display: flex;
   align-items: center;
   padding: 1rem;
-  border-bottom: solid 5px $color--blue;
+  border-bottom: solid 5px $color--theme;
 }
 
 /**
@@ -35,7 +35,7 @@
 
 .module__title {
   flex: 1;
-  color: $color--blue;
+  color: $color--theme;
 }
 
 /**
@@ -59,7 +59,7 @@
 
 .module__footer {
   padding: 1rem;
-  background-color: $color--blue;
+  background-color: $color--theme;
   text-align: center;
 }
 
@@ -68,5 +68,5 @@
 }
 
 .module__footer > small > span {
-  color: $color--blue-dark;
+  color: $color--theme-dark;
 }

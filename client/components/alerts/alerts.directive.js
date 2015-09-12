@@ -3,6 +3,10 @@
 
   'use strict';
 
+  angular
+    .module('app')
+    .directive('alertsDirective', alertsDirective);
+
   /**
    * alertsDirective
    * 
@@ -11,10 +15,6 @@
    * @example <alerts-directive></alerts-directive>
    * @author bot
    */
-  angular
-    .module('app')
-    .directive('alertsDirective', alertsDirective);
-
   function alertsDirective() {
     var directive = {
       restrict: 'EA',

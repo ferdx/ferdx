@@ -1,0 +1,41 @@
+/* -----------------------------------------------------------------------------
+
+  COMPONENTS - BIG AND BOLD
+  
+----------------------------------------------------------------------------- */
+
+/**
+ * .big-and-bold
+ * 
+ */
+
+.big-and-bold {
+  font-size: 4rem;
+  font-weight: 100;
+  text-align: center;
+
+  @include mq-small {
+    font-size: 4.4rem;
+  }
+
+  @include mq-medium {
+    font-size: 4.8rem;
+  }
+
+  @include mq-large {
+    font-size: 5.2rem;
+  }
+
+  @include mq-xlarge {
+    font-size: 5.6rem;
+  }
+}
+
+.big-and-bold strong {
+  color: $color--neutral-xxdark;
+  font-weight: 700;
+}
+
+.big-and-bold span {
+  color: $color--theme;
+}

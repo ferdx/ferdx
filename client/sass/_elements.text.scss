@@ -4,15 +4,23 @@
   
 ----------------------------------------------------------------------------- */
 
+/**
+ * links
+ * 
+ */
 a {
-  color: $color--blue;
+  color: $color--theme;
   text-decoration: none;
   transition: color 0.2s, background 0.2s;
 }
 
 a:hover {
-  color: $color--blue-dark;
+  color: $color--theme-dark;
 }
+
+/**
+ * paragraphs
+ */
 
 p {
   margin: 0;

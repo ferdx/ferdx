@@ -1,19 +1,19 @@
-/**
- * The AuthController
- */
+/* auth.controller.js */
 (function() {
 
   'use strict';
 
-  /**
-   * Require the base level module and controller
-   */
   angular
     .module('app')
     .controller('AuthController', AuthController);
 
   /**
-   * AuthController is where all the actual controller functionality resides.
+   * AuthController
+   * 
+   * @description [description]
+   * @param {[type]} 
+   * @param {[type]} 
+   * @param {[type]} 
    */
   function AuthController($state, $window, authFactory) {
     var vm = this;
@@ -32,15 +32,20 @@
     activate();
 
     /**
-     * activate() Do some checks on load.
+     * activate
+     *
+     * @description [description]
+     * @return {[type]}
      */
     function activate() {
     }
 
     /**
-     * signup() signs a user up
+     * signup
      * 
-     * @return {}
+     * @description [description]
+     * @param {[type]} 
+     * @return {[type]}
      */
     function signup(e) {
       e.preventDefault();
@@ -61,7 +66,11 @@
     }
 
     /**
-     * login() Logs a user in. Returns nothing.
+     * login
+     * 
+     * @description [description]
+     * @param {[type]} 
+     * @return {[type]}
      */
     function login(e) {
       e.preventDefault();
@@ -82,9 +91,11 @@
     }
 
     /**
-     * logout() Logs a user out. Returns nothing.
-     * 
-     * @param {Object} e The event object from the form submission.
+     * logout
+     *
+     * @description [description]
+     * @param {[type]} 
+     * @return {[type]}
      */
     function logout(e) {
       e.preventDefault();

@@ -1,19 +1,19 @@
-/**
- * The authFactory
- */
+/* auth.factory.js */
 (function() {
 
   'use strict';
 
-  /**
-   * Require the base level module and factory function
-   */
   angular
     .module('app')
     .factory('authFactory', authFactory);
 
   /**
-   * authFactory is where all the actual factory functionality resides.
+   * authFactory
+   *
+   * @description [description]
+   * @param {[type]} 
+   * @param {[type]} 
+   * @return {[type]}
    */
   function authFactory($http, $window) {
 
@@ -33,8 +33,9 @@
     ////////////////////////////////////////////////////////////
 
     /**
-     * signup() Signs a new user up
+     * authFactory.signup
      *
+     * @description Signs a new user up
      * @param {Object} user The user object
      * @return {Object} response The response object
      */
@@ -52,8 +53,9 @@
     }
 
     /**
-     * login() Logs in a user
+     * authFactory.login
      *
+     * @description Logs in a user
      * @param {Object} user The user object
      * @return {Object} response The response object
      */
@@ -71,7 +73,9 @@
     }
 
     /**
-     * logout() Logs a user out. Returns nothing.
+     * authFactory.logout
+     *
+     * @description Logs a user out. Returns nothing.
      */
     function logout() {
       $window.localStorage.setItem('username', undefined);
@@ -80,8 +84,10 @@
     }
 
     /**
-     * update() Updates a user
+     * authFactory.update
      *
+     * @description Updates a user
+     * @param {[type]}
      * @param {[type]}
      * @return {[type]}
      */
@@ -101,8 +107,9 @@
     }
 
     /**
-     * isAuth()
+     * authFactory.isAuth
      *
+     * @description [description]
      * @return {Boolean}
      */
     function isAuth() {
@@ -111,8 +118,9 @@
     }
 
     /**
-     * getAuthUser()
+     * authFactory.getAuthUser
      *
+     * @description [description]
      * @return {[type]}
      */
     function getAuthUser() {

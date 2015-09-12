@@ -4,13 +4,22 @@
   
 ----------------------------------------------------------------------------- */
 
+/**
+ * html
+ * 
+ */
 html {
   font-size: 10px;
 }
 
+/**
+ * body
+ * 
+ */
+
 body {
   color: $color--neutral;
-  background-color: $color--blue;
+  background-color: $color--theme;
   font-family: $font-family--primary;
   font-size: 1.6rem;
   font-weight: 300;

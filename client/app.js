@@ -56,6 +56,12 @@
         url: '/marketplace',
         templateUrl: 'components/marketplace/marketplace.html'
       });
+
+    $stateProvider
+      .state('careers', {
+        url: '/careers',
+        templateUrl: 'components/careers/careers.html'
+      });
   }
 
   /**

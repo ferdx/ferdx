@@ -4,6 +4,11 @@
   
 ----------------------------------------------------------------------------- */
 
+/**
+ * .spinner
+ * 
+ */
+
 .spinner {
   display: none;
   position: fixed;
@@ -32,7 +37,7 @@
   color: rgba(0, 0, 0, 0);
   font-size: 0;
   text-indent: -99999px;
-  border-top: solid 5px $color--blue;
+  border-top: solid 5px $color--theme;
   border-right: solid 5px transparent;
   border-bottom: solid 5px transparent;
   border-left: solid 5px transparent;

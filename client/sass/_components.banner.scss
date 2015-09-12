@@ -6,51 +6,47 @@
 
 /**
  * .banner
- *
- * Example HTML:
- *
  * 
  */
 
 .banner {
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  padding: 6rem 3rem;
-  background-color: $color--blue-dark;
-  text-align: center;
-}
-
-.banner::before {
-  display: block;
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 1.5rem;
-  width: 460px;
-  height: 210px;
-  background-image: url('img/circuit-sprite.svg');
+  z-index: 100;
+  padding: 0 3rem;
+  height: 240px;
+  background-color: $color--neutral-xxxdark;
+  background-image: url('img/circuit-grey-small.svg');
   background-repeat: no-repeat;
-  background-position: -581px 0;
-  content: "";
+  background-position: 1.5rem 100%;
+  text-align: center;
 
   @include mq-medium {
-    left: 3rem;
-    width: 581px;
-    height: 265px;
-    background-position: 0 0;    
+    height: 300px;
+    background-image: url('img/circuit-grey-big.svg');
+    background-position: 3rem 100%;
   }
 }
+
+/**
+ * .banner--large
+ * 
+ */
 
 .banner--large {
-  @include mq-small {
-    padding: 9rem 3rem;
-  }
+  height: 270px;
 
   @include mq-medium {
-    padding: 12rem 3rem;
+    height: 360px;
   }
 }
 
+/**
+ * .banner__heading
+ * 
+ */
 
 .banner__heading {
   position: relative;
@@ -75,4 +71,46 @@
 
 .banner__heading > span {
   font-weight: 700;
+}
+
+/**
+ * .banner__img
+ * 
+ * Used for big images...like on home page
+ */
+
+.banner__img {
+  display: block;
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 210px;
+  animation: bannerImgAnimation 5s ease infinite;
+
+  @include mq-small {
+    width: 240px;
+  }
+
+  @include mq-medium {
+    width: 300px;
+  }
+
+  @include mq-medium {
+    width: 350px;
+  }
+}
+
+.banner__img img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@keyframes bannerImgAnimation {
+  0% { transform: translateY(-1rem); }
+  50% { transform: translateY(1rem); }
+  100% { transform: translateY(-1rem); }
 }

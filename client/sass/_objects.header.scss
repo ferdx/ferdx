@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   padding: 1.5rem;
-  background-color: $color--blue;
+  background-color: $color--neutral-xxdark;
 }
 
 /**
@@ -40,5 +40,5 @@
 }
 
 .header__logo > span {
-  color: $color--neutral-xxdark;
+  color: $color--theme;
 }

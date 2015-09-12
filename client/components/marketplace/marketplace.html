@@ -25,7 +25,7 @@
               <div class="module">
                 <div class="module__header">
                   <h3 class="module__title">{{ module.title }}</h3>
-                  <div class="module__toggle">
+                  <div class="module__toggle" ng-show="marketplace.showToggleSwitch">
                     <input id="{{ module.name }}" class="toggle toggle--flat" type="checkbox">
                     <label for="{{ module.name }}">Toggle module</label>
                   </div>
@@ -47,4 +47,4 @@
 
   <footer-directive></footer-directive><!-- /footer -->
 
-</div>
+</div><!-- /marketplace -->

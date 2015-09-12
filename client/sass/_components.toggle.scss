@@ -61,7 +61,7 @@
 }
 
 .toggle:checked + label {
-  box-shadow: inset 0 0 0 2px $color--blue;
+  box-shadow: inset 0 0 0 2px $color--theme;
 }
 
 .toggle:checked + label::before {
@@ -69,11 +69,11 @@
   bottom: 0;
   right: auto;
   left: 12px;
-  color: $color--blue;
+  color: $color--theme;
   content: "on";
 }
 
 .toggle:checked + label::after {
-  background-color: $color--blue;
+  background-color: $color--theme;
   transform: translateX(26px);
 }

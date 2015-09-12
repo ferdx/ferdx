@@ -1,3 +1,4 @@
+/* auth.controller.spec.js */
 /* jshint expr: true */
 
 /**
@@ -8,7 +9,9 @@
 describe('AuthController', function() {
 
   /**
-   * Get app module before each
+   * beforeEach
+   *
+   * @description [description]
    */
   beforeEach(module('app'));
 
@@ -19,9 +22,10 @@ describe('AuthController', function() {
   var vm;
 
   /**
-   * beforeEach runs some stuff before each test. Returns nothing.
-   * 
-   * @param {Function} injects the controller and sets up the vm variable for
+   * beforeEach
+   *
+   * @description Runs some stuff before each test. Returns nothing.
+   * @param {Function} Injects the controller and sets up the vm variable for
    *   use in all the tests.
    */
   beforeEach(inject(function(_$controller_){
@@ -30,9 +34,10 @@ describe('AuthController', function() {
   }));
 
   /**
-   * Tests the basic definition and existence of the controller
+   * definition
    *
-   * @param {String} the test name
+   * @description Tests the basic definition and existence of the controller
+   * @param {String} The test name
    */
   describe('definition', function() {
     it('should be defined', function() {

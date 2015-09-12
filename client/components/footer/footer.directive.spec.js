@@ -1,3 +1,6 @@
+/* footer.directive.spec.js */
+/* jshint expr: true */
+
 /**
  * Unit tests for the footerDirective
  * 
@@ -6,7 +9,9 @@
 describe('footerDirective', function() {
 
   /**
-   * Get app module before each
+   * beforeEach
+   *
+   * @description [description]
    */
   beforeEach(module('app'));
   

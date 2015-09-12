@@ -4,6 +4,11 @@
   
 ----------------------------------------------------------------------------- */
 
+/**
+ * .btn
+ * 
+ */
+
 .btn {
   display: inline-block;
   margin: 0;
@@ -24,11 +29,16 @@
   outline: none;
 }
 
+/**
+ * .btn--primary
+ * 
+ */
+
 .btn--primary {
   color: #fff;
-  background-color: $color--blue;
+  background-color: $color--theme;
 }
 
 .btn--primary:hover {
-  background-color: $color--blue-dark;
+  background-color: $color--theme-dark;
 }

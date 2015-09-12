@@ -33,7 +33,7 @@
   bottom: 0;
   left: 0;
   z-index: 900;
-  background-color: $color--blue;
+  background-color: $color--neutral-xxxdark;
   opacity: 0;
   transform: scale(0, 0);
   transform-origin: top right;
@@ -41,6 +41,7 @@
 
   @include mq-small {
     position: static;
+    background: none;
     opacity: 1;
     transform: none;
   }
@@ -107,7 +108,7 @@
 
 .nav__link:hover,
 .nav__item.is-active > .nav__link {
-  color: $color--blue-dark;
+  color: $color--theme;
 }
 
 /**
