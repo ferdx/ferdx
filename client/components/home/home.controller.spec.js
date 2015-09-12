@@ -1,3 +1,6 @@
+/* home.controller.spec.js */
+/* jshint expr: true */
+
 /**
  * Unit tests for the HomeController
  * 
@@ -6,7 +9,9 @@
 describe('HomeController', function() {
 
   /**
-   * Get app module before each
+   * beforeEach
+   *
+   * @description [description]
    */
   beforeEach(module('app'));
 
@@ -17,8 +22,9 @@ describe('HomeController', function() {
   var vm;
 
   /**
-   * beforeEach runs some stuff before each test. Returns nothing.
-   * 
+   * beforeEach
+   *
+   * @description Runs some stuff before each test. Returns nothing.
    * @param {Function} injects the controller and sets up the vm variable for
    *   use in all the tests.
    */
@@ -28,13 +34,13 @@ describe('HomeController', function() {
   }));
 
   /**
-   * An empty test. Returns nothing.
-   * 
+   * Tests the basic definition and existence of the controller
+   *
    * @param {String} the test name
    */
-  describe('empty test', function() {
-    it('should do something', function() {
-
+  describe('definition', function() {
+    it('should be defined', function() {
+      expect(vm).to.be.defined;
     });
   });
   

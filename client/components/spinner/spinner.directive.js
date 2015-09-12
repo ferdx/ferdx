@@ -3,6 +3,10 @@
 
   'use strict';
 
+  angular
+    .module('app')
+    .directive('spinnerDirective', spinnerDirective);
+
   /**
    * spinnerDirective
    * 
@@ -11,10 +15,6 @@
    * @example <spinner-directive></spinner-directive>
    * @author bot
    */
-  angular
-    .module('app')
-    .directive('spinnerDirective', spinnerDirective);
-
   function spinnerDirective() {
     var directive = {
       restrict: 'EA',

@@ -4,34 +4,25 @@
   
 ----------------------------------------------------------------------------- */
 
+/**
+ * .main
+ * 
+ */
+
 .main {
-  overflow-y: hidden;
   position: relative;
   padding: 3rem 0;
   background-color: #fff;
+  background-image: url('img/circuit-ltgrey-small.svg');
+  background-repeat: no-repeat;
+  background-position: 1.5rem 0;
 
   @include mq-small {
     padding: 6rem 0;
   }
-}
-
-.main::before {
-  display: block;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 1.5rem;
-  width: 460px;
-  height: 210px;
-  background-image: url('img/circuit-sprite.svg');
-  background-repeat: no-repeat;
-  background-position: -581px -210px;
-  content: "";
 
   @include mq-medium {
-    left: 3rem;
-    width: 581px;
-    height: 265px;
-    background-position: 0 -265px;    
+    background-image: url('img/circuit-ltgrey-big.svg');
+    background-position: 3rem 0;
   }
 }

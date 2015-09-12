@@ -1,3 +1,6 @@
+/* header.directive.spec.js */
+/* jshint expr: true */
+
 /**
  * Unit tests for the alertsDirective
  * 
@@ -6,7 +9,9 @@
 describe('headerDirective', function() {
 
   /**
-   * Get app module before each
+   * beforeEach
+   *
+   * @description [description]
    */
   beforeEach(module('app'));
   

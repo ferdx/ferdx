@@ -14,11 +14,8 @@ $button-bar-space: 5px;
 $button-transistion-duration: 0.2s;
 
 /**
- * Toggle Switch Globals
+ * .hamburger
  *
- * All switches should take on the class `c-hamburger` as well as their
- * variant that will give them unique properties. This class is an overview
- * class that acts as a reset for all versions of the icon.
  */
 
 .hamburger {
@@ -75,10 +72,8 @@ $button-transistion-duration: 0.2s;
 }
 
 /**
- * Style 2
+ * .hamburger--htx
  * 
- * Hamburger to "x" (htx). Takes on a hamburger shape, bars slide
- * down to center and transform into an "x".
  */
 
 .hamburger--htx {

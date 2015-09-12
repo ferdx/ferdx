@@ -1,12 +1,17 @@
-/**
- * Factory for handling everything to do with the bots.
- */
+/* bot.factory.js */
 (function() {
 
   angular
     .module('app')
     .factory('botFactory', botFactory);
 
+    /**
+     * botFactory
+     *
+     * @description [description]
+     * @param {[type]} 
+     * @return {[type]}
+     */
     function botFactory($http) {
 
       factory = {
@@ -19,8 +24,11 @@
       ////////////////////////////////////////////////////////////
 
       /**
-       * Sends a GET request to server for all available modules
-       * @return {Object} response data
+       * botFactory.getAllBotModules
+       *
+       * @description Sends a GET request to server for all available modules
+       * @param {Object} The data to send to the get request
+       * @return {Object} Response data
        */
       function getAllBotModules(data) {
         return $http.get('/api/users/modules', data)

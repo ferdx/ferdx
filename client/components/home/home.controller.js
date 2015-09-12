@@ -1,6 +1,4 @@
-/**
- * The HomeController 
- */
+/* home.controller.js */
 (function() {
 
   'use strict';

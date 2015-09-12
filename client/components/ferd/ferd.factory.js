@@ -1,14 +1,14 @@
-
-/**
- * Factory for interfacing with FerdX server for all available modules
- * with MegaFerd server.
- */
+/* ferd.factory.js */
 (function() {
 
   angular
     .module('app')
     .factory('ferdFactory', ferdFactory);
 
+    /**
+     * Factory for interfacing with FerdX server for all available modules
+     * with MegaFerd server.
+     */
     function ferdFactory($q, $http, authFactory) {
 
       factory = {

@@ -1,6 +1,4 @@
-/**
- * The marketplaceFactory
- */
+/* marketplace.factory.js */
 (function() {
 
   'use strict';

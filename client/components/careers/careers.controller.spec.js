@@ -1,12 +1,12 @@
-/* ferd.controller.spec.js */
+/* careers.controller.spec.js */
 /* jshint expr: true */
 
 /**
- * Unit tests for the FerdController
+ * Unit tests for the CareersController
  * 
  * @param {String} The controller name
  */
-describe('FerdController', function() {
+describe('CareersController', function() {
 
   /**
    * beforeEach
@@ -30,7 +30,7 @@ describe('FerdController', function() {
    */
   beforeEach(inject(function(_$controller_){
     $controller = _$controller_;
-    vm = $controller('FerdController');
+    vm = $controller('CareersController');
   }));
 
   /**

@@ -3,6 +3,10 @@
 
   'use strict';
 
+  angular
+    .module('app')
+    .directive('footerDirective', footerDirective);
+
   /**
    * footerDirective
    * 
@@ -11,10 +15,6 @@
    * @example <footer-directive></footer-directive>
    * @author bot
    */
-  angular
-    .module('app')
-    .directive('footerDirective', footerDirective);
-
   function footerDirective() {
     var directive = {
       restrict: 'EA',

@@ -466,6 +466,9 @@ th {
   GENERIC - BOX SIZING
   
 ----------------------------------------------------------------------------- */
+/**
+ * border-box
+ */
 *,
 *::before,
 *::after {
@@ -481,13 +484,21 @@ html {
   ELEMENTS - ROOT
   
 ----------------------------------------------------------------------------- */
+/**
+ * html
+ * 
+ */
 html {
   font-size: 10px;
 }
 
+/**
+ * body
+ * 
+ */
 body {
   color: #777;
-  background-color: #2980B9;
+  background-color: #ff3faf;
   font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.6rem;
   font-weight: 300;
@@ -546,17 +557,24 @@ h6 {
   ELEMENTS - TEXT
   
 ----------------------------------------------------------------------------- */
+/**
+ * links
+ * 
+ */
 a {
-  color: #2980B9;
+  color: #ff3faf;
   text-decoration: none;
   -webkit-transition: color 0.2s, background 0.2s;
           transition: color 0.2s, background 0.2s;
 }
 
 a:hover {
-  color: #1F618D;
+  color: #9f0057;
 }
 
+/**
+ * paragraphs
+ */
 p {
   margin: 0;
   padding: 0;
@@ -630,6 +648,18 @@ p {
   max-width: 720px;
 }
 
+/**
+ * .container--extra-pad-top
+ *
+ * This modifier is used on pages where extra padding is needed on top due to
+ * animating overlflowing images.
+ */
+@media all and (min-width: 720px) {
+  .container--extra-pad-top {
+    padding-top: 6rem;
+  }
+}
+
 /* -----------------------------------------------------------------------------
 
   OBJECTS - SECTION
@@ -658,14 +688,18 @@ p {
   }
 }
 
-.section--m-sm {
+.section--m-md {
   margin-bottom: 3rem;
 }
 
 @media all and (min-width: 720px) {
-  .section--m-sm {
-    margin-bottom: 3rem;
+  .section--m-md {
+    margin-bottom: 6rem;
   }
+}
+
+.section--m-sm {
+  margin-bottom: 3rem;
 }
 
 /**
@@ -693,10 +727,62 @@ p {
 }
 
 /**
- * .section content
+ * .section__paragraph
  */
 .section__paragraph {
   margin: 3rem 0;
+}
+
+/**
+ * .section__img
+ */
+.section__img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+ * .section__big-list
+ */
+.section__big-list {
+  counter-reset: listItems;
+  list-style: none;
+  padding: 3rem;
+  border: solid 1px #ccc;
+}
+
+.section__big-list li {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media all and (min-width: 720px) {
+  .section__big-list li {
+    font-size: 2.1rem;
+  }
+}
+
+.section__big-list li::before {
+  counter-increment: listItems;
+  content: counter(listItems) "";
+  margin-right: 3rem;
+  color: #ff3faf;
+  font-size: 6rem;
+  font-weight: 700;
+}
+
+@media all and (min-width: 720px) {
+  .section__big-list li::before {
+    margin-right: 6rem;
+    font-size: 9rem;
+  }
 }
 
 /* -----------------------------------------------------------------------------
@@ -846,7 +932,7 @@ p {
       -ms-flex-align: center;
           align-items: center;
   padding: 1.5rem;
-  background-color: #2980B9;
+  background-color: #222;
 }
 
 /**
@@ -866,7 +952,7 @@ p {
 }
 
 .header__logo > span {
-  color: #111;
+  color: #ff3faf;
 }
 
 /* -----------------------------------------------------------------------------
@@ -911,7 +997,7 @@ p {
   bottom: 0;
   left: 0;
   z-index: 900;
-  background-color: #2980B9;
+  background-color: #111;
   opacity: 0;
   -webkit-transform: scale(0, 0);
       -ms-transform: scale(0, 0);
@@ -926,6 +1012,7 @@ p {
 @media all and (min-width: 480px) {
   .nav {
     position: static;
+    background: none;
     opacity: 1;
     -webkit-transform: none;
         -ms-transform: none;
@@ -997,7 +1084,7 @@ p {
 
 .nav__link:hover,
 .nav__item.is-active > .nav__link {
-  color: #1F618D;
+  color: #ff3faf;
 }
 
 /**
@@ -1025,11 +1112,17 @@ p {
   OBJECTS - MAIN
   
 ----------------------------------------------------------------------------- */
+/**
+ * .main
+ * 
+ */
 .main {
-  overflow-y: hidden;
   position: relative;
   padding: 3rem 0;
   background-color: #fff;
+  background-image: url("img/circuit-ltgrey-small.svg");
+  background-repeat: no-repeat;
+  background-position: 1.5rem 0;
 }
 
 @media all and (min-width: 480px) {
@@ -1038,26 +1131,10 @@ p {
   }
 }
 
-.main::before {
-  display: block;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 1.5rem;
-  width: 460px;
-  height: 210px;
-  background-image: url("img/circuit-sprite.svg");
-  background-repeat: no-repeat;
-  background-position: -581px -210px;
-  content: "";
-}
-
 @media all and (min-width: 720px) {
-  .main::before {
-    left: 3rem;
-    width: 581px;
-    height: 265px;
-    background-position: 0 -265px;
+  .main {
+    background-image: url("img/circuit-ltgrey-big.svg");
+    background-position: 3rem 0;
   }
 }
 
@@ -1066,6 +1143,10 @@ p {
   OBJECTS - FOOTER
   
 ----------------------------------------------------------------------------- */
+/**
+ * .footer
+ * 
+ */
 .footer {
   padding: 3rem 0;
   text-align: center;
@@ -1082,7 +1163,28 @@ p {
 }
 
 .footer small {
-  color: #1F618D;
+  color: #9f0057;
+}
+
+.footer__nav {
+  list-style: none;
+  margin: 0 0 3rem 0;
+  padding: 0;
+  text-align: center;
+}
+
+.footer__nav li {
+  display: inline-block;
+}
+
+.footer__nav a {
+  display: block;
+  margin: 0 1.5rem;
+  color: #9f0057;
+}
+
+.footer__nav a:hover {
+  color: #fff;
 }
 
 /* -----------------------------------------------------------------------------
@@ -1203,7 +1305,7 @@ p {
 }
 
 .form__text:focus {
-  border: solid 2px #2980B9;
+  border: solid 2px #ff3faf;
   outline: none;
 }
 
@@ -1221,6 +1323,10 @@ p {
   COMPONENTS - BUTTONS
   
 ----------------------------------------------------------------------------- */
+/**
+ * .btn
+ * 
+ */
 .btn {
   display: inline-block;
   margin: 0;
@@ -1242,13 +1348,17 @@ p {
   outline: none;
 }
 
+/**
+ * .btn--primary
+ * 
+ */
 .btn--primary {
   color: #fff;
-  background-color: #2980B9;
+  background-color: #ff3faf;
 }
 
 .btn--primary:hover {
-  background-color: #1F618D;
+  background-color: #9f0057;
 }
 
 /* -----------------------------------------------------------------------------
@@ -1256,22 +1366,45 @@ p {
   COMPONENTS - ALERTS
   
 ----------------------------------------------------------------------------- */
+/**
+ * .alert
+ * 
+ */
 .alert {
   margin-bottom: 3rem;
   padding: 1.5rem;
 }
 
-.alert--error {
-  border: solid 2px #ff5050;
-}
-
+/**
+ * .alert__heading
+ */
 .alert__heading {
   margin-bottom: 1.5rem;
   color: #555;
 }
 
+/**
+ * .alert--error
+ * 
+ */
+.alert--error {
+  border: solid 2px #ff5050;
+}
+
 .alert--error > .alert__heading {
   color: #ff5050;
+}
+
+/**
+ * .alert--success
+ * 
+ */
+.alert--success {
+  border: solid 2px #50ff50;
+}
+
+.alert--success > .alert__heading {
+  color: #50ff50;
 }
 
 /* -----------------------------------------------------------------------------
@@ -1281,54 +1414,58 @@ p {
 ----------------------------------------------------------------------------- */
 /**
  * .banner
- *
- * Example HTML:
- *
  * 
  */
 .banner {
-  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
-  padding: 6rem 3rem;
-  background-color: #1F618D;
+  z-index: 100;
+  padding: 0 3rem;
+  height: 240px;
+  background-color: #111;
+  background-image: url("img/circuit-grey-small.svg");
+  background-repeat: no-repeat;
+  background-position: 1.5rem 100%;
   text-align: center;
 }
 
-.banner::before {
-  display: block;
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 1.5rem;
-  width: 460px;
-  height: 210px;
-  background-image: url("img/circuit-sprite.svg");
-  background-repeat: no-repeat;
-  background-position: -581px 0;
-  content: "";
-}
-
 @media all and (min-width: 720px) {
-  .banner::before {
-    left: 3rem;
-    width: 581px;
-    height: 265px;
-    background-position: 0 0;
+  .banner {
+    height: 300px;
+    background-image: url("img/circuit-grey-big.svg");
+    background-position: 3rem 100%;
   }
 }
 
-@media all and (min-width: 480px) {
-  .banner--large {
-    padding: 9rem 3rem;
-  }
+/**
+ * .banner--large
+ * 
+ */
+.banner--large {
+  height: 270px;
 }
 
 @media all and (min-width: 720px) {
   .banner--large {
-    padding: 12rem 3rem;
+    height: 360px;
   }
 }
 
+/**
+ * .banner__heading
+ * 
+ */
 .banner__heading {
   position: relative;
   z-index: 2;
@@ -1359,6 +1496,126 @@ p {
 
 .banner__heading > span {
   font-weight: 700;
+}
+
+/**
+ * .banner__img
+ * 
+ * Used for big images...like on home page
+ */
+.banner__img {
+  display: block;
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 210px;
+  -webkit-animation: bannerImgAnimation 5s ease infinite;
+          animation: bannerImgAnimation 5s ease infinite;
+}
+
+@media all and (min-width: 480px) {
+  .banner__img {
+    width: 240px;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .banner__img {
+    width: 300px;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .banner__img {
+    width: 350px;
+  }
+}
+
+.banner__img img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@-webkit-keyframes bannerImgAnimation {
+  0% {
+    -webkit-transform: translateY(-1rem);
+            transform: translateY(-1rem);
+  }
+  50% {
+    -webkit-transform: translateY(1rem);
+            transform: translateY(1rem);
+  }
+  100% {
+    -webkit-transform: translateY(-1rem);
+            transform: translateY(-1rem);
+  }
+}
+
+@keyframes bannerImgAnimation {
+  0% {
+    -webkit-transform: translateY(-1rem);
+            transform: translateY(-1rem);
+  }
+  50% {
+    -webkit-transform: translateY(1rem);
+            transform: translateY(1rem);
+  }
+  100% {
+    -webkit-transform: translateY(-1rem);
+            transform: translateY(-1rem);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+
+  COMPONENTS - BIG AND BOLD
+  
+----------------------------------------------------------------------------- */
+/**
+ * .big-and-bold
+ * 
+ */
+.big-and-bold {
+  font-size: 4rem;
+  font-weight: 100;
+  text-align: center;
+}
+
+@media all and (min-width: 480px) {
+  .big-and-bold {
+    font-size: 4.4rem;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .big-and-bold {
+    font-size: 4.8rem;
+  }
+}
+
+@media all and (min-width: 1020px) {
+  .big-and-bold {
+    font-size: 5.2rem;
+  }
+}
+
+@media all and (min-width: 1240px) {
+  .big-and-bold {
+    font-size: 5.6rem;
+  }
+}
+
+.big-and-bold strong {
+  color: #222;
+  font-weight: 700;
+}
+
+.big-and-bold span {
+  color: #ff3faf;
 }
 
 /* -----------------------------------------------------------------------------
@@ -1393,7 +1650,7 @@ p {
 }
 
 .fconfig__title {
-  color: #2980B9;
+  color: #ff3faf;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
@@ -1421,9 +1678,9 @@ p {
 .module {
   margin: 0 auto;
   max-width: 540px;
-  border-top: solid 5px #2980B9;
-  border-left: solid 5px #2980B9;
-  border-right: solid 5px #2980B9;
+  border-top: solid 5px #ff3faf;
+  border-left: solid 5px #ff3faf;
+  border-right: solid 5px #ff3faf;
 }
 
 /**
@@ -1440,7 +1697,7 @@ p {
       -ms-flex-align: center;
           align-items: center;
   padding: 1rem;
-  border-bottom: solid 5px #2980B9;
+  border-bottom: solid 5px #ff3faf;
 }
 
 /**
@@ -1451,7 +1708,7 @@ p {
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  color: #2980B9;
+  color: #ff3faf;
 }
 
 /**
@@ -1473,7 +1730,7 @@ p {
  */
 .module__footer {
   padding: 1rem;
-  background-color: #2980B9;
+  background-color: #ff3faf;
   text-align: center;
 }
 
@@ -1482,7 +1739,7 @@ p {
 }
 
 .module__footer > small > span {
-  color: #1F618D;
+  color: #9f0057;
 }
 
 /* -----------------------------------------------------------------------------
@@ -1551,7 +1808,7 @@ p {
 }
 
 .toggle:checked + label {
-  box-shadow: inset 0 0 0 2px #2980B9;
+  box-shadow: inset 0 0 0 2px #ff3faf;
 }
 
 .toggle:checked + label::before {
@@ -1559,12 +1816,12 @@ p {
   bottom: 0;
   right: auto;
   left: 12px;
-  color: #2980B9;
+  color: #ff3faf;
   content: "on";
 }
 
 .toggle:checked + label::after {
-  background-color: #2980B9;
+  background-color: #ff3faf;
   -webkit-transform: translateX(26px);
       -ms-transform: translateX(26px);
           transform: translateX(26px);
@@ -1576,11 +1833,8 @@ p {
   
 ----------------------------------------------------------------------------- */
 /**
- * Toggle Switch Globals
+ * .hamburger
  *
- * All switches should take on the class `c-hamburger` as well as their
- * variant that will give them unique properties. This class is an overview
- * class that acts as a reset for all versions of the icon.
  */
 .hamburger {
   display: block;
@@ -1637,10 +1891,8 @@ p {
 }
 
 /**
- * Style 2
+ * .hamburger--htx
  * 
- * Hamburger to "x" (htx). Takes on a hamburger shape, bars slide
- * down to center and transform into an "x".
  */
 .hamburger--htx {
   background: none;
@@ -1699,6 +1951,10 @@ p {
   COMPONENT - SPINNER
   
 ----------------------------------------------------------------------------- */
+/**
+ * .spinner
+ * 
+ */
 .spinner {
   display: none;
   position: fixed;
@@ -1727,7 +1983,7 @@ p {
   color: transparent;
   font-size: 0;
   text-indent: -99999px;
-  border-top: solid 5px #2980B9;
+  border-top: solid 5px #ff3faf;
   border-right: solid 5px transparent;
   border-bottom: solid 5px transparent;
   border-left: solid 5px transparent;
