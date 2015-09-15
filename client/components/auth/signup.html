@@ -21,12 +21,12 @@
         <div class="form__field">
           <div class="form__label">
             <label for="slack">Slack Organization:</label>
+            <p class="form__input--notes">
+              (<span ng-show="!!auth.user.slackOrganization">{{ auth.user.slackOrganization }}</span><span ng-show="!auth.user.slackOrganization">ORG_NAME</span>.slack.com)
+            </p>
           </div>
           <div class="form__input">
             <input type="text" name="slack" id="slack" class="form__text" ng-model="auth.user.slackOrganization" ng-required>
-            <p class="form__input--notes">
-              <span ng-show="!!auth.user.slackOrganization">{{ auth.user.slackOrganization }}</span><span ng-show="!auth.user.slackOrganization">ORGANIZATION_NAME</span>.slack.com
-            </p>
           </div>
         </div><!-- /slack -->
         <div class="form__field">

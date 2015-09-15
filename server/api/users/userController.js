@@ -6,12 +6,13 @@ var request = require('request');
 module.exports = {
 
   /**
-   * signup() Signs a user up.
-   *
-   * @param {Object} the request object sent from the client
-   * @param {Object} the response object
-   * @param {Function} the next function
-   * @return {Object} the created user
+   * signup
+   * 
+   * @description Signs a user up.
+   * @param {Object} req The request object sent from the client
+   * @param {Object} res The response object
+   * @param {Function} next The next function
+   * @return {Object} The created user
    */
   signup: function(req, res, next) {
     var username = req.body.username;
@@ -19,15 +20,29 @@ module.exports = {
     var slackOrganization = req.body.slackOrganization;
     var newUser;
 
-    User.findOne({username: username}, function(error, user) {
+    User.findOne({$or: [{username: username}, {slackOrganization: slackOrganization}]}, function(error, user) {
+      console.log(user);
+
       if (error) {
-        res.status(500).send({data: 'There was an error...'});
+        res.status(500).send({message: 'Sorry, there was an error handling your request. Please refresh your browser and try again!'});
         return;
       }
 
       if (user) {
-        res.status(400).send({data: 'A user already exists...'});
-        return;
+        if (user.username === username && user.slackOrganization === slackOrganization) {
+          res.status(400).send({data: 'Sorry, but a someone already signed up with the same username and Slack organization. Try again!'});
+          return;
+        }
+
+        if (user.username === username) {
+          res.status(400).send({data: 'Sorry, but a user with that username already exists. Try again!'});
+          return;
+        }
+
+        if (user.slackOrganization === slackOrganization) {
+          res.status(400).send({data: 'Sorry, but someone already signed up with that Slack organization. Try again!'});
+          return;
+        }
       }
 
       var newUser = new User({
@@ -38,7 +53,7 @@ module.exports = {
 
       newUser.save(function(error) {
         if (error) {
-          res.status(500).send({data: 'There was an error...'});
+          res.status(500).send({data: 'Sorry, but there was an error trying to sign you up. Please try again.'});
           return;
         }
 
@@ -61,11 +76,12 @@ module.exports = {
   },
 
   /**
-   * login() Logs a user in.
-   *
-   * @param {Object} the request object sent from the client
-   * @param {Object} the response object
-   * @param {Function} the next function
+   * login
+   * 
+   * @description Logs a user in.
+   * @param {Object} req The request object sent from the client
+   * @param {Object} res The response object
+   * @param {Function} next The next function
    * @return {Object} returns user data on success, error on fail
    */
   login: function(req, res, next) {
@@ -74,12 +90,12 @@ module.exports = {
 
     User.findOne({username: username}, function(error, user) {
       if (error) {
-        res.status(500).send({ message: 'There was an error...' });
+        res.status(500).send({message: 'Sorry, there was an error handling your request. Please refresh your browser and try again!'});
         return;
       }
 
       if (!user) {
-        res.status(400).send({data: 'Invalid creds...'});
+        res.status(400).send({data: 'Sorry, but your credentials were invalid. Please try again.'});
         return;
       } else {
         user.comparePasswords(password)
@@ -96,7 +112,7 @@ module.exports = {
               res.status(201).send(data);
               return;
             } else {
-              res.status(400).send({data: 'No user'});
+              res.status(400).send({data: 'Sorry, but your credentials were invalid. Please try again.'});
               return;
             }
           });
@@ -105,11 +121,13 @@ module.exports = {
   },
 
   /**
-   * update()
+   * update
    *
-   * @param {Object} the request object sent from the client
-   * @param {Object} the response object
-   * @param {Function} the next function
+   * @description Updates a user details. 
+   * @param {Object} req The request object sent from the client
+   * @param {Object} res The response object
+   * @param {Function} next The next function
+   * @return {Object} Returns user data on success, error on fail
    */
   update: function(req, res, next) {
     var data = req.body.data;
@@ -122,12 +140,53 @@ module.exports = {
   },
 
   /**
-   * getAuthUser() Gets the currently authenticated user.
-   *
-   * @param {Object} the request object sent from the client
-   * @param {Object} the response object
-   * @param {Function} the next function
-   * @return {Object} the user data on success, and an error on fail
+   * deleteUser
+   * 
+   * @description Deletes a user
+   * @param {Object} req The request object sent from the client
+   * @param {Object} res The response object
+   * @param {Function} next The next function
+   * @return {Object} 
+   */
+  deleteUser: function(req, res, next) {
+    var username = req.body.username;
+    var password = req.body.password;
+
+    User.findOne({username: username}, function(error, user) {
+      if (error) {
+        res.status(500).send({message: 'Sorry, there was an error handling your request. Please refresh your browser and try again!'});
+        return;
+      }
+
+      if (!user) {
+        res.status(400).send({data: 'Sorry, but your credentials were invalid. Please try again.'});
+        return;
+      } else {
+        user.comparePasswords(password)
+          .then(function(foundUser) {
+            if (foundUser) {
+              User.findOneAndRemove({username: username}, {}, function(error, doc, result) {
+                var data = {};
+                res.status(201).send(data);
+                return;
+              });
+            } else {
+              res.status(400).send({data: 'Sorry, but your credentials were invalid. Please try again.'});
+              return;
+            }
+          });
+      }
+    });
+  },
+
+  /**
+   * getAuthUser
+   * 
+   * @description Gets the currently authenticated user.
+   * @param {Object} req The request object sent from the client
+   * @param {Object} res The response object
+   * @param {Function} next The next function
+   * @return {Object} Returns user data on success, error on fail
    */
   getAuthUser: function(req, res, next) {
     var username = req.body.username;
@@ -148,6 +207,15 @@ module.exports = {
       });
   },
 
+  /**
+   * getAvailableModules
+   * 
+   * @description Gets the available modules.
+   * @param {Object} req The request object sent from the client
+   * @param {Object} res The response object
+   * @param {Function} next The next function
+   * @return {Object} 
+   */
   getAvailableModules: function(req, res, next) {
     var apiRoute;
     if(process.env.ENVIRONMENT === 'PROD') {

@@ -23,10 +23,7 @@
     vm.login = login;
     vm.logout = logout;
     vm.showAlert = false;
-    vm.alert = {
-      type: '',
-      message: ''
-    };
+    vm.alert = {};
     vm.showSpinner = false;
 
     activate();
@@ -59,7 +56,10 @@
           vm.showAlert = true;
           vm.alert = {
             type: 'error',
-            message: error.data
+            message: {
+              heading: 'Uh oh...',
+              body: error.data
+            }
           };
           vm.showSpinner = false;
         });
@@ -84,7 +84,10 @@
           vm.showAlert = true;
           vm.alert = {
             type: 'error',
-            message: error.data
+            message: {
+              heading: 'Uh oh...',
+              body: error.data
+            }
           };
           vm.showSpinner = false;
         });
