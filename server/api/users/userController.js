@@ -21,8 +21,6 @@ module.exports = {
     var newUser;
 
     User.findOne({$or: [{username: username}, {slackOrganization: slackOrganization}]}, function(error, user) {
-      console.log(user);
-
       if (error) {
         res.status(500).send({message: 'Sorry, there was an error handling your request. Please refresh your browser and try again!'});
         return;
