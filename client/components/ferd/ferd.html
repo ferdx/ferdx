@@ -12,12 +12,18 @@
       <section class="section section--m-lg" ng-show="ferd.showSetup">
         <h2 class="section__heading">Set up Ferd</h2>
 
+        <alerts-directive alert="ferd.alert" ng-show="ferd.showAlertForApiKey"></alerts-directive>
+
         <p class="section__paragraph">You have no key...you need to add it! Visit <a href="https://{{ ferd.userSlackOrganizationName }}.slack.com/services/new/bot" target="_blank">your organization page</a> to add a bot, and when you're done, paste the api key in below.</p>
 
         <form action="#" class="form" ng-submit="ferd.submitKey($event)">
           <div class="form__field">
-            <label for="apikey">API Key:</label>
-            <input type="text" id="apikey" name="apikey" class="form__text" ng-model="ferd.apikey">
+            <div class="form__label">
+              <label for="apikey">API Key:</label>
+            </div>
+            <div class="form__input">
+              <input type="text" id="apikey" name="apikey" class="form__text" ng-model="ferd.apikey">
+            </div>
           </div>
           <div class="form__footer">
             <button type="submit" class="btn btn--primary">Submit</button>
@@ -47,14 +53,43 @@
         <h2 class="section__heading">Change your API key</h2>
         <form action="#" ng-submit="ferd.submitKey($event)" class="form">
           <div class="form__field">
-            <label for="newkey">New key:</label>
-            <input type="text" id="newkey" name="newkey" ng-model="ferd.apikey" class="form__text">
+            <div class="form__label">
+              <label for="newkey">New key:</label>
+            </div>
+            <div class="form__input">
+              <input type="text" id="newkey" name="newkey" ng-model="ferd.apikey" class="form__text">
+            </div>
           </div>
           <div class="form__footer">
             <button type="submit" class="btn btn--primary">Change Key</button>
           </div>
         </form>
       </section><!-- /section showSettings changeKey  -->
+
+      <section class="section section--m-lg" ng-show="ferd.showSettings">
+        <h2 class="section__heading">Delete your account</h2>
+        <form action="#" ng-submit="ferd.deleteUser($event)" class="form">
+          <div class="form__field">
+            <div class="form__label">
+              <label for="deleteUsername">Your username:</label>
+            </div>
+            <div class="form__input">
+              <input type="text" id="deleteUsername" name="deleteUsername" ng-model="ferd.deleteUsername" class="form__text">
+            </div>
+          </div>
+          <div class="form__field">
+            <div class="form__label">
+              <label for="deletePassword">Your Password:</label>
+            </div>
+            <div class="form__input">
+              <input type="password" id="deletePassword" name="deletePassword" ng-model="ferd.deletePassword" class="form__text">
+            </div>
+          </div>
+          <div class="form__footer">
+            <button type="submit" class="btn btn--primary">Delete Account</button>
+          </div>
+        </form>
+      </section><!-- /section showSettings deleteAccount  -->
 
     </div><!-- /container -->
   </main><!-- /main -->

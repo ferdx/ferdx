@@ -11,10 +11,11 @@
    * FerdController
    * 
    * @description Contains all the functionality for the Ferd Controller.
-   * @param {[type]} 
-   * @param {[type]} 
-   * @param {[type]} 
-   * @param {[type]} 
+   *   Returns nothing.
+   * @param {Object} $state The UI Router $state
+   * @param {Object} authFactory The authentication factory
+   * @param {Object} ferdFactory The Ferd factory
+   * @param {Object} botFactory The bot factory
    */
   function FerdController($state, authFactory, ferdFactory, botFactory) {
 
@@ -38,6 +39,13 @@
     // their api key or not
     vm.showSettings = false;
     vm.showSetup = false;
+
+    // shows alerts for various stuff, and initialize alert props to empty
+    vm.showAlertForApiKey = false;
+    vm.alert = {};
+
+    // deletes a user
+    vm.deleteUser = deleteUser;
 
     // decides whether to show the spinner or not
     vm.showSpinner = false;
@@ -64,7 +72,7 @@
      * FerdController.submitKey
      * 
      * @description Submits the api key. Returns nothing.
-     * @param {Object} The event object supplied on form submission
+     * @param {Object} e The event object supplied on form submission
      */
     function submitKey(e) {
       e.preventDefault();
@@ -79,17 +87,22 @@
         })
         .catch(function(error) {
           vm.showSpinner = false;
-
-          // TODO: handle error properly
-          console.log('there was an error');
+          vm.showAlertForApiKey = true;
+          vm.alert = {
+            type: 'error',
+            message: {
+              heading: 'Uh oh...',
+              body: 'Your API key doesn\'t seem to match your account. Try submitting again.'
+            }
+          };
         });
     }
 
     /**
      * FerdController.getAllBotModules
      *
-     * @description [description]
-     * @return {[type]}
+     * @description Gets all bot modules, and updates the scope property to
+     *   reflect. Returns nothing.
      */
     function getAllBotModules() {
       botFactory.getAllBotModules()
@@ -99,10 +112,10 @@
     }
 
     /**
-     * setUserBotModules
+     * FerdController.setUserBotModules
      *
-     * @description Updates activated Ferd modules for a user
-     * @param {Object} The event object supplied on form submission
+     * @description Updates activated Ferd modules for a user. Returns nothing.
+     * @param {Object} e The event object supplied on form submission
      */
     function setUserBotModules(e) {
       e.preventDefault();
@@ -116,6 +129,34 @@
         })
         .catch(function(error) {
           vm.showSpinner = false;
+          
+          // TODO: Display an error alert here
+          console.log('there was an error');
+        });
+    }
+
+    /**
+     * FerdController.deleteUser
+     *
+     * 
+     */
+    function deleteUser(e) {
+      e.preventDefault();
+      // vm.showSpinner = true;
+      var data = {
+        username: vm.deleteUsername,
+        password: vm.deletePassword
+      };
+      authFactory.deleteUser(data)
+        .then(function(data) {
+          // vm.showSpinner = false;
+          console.log(data);
+
+          authFactory.logout();
+          $state.go('home');
+        })
+        .catch(function(error) {
+          // vm.showSpinner = false;
           
           // TODO: Display an error alert here
           console.log('there was an error');

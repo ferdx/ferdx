@@ -10,10 +10,10 @@
   /**
    * authFactory
    *
-   * @description [description]
-   * @param {[type]} 
-   * @param {[type]} 
-   * @return {[type]}
+   * @description The authentication factory.
+   * @param {Object} $http The $http service
+   * @param {Object} $window The $window service
+   * @return {Object} The factory
    */
   function authFactory($http, $window) {
 
@@ -22,6 +22,7 @@
       login: login,
       logout: logout,
       update: update,
+      deleteUser: deleteUser,
       isAuth: isAuth,
       getAuthUser: getAuthUser,
       authUser: {}
@@ -35,7 +36,7 @@
     /**
      * authFactory.signup
      *
-     * @description Signs a new user up
+     * @description Signs a new user up.
      * @param {Object} user The user object
      * @return {Object} response The response object
      */
@@ -103,6 +104,19 @@
         })
         .catch(function(error) {
           return error;
+        });
+    }
+
+    /**
+     * authFactory.delete
+     */
+    function deleteUser(data) {
+      return $http.post('/api/users/deleteuser', data)
+        .then(function(response) {
+          return response;
+        })
+        .catch(function(error) {
+          return err;
         });
     }
 

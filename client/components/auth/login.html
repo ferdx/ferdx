@@ -11,12 +11,20 @@
       <alerts-directive alert="auth.alert" ng-show="auth.showAlert"></alerts-directive>
       <form action="#" ng-submit="auth.login($event)" class="form">
         <div class="form__field">
-          <label for="username">Username:</label>
-          <input type="text" name="username" id="username" class="form__text" ng-model="auth.user.username">
+          <div class="form__label">
+            <label for="username">Username:</label>
+          </div>
+          <div class="form__input">
+            <input type="text" name="username" id="username" class="form__text" ng-model="auth.user.username">
+          </div>
         </div>
         <div class="form__field">
-          <label for="username">Password:</label>
-          <input type="password" name="password" id="password" class="form__text" ng-model="auth.user.password">
+          <div class="form__label">
+            <label for="username">Password:</label>
+          </div>
+          <div class="form__input">
+            <input type="password" name="password" id="password" class="form__text" ng-model="auth.user.password">
+          </div>
         </div>
         <div class="form__footer">
           <button type="submit" class="btn btn--primary">Log In</button>

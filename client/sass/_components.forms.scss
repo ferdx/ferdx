@@ -43,19 +43,25 @@
   margin-bottom: 3rem;
 }
 
-.form__field > label,
-.form__field > input,
-.form__field > textarea {
+/**
+ * .form__label
+ * .form__input
+ *
+ * These classes wrap form labels and inputs
+ */
+
+.form__label,
+.form__input {
   flex: 0 0 100%;
 }
 
-.form__field > label {
-  margin: 0 0 1rem 0;
-  color: $color--neutral-xdark;
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-transform: uppercase;
+/**
+ * .form__label
+ *
+ * Form label specifics.
+ */
 
+.form__label {
   @include mq-medium {
     flex: 0 0 180px;
     margin: 0;
@@ -63,11 +69,34 @@
   }
 }
 
-.form__field > input,
-.form__field > textarea {
+.form__label > label {
+  margin: 0 0 1rem 0;
+  color: $color--neutral-xdark;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/**
+ * .form__input
+ *
+ * Form input sepcifics.
+ */
+
+.form__input {
   @include mq-medium {
     flex: 1;
+    padding-left: 3rem;
   }
+}
+
+.form__input > input,
+.form__input > textarea {
+  
+}
+
+.form__input--notes {
+  font-size: 1.2rem;
 }
 
 /**
