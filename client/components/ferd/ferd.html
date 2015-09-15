@@ -16,8 +16,12 @@
 
         <form action="#" class="form" ng-submit="ferd.submitKey($event)">
           <div class="form__field">
-            <label for="apikey">API Key:</label>
-            <input type="text" id="apikey" name="apikey" class="form__text" ng-model="ferd.apikey">
+            <div class="form__label">
+              <label for="apikey">API Key:</label>
+            </div>
+            <div class="form__input">
+              <input type="text" id="apikey" name="apikey" class="form__text" ng-model="ferd.apikey">
+            </div>
           </div>
           <div class="form__footer">
             <button type="submit" class="btn btn--primary">Submit</button>
@@ -47,8 +51,12 @@
         <h2 class="section__heading">Change your API key</h2>
         <form action="#" ng-submit="ferd.submitKey($event)" class="form">
           <div class="form__field">
-            <label for="newkey">New key:</label>
-            <input type="text" id="newkey" name="newkey" ng-model="ferd.apikey" class="form__text">
+            <div class="form__label">
+              <label for="newkey">New key:</label>
+            </div>
+            <div class="form__input">
+              <input type="text" id="newkey" name="newkey" ng-model="ferd.apikey" class="form__text">
+            </div>
           </div>
           <div class="form__footer">
             <button type="submit" class="btn btn--primary">Change Key</button>

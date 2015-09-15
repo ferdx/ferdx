@@ -1233,25 +1233,27 @@ p {
   margin-bottom: 3rem;
 }
 
-.form__field > label,
-.form__field > input,
-.form__field > textarea {
+/**
+ * .form__label
+ * .form__input
+ *
+ * These classes wrap form labels and inputs
+ */
+.form__label,
+.form__input {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 100%;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
 }
 
-.form__field > label {
-  margin: 0 0 1rem 0;
-  color: #333;
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
+/**
+ * .form__label
+ *
+ * Form label specifics.
+ */
 @media all and (min-width: 720px) {
-  .form__field > label {
+  .form__label {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 180px;
         -ms-flex: 0 0 180px;
@@ -1261,14 +1263,33 @@ p {
   }
 }
 
+.form__label > label {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/**
+ * .form__input
+ *
+ * Form input sepcifics.
+ */
 @media all and (min-width: 720px) {
-  .form__field > input,
-  .form__field > textarea {
+  .form__input {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
         -ms-flex: 1;
             flex: 1;
+    padding-left: 3rem;
   }
+}
+
+.form__input--notes {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+  font-size: 1.2rem;
 }
 
 /**
