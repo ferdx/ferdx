@@ -48,6 +48,16 @@
       var toggle = elem[0].querySelector('.nav__toggle');
 
       /**
+       * html
+       * body
+       *
+       * @description Caches the html and body elements
+       * @type {HTMLElements}
+       */
+      var html = document.querySelector('html');
+      var body = document.querySelector('body');
+
+      /**
        * eventListener
        * 
        * @param {String} click The event type
@@ -56,11 +66,15 @@
        */
       toggle.addEventListener('click', function(e) {
         e.preventDefault();
-        var c = toggle.classList.contains('is-active') && nav.classList.contains('is-active');
+        var c = toggle.classList.contains('is-active') && nav.classList.contains('is-active') && html.classList.contains('is-hidden') && body.classList.contains('is-hidden');
         if (c) {
+          html.classList.remove('is-hidden');
+          body.classList.remove('is-hidden');
           toggle.classList.remove('is-active');
           nav.classList.remove('is-active');
         } else {
+          html.classList.add('is-hidden');
+          body.classList.add('is-hidden');
           toggle.classList.add('is-active');
           nav.classList.add('is-active');
         }

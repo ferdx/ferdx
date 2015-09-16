@@ -26,3 +26,15 @@ body {
   line-height: $line-height--medium;
   text-rendering: optimizeLegibility;
 }
+
+/**
+ * html.is-hidden
+ * body.is-hidden
+ * 
+ */
+html.is-hidden,
+body.is-hidden {
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
+}

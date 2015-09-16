@@ -14,7 +14,8 @@
   angular
     .module('app', [
       'ui.router',
-      'checklist-model'
+      'checklist-model',
+      'ngSanitize'
     ])
     .config(config)
     .run(run);
@@ -55,6 +56,12 @@
       .state('marketplace', {
         url: '/marketplace',
         templateUrl: 'components/marketplace/marketplace.html'
+      });
+
+    $stateProvider
+      .state('team', {
+        url: '/team',
+        templateUrl: 'components/team/team.html'
       });
 
     $stateProvider

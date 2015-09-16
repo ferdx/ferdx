@@ -1,0 +1,27 @@
+<div ng-controller="TeamController as team">
+
+  <header-directive></header-directive><!-- /header -->
+
+  <div class="banner">
+    <h2 class="banner__heading">The <span>Ferd</span> creators</h2>
+  </div><!-- /banner -->
+
+  <main class="main">
+    <div class="container container--pad container--wide">
+      <section class="section">
+        <div class="team-member" ng-repeat="teamMembers in team.teamMembers">
+          <div class="team-member__img">
+            <img ng-src="img/team/{{ teamMembers.pic }}" alt="">
+          </div>
+          <div class="team-member__description">
+            <h3 class="team-member__name">{{ teamMembers.name }}</h3>
+            <p class="team-member__desecription" ng-bind-html="teamMembers.blurb"></p>
+          </div>
+        </div>
+      </section>
+    </div><!-- /container -->
+  </main><!-- /main -->
+
+  <footer-directive></footer-directive><!-- /footer -->
+
+</div><!-- /team -->

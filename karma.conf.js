@@ -16,6 +16,7 @@ module.exports = function(config) {
       'client/lib/angular/angular.min.js',
       'client/lib/angular-ui-router/release/angular-ui-router.min.js',
       'client/lib/checklist-model/checklist-model.js',
+      'client/lib/angular-sanitize/angular-sanitize.js',
       'client/lib/angular-mocks/angular-mocks.js',
       'client/app.js',
       'client/components/**/*.js',
