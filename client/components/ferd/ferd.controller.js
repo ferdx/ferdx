@@ -9,7 +9,7 @@
 
   /**
    * FerdController
-   * 
+   *
    * @description Contains all the functionality for the Ferd Controller.
    *   Returns nothing.
    * @param {Object} $state The UI Router $state
@@ -70,7 +70,7 @@
 
     /**
      * FerdController.submitKey
-     * 
+     *
      * @description Submits the api key. Returns nothing.
      * @param {Object} e The event object supplied on form submission
      */
@@ -129,7 +129,7 @@
         })
         .catch(function(error) {
           vm.showSpinner = false;
-          
+
           // TODO: Display an error alert here
           console.log('there was an error');
         });
@@ -138,26 +138,28 @@
     /**
      * FerdController.deleteUser
      *
-     * 
+     *
      */
     function deleteUser(e) {
       e.preventDefault();
-      // vm.showSpinner = true;
-      var data = {
+      vm.showSpinner = true;
+      var userData = {
         username: vm.deleteUsername,
         password: vm.deletePassword
       };
-      authFactory.deleteUser(data)
+      authFactory.update(authFactory.authUser.username, {botModules: []})
         .then(function(data) {
-          // vm.showSpinner = false;
           console.log(data);
-
+          return authFactory.deleteUser(userData)
+        })
+        .then(function(){
+          vm.showSpinner = false;
           authFactory.logout();
           $state.go('home');
         })
         .catch(function(error) {
-          // vm.showSpinner = false;
-          
+          vm.showSpinner = false;
+
           // TODO: Display an error alert here
           console.log('there was an error');
         });
