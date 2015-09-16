@@ -150,7 +150,7 @@
       authFactory.update(authFactory.authUser.username, {botModules: []})
         .then(function(data) {
           console.log(data);
-          return authFactory.deleteUser(userData)
+          return authFactory.deleteUser(userData);
         })
         .then(function(){
           vm.showSpinner = false;
