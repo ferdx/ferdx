@@ -1,0 +1,108 @@
+/* -----------------------------------------------------------------------------
+
+  COMPONENTS - TEAM
+  
+----------------------------------------------------------------------------- */
+
+/**
+ * .team-member
+ * 
+ */
+
+.team-member {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+
+  @include mq-medium {
+    margin-bottom: 6rem;
+  }
+
+  @include mq-large {
+    margin-bottom: 9rem;
+  }
+}
+
+.team-member:last-child {
+  margin-bottom: 0;
+}
+
+.team-member__img {
+  overflow: hidden;
+  flex: 0 0 6rem;
+  height: 6rem;
+  background-color: #ccc;
+  border-radius: 3rem;
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  @include mq-small {
+    flex: 0 0 9rem;
+    height: 9rem;
+    border-radius: 4.5rem;
+  }
+
+  @include mq-medium {
+    flex: 0 0 12rem;
+    height: 12rem;
+    border-radius: 6rem;
+  }
+
+  @include mq-large {
+    flex: 0 0 15rem;
+    height: 15rem;
+    border-radius: 7.5rem;
+  }
+}
+
+.team-member__description {
+  flex: 1;
+  padding-left: 1.5rem;
+
+  @include mq-small {
+    padding-left: 3rem;
+  }
+
+  @include mq-medium {
+    padding-left: 6rem;
+  }
+}
+
+.team-member__name {
+  margin-bottom: 0.5rem;
+  color: $color--neutral-xxdark;
+  font-weight: 700;
+
+  @include mq-small {
+    font-size: 2.8rem;
+  }
+
+  @include mq-medium {
+    margin-bottom: 1rem;
+    font-size: 3.2rem;
+  }
+
+  @include mq-large {
+    font-size: 3.6rem;
+  }
+}
+
+.team-member__desecription {
+  font-size: 1.4rem;
+
+  @include mq-small {
+    font-size: 1.6rem;
+  }
+
+  @include mq-medium {
+    font-size: 1.8rem;
+  }
+
+  @include mq-large {
+    font-size: 2.1rem;
+  }
+}

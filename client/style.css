@@ -1763,6 +1763,160 @@ p {
 
 /* -----------------------------------------------------------------------------
 
+  COMPONENTS - TEAM
+  
+----------------------------------------------------------------------------- */
+/**
+ * .team-member
+ * 
+ */
+.team-member {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 3rem;
+}
+
+@media all and (min-width: 720px) {
+  .team-member {
+    margin-bottom: 6rem;
+  }
+}
+
+@media all and (min-width: 1020px) {
+  .team-member {
+    margin-bottom: 9rem;
+  }
+}
+
+.team-member:last-child {
+  margin-bottom: 0;
+}
+
+.team-member__img {
+  overflow: hidden;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 6rem;
+      -ms-flex: 0 0 6rem;
+          flex: 0 0 6rem;
+  height: 6rem;
+  background-color: #ccc;
+  border-radius: 3rem;
+}
+
+.team-member__img img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@media all and (min-width: 480px) {
+  .team-member__img {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 9rem;
+        -ms-flex: 0 0 9rem;
+            flex: 0 0 9rem;
+    height: 9rem;
+    border-radius: 4.5rem;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .team-member__img {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 12rem;
+        -ms-flex: 0 0 12rem;
+            flex: 0 0 12rem;
+    height: 12rem;
+    border-radius: 6rem;
+  }
+}
+
+@media all and (min-width: 1020px) {
+  .team-member__img {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 15rem;
+        -ms-flex: 0 0 15rem;
+            flex: 0 0 15rem;
+    height: 15rem;
+    border-radius: 7.5rem;
+  }
+}
+
+.team-member__description {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding-left: 1.5rem;
+}
+
+@media all and (min-width: 480px) {
+  .team-member__description {
+    padding-left: 3rem;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .team-member__description {
+    padding-left: 6rem;
+  }
+}
+
+.team-member__name {
+  margin-bottom: 0.5rem;
+  color: #222;
+  font-weight: 700;
+}
+
+@media all and (min-width: 480px) {
+  .team-member__name {
+    font-size: 2.8rem;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .team-member__name {
+    margin-bottom: 1rem;
+    font-size: 3.2rem;
+  }
+}
+
+@media all and (min-width: 1020px) {
+  .team-member__name {
+    font-size: 3.6rem;
+  }
+}
+
+.team-member__desecription {
+  font-size: 1.4rem;
+}
+
+@media all and (min-width: 480px) {
+  .team-member__desecription {
+    font-size: 1.6rem;
+  }
+}
+
+@media all and (min-width: 720px) {
+  .team-member__desecription {
+    font-size: 1.8rem;
+  }
+}
+
+@media all and (min-width: 1020px) {
+  .team-member__desecription {
+    font-size: 2.1rem;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+
   COMPONENTS - TOGGLE
   
 ----------------------------------------------------------------------------- */
