@@ -43,5 +43,20 @@ describe('TeamController', function() {
       expect(vm).to.be.defined;
     });
   });
+
+  /**
+   * Test for team members
+   *
+   * @param {String} the test name
+   */
+  describe('team members', function() {
+    it('should exist', function() {
+      expect(vm.teamMembers).to.be.defined;
+    });
+
+    it('should be an array', function() {
+      expect(vm.teamMembers).to.be.instanceof(Array);
+    });
+  });
   
 });
