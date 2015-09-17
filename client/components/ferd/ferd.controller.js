@@ -64,6 +64,7 @@
      */
     function activate() {
       vm.getAllBotModules();
+      vm.hideAllAlerts();
 
       if (authFactory.isAuth() && authFactory.authUser.botKey) {
         vm.showSettings = true;
@@ -89,6 +90,18 @@
             .then(function(data) {
               vm.showSpinner = false;
               activate();
+            })
+            .catch(function(error) {
+              vm.hideAllAlerts();
+              vm.showSpinner = false;
+              vm.alerts.showAlertForApiKey = true;
+              vm.alert = {
+                type: 'error',
+                message: {
+                  heading: 'Uh oh...',
+                  body: error.data
+                }
+              };
             });
         })
         .catch(function(error) {
@@ -169,7 +182,6 @@
       };
       authFactory.update(authFactory.authUser.username, {botModules: []})
         .then(function(data) {
-          console.log(data);
           return authFactory.deleteUser(userData);
         })
         .then(function() {

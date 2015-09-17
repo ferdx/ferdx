@@ -20,27 +20,15 @@ module.exports = {
     var slackOrganization = req.body.slackOrganization;
     var newUser;
 
-    User.findOne({$or: [{username: username}, {slackOrganization: slackOrganization}]}, function(error, user) {
+    User.findOne({username: username}, function(error, user) {
       if (error) {
         res.status(500).send({message: 'Sorry, there was an error handling your request. Please refresh your browser and try again!'});
         return;
       }
 
       if (user) {
-        if (user.username === username && user.slackOrganization === slackOrganization) {
-          res.status(400).send({data: 'Sorry, but a someone already signed up with the same username and Slack organization. Try again!'});
-          return;
-        }
-
-        if (user.username === username) {
-          res.status(400).send({data: 'Sorry, but a user with that username already exists. Try again!'});
-          return;
-        }
-
-        if (user.slackOrganization === slackOrganization) {
-          res.status(400).send({data: 'Sorry, but someone already signed up with that Slack organization. Try again!'});
-          return;
-        }
+        res.status(400).send({data: 'Sorry, but someone already signed up with that username. Try again!'});
+        return;
       }
 
       var newUser = new User({
@@ -129,12 +117,26 @@ module.exports = {
    */
   update: function(req, res, next) {
     var data = req.body.data;
-    var query = req.body.username;
-    User.findOneAndUpdate(query, data, {new: true}, function(err, doc) {
-      console.log(doc);
-      doc.emitUpdate(doc.username);
-      res.status(201).send(doc);
-    });
+    var username = req.body.username;
+
+    if (data.botKey) {
+      User.findOne({botKey: data.botKey}, function(error, key) {
+        if (key) {
+          res.status(400).send({data: 'Sorry, but you can\'t register the same bot twice.'});
+        } else {
+          _update();
+        }
+      });
+    } else {
+      _update();
+    }
+
+    function _update() {
+      User.findOneAndUpdate({username: username}, data, {new: true}, function(err, doc) {
+        doc.emitUpdate(doc.username);
+        res.status(201).send(doc);
+      });
+    }
   },
 
   /**
