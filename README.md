@@ -9,10 +9,10 @@ for more information.
 
 ## Team
 
-* David Rosson <david@rosson.com.au>
-* Timothy Quach <timothyquachbot@gmail.com>
-* Andrew Kishino <andrewkishino@gmail.com>
 * Nick Salloum <nick@callmenick.com>
+* Timothy Quach <timothyquachbot@gmail.com>
+* Andrew Kishino <AndrewKishino@gmail.com>
+* David Rosson <david@rosson.com.au>
 
 ## Contributing
 
@@ -24,4 +24,4 @@ If you're contributing, make sure to check out the [style guide.](STYLE-GUIDE.md
 
 ## License
 
-Licensed under [MIT.](http://opensource.org/licenses/MIT)
+MIT
