@@ -41,8 +41,13 @@
     vm.showSetup = false;
 
     // shows alerts for various stuff, and initialize alert props to empty
-    vm.showAlertForApiKey = false;
+    vm.alerts = {
+      showAlertForApiKey: false,
+      showAlertForBotSettings: false,
+      showAlertForDeleteAccount: false
+    };
     vm.alert = {};
+    vm.hideAllAlerts = hideAllAlerts;
 
     // deletes a user
     vm.deleteUser = deleteUser;
@@ -58,10 +63,11 @@
      * @description Does some stuff on load. Returns nothing.
      */
     function activate() {
+      vm.getAllBotModules();
+
       if (authFactory.isAuth() && authFactory.authUser.botKey) {
         vm.showSettings = true;
         vm.showSetup = false;
-        vm.getAllBotModules();
       } else if (authFactory.isAuth() && !authFactory.authUser.botKey) {
         vm.showSetup = true;
         vm.showSettings = false;
@@ -86,8 +92,9 @@
             });
         })
         .catch(function(error) {
+          vm.hideAllAlerts();
           vm.showSpinner = false;
-          vm.showAlertForApiKey = true;
+          vm.alerts.showAlertForApiKey = true;
           vm.alert = {
             type: 'error',
             message: {
@@ -122,23 +129,36 @@
       vm.showSpinner = true;
       authFactory.update(authFactory.authUser.username, {botModules: vm.userBotModules})
         .then(function(data) {
+          vm.hideAllAlerts();
           vm.showSpinner = false;
-
-          // TODO: Display a success alert here
-          console.log('successful update');
+          vm.alerts.showAlertForBotSettings = true;
+          vm.alert = {
+            type: 'success',
+            message: {
+              heading: 'Success!',
+              body: 'You\'ve successfully updated your bot modules!'
+            }
+          };
         })
         .catch(function(error) {
+          vm.hideAllAlerts();
           vm.showSpinner = false;
-
-          // TODO: Display an error alert here
-          console.log('there was an error');
+          vm.alerts.showAlertForBotSettings = true;
+          vm.alert = {
+            type: 'error',
+            message: {
+              heading: 'Uh oh...',
+              body: 'Something went wrong. Please refresh the page and try again!'
+            }
+          };
         });
     }
 
     /**
      * FerdController.deleteUser
      *
-     *
+     * @description [description]
+     * @param {Object} e The event object supplied on form submission
      */
     function deleteUser(e) {
       e.preventDefault();
@@ -152,17 +172,34 @@
           console.log(data);
           return authFactory.deleteUser(userData);
         })
-        .then(function(){
+        .then(function() {
           vm.showSpinner = false;
           authFactory.logout();
           $state.go('home');
         })
         .catch(function(error) {
+          vm.hideAllAlerts();
           vm.showSpinner = false;
-
-          // TODO: Display an error alert here
-          console.log('there was an error');
+          vm.alerts.showAlertForDeleteAccount = true;
+          vm.alert = {
+            type: 'error',
+            message: {
+              heading: 'Uh oh...',
+              body: 'Something went wrong. Please refresh the page and try again!'
+            }
+          };
         });
+    }
+
+    /**
+     * FerdController.hideAllAlerts
+     *
+     * @description Hides all alerts. Returns nothing.
+     */
+    function hideAllAlerts() {
+      _.each(vm.alerts, function(value, key, list) {
+        vm.alerts[key] = false;
+      });
     }
 
   }

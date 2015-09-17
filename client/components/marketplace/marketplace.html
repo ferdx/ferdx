@@ -1,4 +1,4 @@
-<div ng-controller="MarketplaceController as marketplace">
+<div ng-controller="FerdController as ferd">
 
   <header-directive></header-directive><!-- /header -->
 
@@ -21,33 +21,44 @@
           </div>
         </form>
       </section>
-
+      
       <section class="section section--small">
-        <div class="grid">
-          <div class="grid__inner">
-            <div class="grid__item grid__item--33-lg" ng-repeat="module in marketplace.modules | filter: searchModules">
-              <div class="module">
-                <div class="module__header">
-                  <h3 class="module__title">{{ module.title }}</h3>
-                  <div class="module__toggle" ng-show="marketplace.showToggleSwitch">
-                    <input id="{{ module.name }}" class="toggle toggle--flat" type="checkbox">
-                    <label for="{{ module.name }}">Toggle module</label>
+        <alerts-directive alert="ferd.alert" ng-show="ferd.alerts.showAlertForBotSettings"></alerts-directive>
+        <form action="#" ng-submit="ferd.setUserBotModules($event)" class="form">
+          <div class="form__field">
+            <button type="submit" class="btn btn--block btn--primary">Save you preferences!</button>
+          </div>
+          <div class="grid">
+            <div class="grid__inner">
+              <div class="grid__item grid__item--33-lg" ng-repeat="module in ferd.allBotModules | filter: searchModules">
+                <div class="module" ng-class="{'not-active': ferd.userBotModules.indexOf(module.name) < 0}">
+                  <div class="module__header">
+                    <h3 class="module__title">{{ module.title }}</h3>
+                    <div class="module__toggle" ng-show="ferd.showSettings">
+                      <input id="{{ module.name }}" class="toggle toggle--flat" type="checkbox" checklist-value="module.name" checklist-model="ferd.userBotModules">
+                      <label for="{{ module.name }}">Toggle module</label>
+                    </div>
                   </div>
-                </div>
-                <div class="module__content">
-                  <p>{{ module.description }}</p>
-                </div>
-                <div class="module__footer">
-                  <small><span>added:</span> {{ module.created_at }}</small>
-                </div>
-              </div><!-- /module -->
-            </div><!-- grid__item -->
-          </div><!-- grid__inner -->
-        </div><!-- /grid -->
+                  <div class="module__content">
+                    <p>{{ module.description }}</p>
+                  </div>
+                  <div class="module__footer">
+                    <small><span>added:</span> {{ module.created_at }}</small>
+                  </div>
+                </div><!-- /module -->
+              </div><!-- grid__item -->
+            </div><!-- grid__inner -->
+          </div><!-- /grid -->
+          <div class="form__footer form__footer--special">
+            <button type="submit" class="btn btn--block btn--primary">Save you preferences!</button>
+          </div>
+        </form>
       </section>
 
     </div><!-- /container -->
   </main><!-- /main -->
+
+  <spinner-directive display="ferd.showSpinner"></spinner-directive><!-- /spinner -->
 
   <footer-directive></footer-directive><!-- /footer -->
 

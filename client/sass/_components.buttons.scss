@@ -30,6 +30,15 @@
 }
 
 /**
+ * .btn--block
+ * 
+ */
+.btn--block {
+  display: block;
+  width: 100%;
+}
+
+/**
  * .btn--primary
  * 
  */
@@ -41,4 +50,18 @@
 
 .btn--primary:hover {
   background-color: $color--theme-dark;
+}
+
+/**
+ * .btn--secondary
+ * 
+ */
+
+.btn--secondary {
+  color: #fff;
+  background-color: $color--neutral-xxdark;
+}
+
+.btn--secondary:hover {
+  background-color: $color--neutral-xxxdark;
 }

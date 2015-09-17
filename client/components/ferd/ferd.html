@@ -11,11 +11,8 @@
       
       <section class="section section--m-lg" ng-show="ferd.showSetup">
         <h2 class="section__heading">Set up Ferd</h2>
-
-        <alerts-directive alert="ferd.alert" ng-show="ferd.showAlertForApiKey"></alerts-directive>
-
+        <alerts-directive alert="ferd.alert" ng-show="ferd.alerts.showAlertForApiKey"></alerts-directive>
         <p class="section__paragraph">You have no key...you need to add it! Visit <a href="https://{{ ferd.userSlackOrganizationName }}.slack.com/services/new/bot" target="_blank">your organization page</a> to add a bot, and when you're done, paste the api key in below.</p>
-
         <form action="#" class="form" ng-submit="ferd.submitKey($event)">
           <div class="form__field">
             <div class="form__label">
@@ -33,6 +30,7 @@
       
       <section class="section section--m-lg" ng-show="ferd.showSettings">
         <h2 class="section__heading">Your current configuration</h2>
+        <alerts-directive alert="ferd.alert" ng-show="ferd.alerts.showAlertForBotSettings"></alerts-directive>
         <form ng-submit="ferd.setUserBotModules($event)" class="form">
           <div class="fconfig">
             <div class="fconfig__entry" ng-repeat="module in ferd.allBotModules">
@@ -51,6 +49,7 @@
       
       <section class="section section--m-lg" ng-show="ferd.showSettings">
         <h2 class="section__heading">Change your API key</h2>
+        <alerts-directive alert="ferd.alert" ng-show="ferd.alerts.showAlertForApiKey"></alerts-directive>
         <form action="#" ng-submit="ferd.submitKey($event)" class="form">
           <div class="form__field">
             <div class="form__label">
@@ -68,6 +67,7 @@
 
       <section class="section section--m-lg" ng-show="ferd.showSettings">
         <h2 class="section__heading">Delete your account</h2>
+        <alerts-directive alert="ferd.alert" ng-show="ferd.alerts.showAlertForDeleteAccount"></alerts-directive>
         <form action="#" ng-submit="ferd.deleteUser($event)" class="form">
           <div class="form__field">
             <div class="form__label">
@@ -94,7 +94,7 @@
     </div><!-- /container -->
   </main><!-- /main -->
 
-  <spinner-directive display="ferd.showSpinner"></spinner-directive>
+  <spinner-directive display="ferd.showSpinner"></spinner-directive><!-- /spinner -->
 
   <footer-directive></footer-directive><!-- /footer -->
 
