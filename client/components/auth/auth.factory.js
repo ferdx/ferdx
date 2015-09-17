@@ -103,7 +103,7 @@
           return response;
         })
         .catch(function(error) {
-          return error;
+          throw error.data;
         });
     }
 
@@ -116,7 +116,7 @@
           return response;
         })
         .catch(function(error) {
-          return err;
+          throw error.data;
         });
     }
 
@@ -146,8 +146,8 @@
           response.data.token = token;
           return response;
         })
-        .catch(function(err) {
-          return err;
+        .catch(function(error) {
+          throw error.data;
         });
     }
 
