@@ -50,6 +50,9 @@
                 reject(false);
               }
             });
+          })
+          .catch(function(error) {
+            throw error.data;
           });
       }
 
