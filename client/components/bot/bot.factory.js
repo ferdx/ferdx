@@ -8,9 +8,9 @@
     /**
      * botFactory
      *
-     * @description [description]
-     * @param {[type]} 
-     * @return {[type]}
+     * @description The bot factory.
+     * @param {Object} $http The $http Angular service
+     * @return {Object} The factory
      */
     function botFactory($http) {
 

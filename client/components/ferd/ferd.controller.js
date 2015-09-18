@@ -10,7 +10,7 @@
   /**
    * FerdController
    *
-   * @description Contains all the functionality for the Ferd Controller.
+   * @description Contains all the functionality for the FerdController.
    *   Returns nothing.
    * @param {Object} $state The UI Router $state
    * @param {Object} authFactory The authentication factory

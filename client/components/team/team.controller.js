@@ -10,12 +10,10 @@
   /**
    * TeamController
    *
-   * @description [description]
-   * @param {[type]}
-   * @param {[type]}
+   * @description Contains all the functionality for the TeamController. Returns
+   *   nothing.
    */
-  function TeamController(authFactory, botFactory) {
-
+  function TeamController() {
     var vm = this;
 
     vm.teamMembers = [
@@ -40,18 +38,6 @@
         pic: 'david.jpg'
       }
     ];
-
-    activate();
-
-    /**
-     * activate
-     *
-     * @description [description]
-     * @return {[type]}
-     */
-    function activate() {
-    }
-
   }
 
 })();

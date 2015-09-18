@@ -12,8 +12,7 @@
    * 
    * @description The spinner directive is used for displaying the spinner overlay
    *   on parts where it's warranted.
-   * @example <spinner-directive></spinner-directive>
-   * @author bot
+   * @return {Object} The directive
    */
   function spinnerDirective() {
     var directive = {
