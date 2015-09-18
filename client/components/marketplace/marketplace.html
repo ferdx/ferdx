@@ -25,8 +25,8 @@
       <section class="section section--small">
         <alerts-directive alert="ferd.alert" ng-show="ferd.alerts.showAlertForBotSettings"></alerts-directive>
         <form action="#" ng-submit="ferd.setUserBotModules($event)" class="form">
-          <div class="form__field">
-            <button type="submit" class="btn btn--block btn--primary">Save you preferences!</button>
+          <div class="form__field" ng-show="ferd.showSettings">
+            <button type="submit" class="btn btn--block btn--primary">Save your preferences!</button>
           </div>
           <div class="grid">
             <div class="grid__inner">
@@ -49,8 +49,8 @@
               </div><!-- grid__item -->
             </div><!-- grid__inner -->
           </div><!-- /grid -->
-          <div class="form__footer form__footer--special">
-            <button type="submit" class="btn btn--block btn--primary">Save you preferences!</button>
+          <div class="form__footer form__footer--special" ng-show="ferd.showSettings">
+            <button type="submit" class="btn btn--block btn--primary">Save your preferences!</button>
           </div>
         </form>
       </section>
