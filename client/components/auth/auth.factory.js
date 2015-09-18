@@ -87,10 +87,10 @@
     /**
      * authFactory.update
      *
-     * @description Updates a user
-     * @param {[type]}
-     * @param {[type]}
-     * @return {[type]}
+     * @description Updates a user record.
+     * @param {String} username The auth user's username
+     * @param {Object} data The data to be updated
+     * @return {Object} Message data to be sent back to the client.
      */
     function update(username, data) {
       var json = {
@@ -109,6 +109,10 @@
 
     /**
      * authFactory.delete
+     *
+     * @description Deletes a user record.
+     * @param {Object} data The user data
+     * @return {Object} The data to be sent back to the client
      */
     function deleteUser(data) {
       return $http.post('/api/users/deleteuser', data)
@@ -123,8 +127,8 @@
     /**
      * authFactory.isAuth
      *
-     * @description [description]
-     * @return {Boolean}
+     * @description Checks if a user is authenticated.
+     * @return {Boolean} True is a user is auth, false if not
      */
     function isAuth() {
       var token = $window.localStorage.getItem('ferdxAuthIdentifier');
@@ -134,8 +138,8 @@
     /**
      * authFactory.getAuthUser
      *
-     * @description [description]
-     * @return {[type]}
+     * @description Get's the authenticated user's details.
+     * @return {Object} The authenticated user's details
      */
     function getAuthUser() {
       var token = $window.localStorage.getItem('ferdxAuthIdentifier');

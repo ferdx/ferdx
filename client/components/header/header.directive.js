@@ -8,8 +8,7 @@
    * 
    * @description The header directive is used for displaying the header with
    *   dynamic navigation links, depending on user auth state.
-   * @example <header-directive></header-directive>
-   * @author bot
+   * @return {Object} The directive
    */
   angular
     .module('app')

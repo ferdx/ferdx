@@ -10,12 +10,11 @@
   /**
    * CareersController
    *
-   * @description Contains all the functionality for the Careers Controller.
+   * @description Contains all the functionality for the CareersController.
+   *   Returns nothing.
    */
   function CareersController() {
-    
     var vm = this;
-
   }
 
 })();

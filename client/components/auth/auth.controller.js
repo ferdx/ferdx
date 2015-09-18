@@ -10,10 +10,11 @@
   /**
    * AuthController
    * 
-   * @description [description]
-   * @param {[type]} 
-   * @param {[type]} 
-   * @param {[type]} 
+   * @description Contains all the functionality for the AuthController. Returns
+   *   nothing.
+   * @param {Object} $state The Angular $state service
+   * @param {Object} $window The Angular $window service
+   * @param {Object} authFactory The auth factory
    */
   function AuthController($state, $window, authFactory) {
     var vm = this;
@@ -26,23 +27,11 @@
     vm.alert = {};
     vm.showSpinner = false;
 
-    activate();
-
     /**
-     * activate
-     *
-     * @description [description]
-     * @return {[type]}
-     */
-    function activate() {
-    }
-
-    /**
-     * signup
+     * AuthController.signup
      * 
-     * @description [description]
-     * @param {[type]} 
-     * @return {[type]}
+     * @description Signs a user up. Returns nothing.
+     * @param {Object} e The event object from form submission.
      */
     function signup(e) {
       e.preventDefault();
@@ -66,11 +55,10 @@
     }
 
     /**
-     * login
+     * AuthController.login
      * 
-     * @description [description]
-     * @param {[type]} 
-     * @return {[type]}
+     * @description Logs a user in. Returns nothing.
+     * @param {Object} e The event object from form submission.
      */
     function login(e) {
       e.preventDefault();
@@ -94,11 +82,10 @@
     }
 
     /**
-     * logout
+     * AuthController.logout
      *
-     * @description [description]
-     * @param {[type]} 
-     * @return {[type]}
+     * @description Logs a user out then redirects them home. Returns nothing.
+     * @param {Object} e The event object from form submission.
      */
     function logout(e) {
       e.preventDefault();

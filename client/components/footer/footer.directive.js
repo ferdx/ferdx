@@ -12,8 +12,7 @@
    * 
    * @description The footer directive is used for displaying the footer on all
    *   pages.
-   * @example <footer-directive></footer-directive>
-   * @author bot
+   * @return {Object} The directive
    */
   function footerDirective() {
     var directive = {

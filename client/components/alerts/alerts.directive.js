@@ -12,8 +12,7 @@
    * 
    * @description The alerts directive is used for displaying alerts in general,
    *   like error and success handling on form submissions.
-   * @example <alerts-directive></alerts-directive>
-   * @author bot
+   * @return {Object} The directive
    */
   function alertsDirective() {
     var directive = {

@@ -6,8 +6,11 @@
     .factory('ferdFactory', ferdFactory);
 
     /**
-     * Factory for interfacing with FerdX server for all available modules
-     * with MegaFerd server.
+     * ferdFactory
+     * 
+     * @description Factory for interfacing with FerdX server for all available
+     *   modules with MegaFerd server.
+     * @return {Object} The factory
      */
     function ferdFactory($q, $http, authFactory) {
 
@@ -22,7 +25,9 @@
       ////////////////////////////////////////////////////////////
 
       /**
-       * Sends a GET request to server for all available modules
+       * ferdFactory.getAvailableModules
+       *
+       * @description Sends a GET request to server for all available modules.
        * @return {Object} response data
        */
       function getAvailableModules(data) {
@@ -33,10 +38,12 @@
       }
 
       /**
-       * Verifies if slack api key is valid and if it is, that it belongs to
-       * the same org as user's submission.
-       * @param {String} apikey to check
-       * @return {Promise}
+       * ferdFactory.verifyKey
+       * 
+       * @description Verifies if slack api key is valid and if it is, that it
+       *   belongs to the same org as user's submission.
+       * @param {String} apikey The API key to check
+       * @return {Object} A promise object
        */
       function verifyKey(apikey) {
         var url = 'https://slack.com/api/rtm.start?token=' + apikey;

@@ -11,14 +11,13 @@
     .controller('HomeController', HomeController);
 
   /**
-   * HomeController is where all the actual controller functionality resides.
+   * HomeController
+   *
+   * @description Contains all the functionality for the HomeController. Returns
+   *   nothing.
    */
   function HomeController() {
-    
     var vm = this;
-
-    vm.username = 'Nick';
-
   }
 
 })();
