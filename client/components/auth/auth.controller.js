@@ -10,10 +10,11 @@
   /**
    * AuthController
    * 
-   * @description [description]
-   * @param {[type]} 
-   * @param {[type]} 
-   * @param {[type]} 
+   * @description Handles all the functionality for the authentication
+   *   controller. Returns nothing.
+   * @param {Object} $state The Angular $state service
+   * @param {Object} $window The Angular $window service
+   * @param {Object} authFactory The auth factory
    */
   function AuthController($state, $window, authFactory) {
     var vm = this;
